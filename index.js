@@ -18,12 +18,6 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    //map Error Then send it for user
-    // Which type of error???
-    // debugger;
-    // if (err instanceof (mongoose.Error.ValidationError)) {
-    //     res.status(422).json(err.errors);
-    // }
     switch(err){
         case err instanceof (mongoose.Error.ValidationError):
         res.status(422).json(err.errors);

@@ -10,10 +10,10 @@ const postSchema = new Schema({
     },
     createTime:{type:Date},
     updateTime:{type:Date},
-    // userId:{
-    //     type:Schema.Types.ObjectId,
-    //     ref:'User'
-    // },
+    userId:{
+        type:Schema.Types.ObjectId,
+       // ref:'User'
+    },
     reactions:{
         type:String,
         enum:['liked','disliked'],
