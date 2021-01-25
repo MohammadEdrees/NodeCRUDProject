@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
         const posts = await getAll();
         res.json(posts);
     } catch (err) {
-        res.json({err});
+        next(err);
     };
 
 
