@@ -18,19 +18,19 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-    switch(err){
-        case err instanceof (mongoose.Error.ValidationError):
-        res.status(422).json(err.errors);
-        break;
+    // switch(err){
+    //     case err instanceof (mongoose.Error.ValidationError):
+    //     res.status(422).json(err.errors);
+    //     break;
 
-        case err.code===11000 :
-        res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
-        break;
+    //     case err.code===11000 :
+    //     res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
+    //     break;
 
-        case err.message==='UN_AUTHENTICATED':
-        res.status(401).json({ statusCode:'UN_AUTHENTICATED' } );
-        break;
-    }
+    //     case err.message==='UN_AUTHENTICATED':
+    //     res.status(401).json({ statusCode:'UN_AUTHENTICATED' } );
+    //     break;
+    // }
    // res.status(503).json({er:'reqiredValues'});
 });
 
