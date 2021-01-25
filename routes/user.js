@@ -1,5 +1,5 @@
 const express = require('express');
-const {create,getAllUsers,login,editOne} =  require('../controllers/user');
+const {create,getAllUsers,login,editOne,getById} =  require('../controllers/user');
 
 const router = express.Router();
 
@@ -21,7 +21,14 @@ router.get('/', async(req,res,next)=>{
         next(err);
     }
 });
-
+router.get('/:id', async(req,res,next)=>{
+    try{
+        const users = await getById(req.params.id);
+        res.json(users);
+    }catch(err){
+        next(err);
+    }
+});
 router.post('/login',async(req,res,next)=>{
     const { body } = req;
     try{

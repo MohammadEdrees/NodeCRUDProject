@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const create =(user)=>{
 return User.create(user);
 }
+const getById=(id)=>User.findById(id).exec();
 const getAllUsers=()=>User.find({});
 const editOne=(id,data)=>User.findByIdAndUpdate(id,data,{ new: true }).exec();
 const {promisify}=require('util');
@@ -27,5 +28,5 @@ return { ...user.toJSON(), token};
 }
 
 module.exports={
-    create,getAllUsers,login,editOne
+    create,getAllUsers,login,editOne,getById
 }
