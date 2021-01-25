@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./routes/index');//by defult index invoked
+const routes = require('./routes');//by defult index invoked
 const app = express();
 const { MONGODB_URI } = process.env;
 mongoose.connect( MONGODB_URI , { useUnifiedTopology: true });
