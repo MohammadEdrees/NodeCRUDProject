@@ -4,11 +4,13 @@ const { create, getAll, getById, edit, deletP } = require('../controllers/post')
 const router = express.Router();
 
 router.post('/', async (req, res, next) => {
+   try{
     const { body } = req;
-
     const post = await create(body);
     res.json(post);
-
+   }catch(e){
+       res.json(e);
+   }
 
 });
 
@@ -17,7 +19,7 @@ router.get('/', async (req, res, next) => {
         const posts = await getAll();
         res.json(posts);
     } catch (err) {
-        next(err);
+        res.json({err});
     };
 
 
