@@ -11,12 +11,13 @@ const postSchema = new Schema({
     createTime:{type:Date},
     userId:{
         type:Schema.Types.ObjectId,
-       // ref:'User'
+        ref:'User'
     },
     reactions:{
         type:String,
         enum:['liked','disliked']
-    }
+    },
+   
 });
 const postModel = mongoose.model('Post',postSchema);
 module.exports=postModel;
