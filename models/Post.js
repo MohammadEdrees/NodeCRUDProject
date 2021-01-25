@@ -9,14 +9,13 @@ const postSchema = new Schema({
         required:true
     },
     createTime:{type:Date},
-    updateTime:{type:Date},
     userId:{
         type:Schema.Types.ObjectId,
        // ref:'User'
     },
     reactions:{
         type:String,
-        enum:['liked','disliked'],
+        enum:['liked','disliked']
     }
 });
 const postModel = mongoose.model('Post',postSchema);
