@@ -8,8 +8,6 @@ mongoose.connect( MONGODB_URI , { useUnifiedTopology: true });
 
 app.use(express.json());
 app.use('/', routes);
-//Get /users
-//Get /posts 
 
 
 app.use((req, res, next) => {
@@ -31,7 +29,7 @@ app.use((err, req, res, next) => {
         res.status(401).json({ statusCode:'UN_AUTHENTICATED' } );
         break;
     }
-    res.status(503).json({er:'reqiredValues'});
+    res.status(503).end();
 });
 
 const { PORT = 3000 } = process.env;
