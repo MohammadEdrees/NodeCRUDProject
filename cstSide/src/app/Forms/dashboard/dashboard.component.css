@@ -9,7 +9,21 @@
 
 }
 p{
-    color: whitesmoke;
+    color: #222831;
+    display: inline;
+}
+#likebtn,#commentbtn,#editbtn,#deletbtn{
+    outline: #eeeeee;
+    color: #16697a;
+    font-weight: bold;
+
+}
+
+#parent{
+background-color: #ffd369;
+}
+#card{
+    background-color: #eeeeee;
 }
 
 
