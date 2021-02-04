@@ -17,7 +17,7 @@ router.get('/', async(req,res,next)=>{
     try{
         const allUsers = await getAllUsers();
         res.json(allUsers);
-    }catch(err){
+    }catch(err){    
         next(err);
     }
 });
