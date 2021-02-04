@@ -1,0 +1,15 @@
+#body,#postBody,#dataBody,#jumb{
+    background-image: url("4.jpg");
+}
+#dataBody{
+    width: 100%;
+}
+#getImg{
+    background-image: url("holmz2.jpg");
+
+}
+p{
+    color: whitesmoke;
+}
+
+
