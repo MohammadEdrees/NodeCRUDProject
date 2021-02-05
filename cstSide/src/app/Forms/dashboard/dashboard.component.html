@@ -1,49 +1,46 @@
-<div class="container-fluid">
 
-    <div id='jumb' class="jumbotron text-truncate ">
+<section id='parent' class="container-fluid ">
+
+    
+    <div id='jumb' class="jumbotron text-truncate mt-2 ">
         <p class="display-3 text-warning text-truncate">Welcome,Everybody</p>
         <hr class="my-4">
-        <p class='display-4 text-white text-truncate'>Ziad , Rania and Edrees Say Hello </p>
-        <p class="lead ">
+        <p class='display-4 text-white text-wrap'>Ziad , Rania and Edrees Say Hello </p>
+        <hr class="my-4">
+        <p class="lead text-wrap ">
             <a class="btn btn-outline-info btn-lg mr-2 " (click)='createpost();'>Create a Blog </a>
-            <a class="btn btn-outline-warning btn-lg mr-2 " (click)='register();'>Sign Up</a>
-            <a class="btn btn-outline-danger btn-lg mr-2 " (click)='login();'>Sign In</a>
-
+    
         </p>
-
+    
     </div>
 
-    <section id='parent' class="container-fluid ">
+    <div id='body' class="container p-lg ">
 
+        <section id='postBody' class="card flex d-inline-flex offset-2 col-8 p-lg text-truncate">
+            <div id='card' class="card mt-5 text-truncate " *ngFor="let blog of blogs">
+                <div class='m-1'>
+                    <a id="editbtn" class="btn   text-truncate" (click)='editPost(blog);'>Edit</a>
+                    <a id="deletbtn" class="btn   offset-1 text-truncate" (click)='removePost(blog);'>Remove</a>
 
-        <div id='body' class="container p-lg ">
-
-            <section id='postBody' class="card flex d-inline-flex offset-2 col-7 p-lg text-truncate">
-                <div id='card' class="card mt-5 text-truncate " *ngFor="let blog of blogs">
-                    <div class='m-1'>
-                        <a id="editbtn" class="btn   text-truncate" (click)='editPost(blog);'>Edit</a>
-                        <a id="deletbtn" class="btn   offset-1 text-truncate" (click)='removePost(blog);'>Remove</a>
-
-                    </div>
-                    <div>
-                        <img id='cardImg' class="card-img-top " src="./holmz2.jpg" alt="Card image cap">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title text-danger d-5 ">blog title created Date : {{blog.createTime}}</h5>
-                        <p class="card-text display-5  ">
-                            {{blog.body}}
-                        </p>
-                    </div>
-                    <div class='container'>
-                        <a id='likebtn' class="btn  col-6 btn-lg ml-1" (click)='likePost();'>like</a>
-                        <a id='commentbtn' class="btn  col-6 btn-lg  " (click)='Addcomment();'>comment</a>
-
-                    </div>
+                </div>
+                <div>
+                    <img id='cardImg' class="card-img-top " src="./holmz2.jpg" alt="Card image cap">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-danger d-5 ">blog title created Date : {{blog.createTime}}</h5>
+                    <p class="card-text display-5  ">
+                        {{blog.body}}
+                    </p>
+                </div>
+                <div class='container'>
+                    <a id='likebtn' class="btn  col-6 btn-lg ml-1" (click)='likePost();'>like</a>
+                    <a id='commentbtn' class="btn  col-6 btn-lg  " (click)='Addcomment();'>comment</a>
 
                 </div>
 
-            </section>
+            </div>
 
-        </div>
-    </section>
-</div>
+        </section>
+
+    </div>
+</section>

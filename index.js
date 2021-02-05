@@ -4,10 +4,12 @@ const routes = require('./routes');//by defult index invoked
 const app = express();
 const { MONGODB_URI } = process.env;
 mongoose.connect( MONGODB_URI , { useUnifiedTopology: true });
-
+const cors = require('cors');
 
 app.use(express.json());
+app.use(cors());
 app.use('/', routes);
+
 //Get /users
 //Get /posts 
 
