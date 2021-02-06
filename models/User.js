@@ -16,7 +16,6 @@ const userSchema = new Schema({
         maxlength:140
        
     },
-
     password:{
         type: String,
         required:true
@@ -28,15 +27,14 @@ const userSchema = new Schema({
     },
     lastname:{
         type: String,
-        maxlength:20
-       
+        maxlength:20     
     }
     // toJSON:{
     //     transform:(doc,ret,options)=>{
     //         delete ret.password;
     //         return ret;
     //     }
-    }
+    //}
     
       
 });
