@@ -3,20 +3,28 @@ const bycrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    //mail required
+    mail:{
+        type: String,
+        unique:true,
+        maxlength:40,
+        required:true,
+    },
     username:{
         type: String,
         unique:true,
         maxlength:140,
         required:true,
     },
+
     password:{
         type: String,
         required:true,
     },
     firstname:{
         type: String,
-        maxlength:140,
-        required:true,
+        maxlength:140
+       
     }
     
         // toJSON: {
