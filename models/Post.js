@@ -22,6 +22,11 @@ const postSchema = new Schema({
      type:[String],
      default:"NoAction"
     },
+    hidden:
+    {
+        type:Boolean,
+        default:false
+    },
     img:{
         type:String,
         default:"URL"
