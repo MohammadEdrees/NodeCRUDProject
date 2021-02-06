@@ -36,11 +36,15 @@ p {
     background-color: #eeeeee;
 }
 
+<<<<<<< HEAD
 #navbar {
     background-color: black;
 }
 
 #godfather {
+=======
+#godfather{
+>>>>>>> e35edbc3266b014fbd00727c25ddddf55d6a5ed5
     width: inherit;
 }
 

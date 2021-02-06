@@ -18,10 +18,24 @@ const userSchema = new Schema({
         maxlength:140,
         required:true,
     },
-    posts:{
+    lastname:{
+        type: String,
+        maxlength:140,
+        required:true,
+    },
+    posts:[{
         type:Schema.Types.ObjectId,
         ref:'Post'
-    },
+    }],
+    followers:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    following:[{
+        type:Schema.Types.ObjectId,
+        ref:'User'
+    }],
+    
         // toJSON: {
         //     transform: (doc,ret,options)=>{
         //         delete ret.password;

@@ -2,21 +2,25 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
-    
+    title:{
+        type: String,
+        maxlength:20,
+        required:true
+    },
     body:{
         type: String,
         maxlength:256,
         required:true
     },
-    createTime:{type:Date},
+    createTime:{type:Date.now},
     userId:{
         type:Schema.Types.ObjectId,
         ref:'User'
     },
-    reactions:{
+    reactions:[{
         type:String,
-        enum:['liked','disliked']
-    },
+        enum:['like','dislike','love','Angery','support']
+    }],
    
 });
 const postModel = mongoose.model('Post',postSchema);
