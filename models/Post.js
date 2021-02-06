@@ -12,9 +12,7 @@ const postSchema = new Schema({
         maxlength:256,
         required:true
     },
-    createTime:{
-        type:Date, default:Date.now
-    },
+    createTime:{type:Date},
     userId:{
         type:Schema.Types.ObjectId,
         ref:'User'
@@ -22,8 +20,8 @@ const postSchema = new Schema({
     reactions:[{
         type:String,
         enum:['like','dislike','love','Angery','support']
-    }],
-    owner:{String,default:"User"}
+    }]
+
 
 
    
