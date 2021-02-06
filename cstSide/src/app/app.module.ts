@@ -9,13 +9,19 @@ import { LoginComponent } from './Forms/login/login.component';
 import { RegisterationComponent } from './Forms/registeration/registeration.component';
 import { DashboardComponent } from './Forms/dashboard/dashboard.component';
 import { RegisterService } from './serve/register.service';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { CreateBlogComponent } from './create-blog/create-blog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterationComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent,
+    CreateBlogComponent,
   ],
   imports: [
     BrowserModule,

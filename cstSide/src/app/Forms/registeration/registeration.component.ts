@@ -31,8 +31,8 @@ export class RegisterationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isValid(controlName){
-    return this.myForm.get(controlName).invalid && this.myForm.get(controlName).touched;
+  isValid(controlName:any){
+    return this.myForm.get(controlName)?.invalid && this.myForm.get(controlName)?.touched;
   }
 
   passvalidator(control:AbstractControl){
