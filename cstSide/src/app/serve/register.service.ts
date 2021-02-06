@@ -7,7 +7,7 @@ export class RegisterService {
 
   constructor(private _http:HttpClient) { }
   submitegister(body:any){
-    return this._http.post('https://localhost:3000/users',body,{
+    return this._http.post('https://myfirstnode7.herokuapp.com/users/',body,{
       observe:'body'
     })
   }

@@ -12,6 +12,7 @@ import { RegisterService } from './serve/register.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
     HeaderComponent,
     FooterComponent,
     CreateBlogComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,
