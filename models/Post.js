@@ -18,9 +18,10 @@ const postSchema = new Schema({
         ref:'User',
         default:null
     },
-    reactions:[
-        type:String,
-        default:"noReaction"],
+    reactions:{
+     type:[String],
+     default:"NoAction"
+    },
     img:{
         type:String,
         default:"URL"
