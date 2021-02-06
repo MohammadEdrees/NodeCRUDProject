@@ -7,14 +7,14 @@ const userSchema = new Schema({
     mail:{
         type: String,
         unique:true,
-        maxlength:40,
+        maxlength:20,
         required:true,
     },
     username:{
         type: String,
         unique:true,
         maxlength:140,
-        required:true,
+       
     },
 
     password:{
@@ -23,16 +23,22 @@ const userSchema = new Schema({
     },
     firstname:{
         type: String,
-        maxlength:140
+        maxlength:20
        
+    },
+    lastname:{
+        type: String,
+        maxlength:20
+       
+    },
+    toJSON:{
+        transform:(doc,ret,options)=>{
+            delete ret.password;
+            return ret;
+        }
     }
     
-        // toJSON: {
-        //     transform: (doc,ret,options)=>{
-        //         delete ret.password;
-        //         return ret;
-        //     },
-        // },
+      
 });
 userSchema.pre('save',function preSave(next){
     this.password=bycrypt.hashSync(this.password,8);
