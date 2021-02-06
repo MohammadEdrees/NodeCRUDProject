@@ -1,0 +1,48 @@
+body {
+    background-color: #c3dfee;
+}
+
+.img {
+    width: 90%;
+}
+
+h3 {
+    font-family: Poppins-Medium;
+    color: #3F3D56;
+}
+
+input[type="text"],
+input[type="password"] {
+    font-family: Poppins-Medium;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #666666;
+    display: block;
+    width: 100%;
+    background: #e6e6e6;
+    height: 50px;
+    border-radius: 25px;
+    padding: 0 30px 0 68px;
+}
+
+button {
+    font-family: Poppins-Medium;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #e6e6e6;
+    display: block;
+    width: 100%;
+    background-color: #575A89;
+    height: 50px;
+    border-radius: 25px;
+    border: none;
+    padding: 0 30px 0 68px;
+}
+
+button:hover {
+    background-color: #6C63FF;
+}
+
+button:active {
+    background-color: #948ef5;
+}
