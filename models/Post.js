@@ -20,7 +20,8 @@ const postSchema = new Schema({
     },
     reactions:[{
         type:String,
-        enum:['like','dislike','love','Angery','support']
+        default:"noReaction"
+      
     }],
     img:{
         type:String,
