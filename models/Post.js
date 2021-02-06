@@ -16,7 +16,7 @@ const postSchema = new Schema({
     userId:{
         type:Schema.Types.ObjectId,
         ref:'User',
-        default:"no user"
+        default:null
     },
     reactions:[{
         type:String,
