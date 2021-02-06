@@ -23,8 +23,8 @@ const postSchema = new Schema({
         type:String,
         enum:['like','dislike','love','Angery','support']
     }],
-    owner:{String,default:"User"},
-    
+    owner:{String,default:"User"}
+
 
    
 });
