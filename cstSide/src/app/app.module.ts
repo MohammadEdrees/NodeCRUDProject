@@ -7,19 +7,24 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './Forms/login/login.component';
 import { RegisterationComponent } from './Forms/registeration/registeration.component';
 import { DashboardComponent } from './Forms/dashboard/dashboard.component';
-
+import { HeaderComponent } from './header/header.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterationComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent,
+    
   ],
   imports: [
-    BrowserModule,HttpClientModule,
+    BrowserModule,HttpClientModule,NgbModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,HeaderComponent]
 })
 export class AppModule { }
