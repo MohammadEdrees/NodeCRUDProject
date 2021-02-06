@@ -28,7 +28,16 @@ const userSchema = new Schema({
     lastname:{
         type: String,
         maxlength:20     
-    }
+    },
+    dop:{
+        type:Date,
+        default:null
+    },
+    logindate:{
+        type:Date,
+        default:Date.now
+    },
+    posts:[{type:Schema.Types.ObjectId , default:null}]
     // toJSON:{
     //     transform:(doc,ret,options)=>{
     //         delete ret.password;
