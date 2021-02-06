@@ -8,18 +8,18 @@ const userSchema = new Schema({
         type: String,
         unique:true,
         maxlength:20,
-        required:true,
+        required:true
     },
     username:{
         type: String,
         unique:true,
-        maxlength:140,
+        maxlength:140
        
     },
 
     password:{
         type: String,
-        required:true,
+        required:true
     },
     firstname:{
         type: String,
@@ -30,12 +30,12 @@ const userSchema = new Schema({
         type: String,
         maxlength:20
        
-    },
-    toJSON:{
-        transform:(doc,ret,options)=>{
-            delete ret.password;
-            return ret;
-        }
+    }
+    // toJSON:{
+    //     transform:(doc,ret,options)=>{
+    //         delete ret.password;
+    //         return ret;
+    //     }
     }
     
       
