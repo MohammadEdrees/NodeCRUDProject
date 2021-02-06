@@ -18,7 +18,7 @@ const postSchema = new Schema({
         ref:'User'
     },
     reactions:[{
-        type:String
+        type:String,
         enum:['like','dislike','love','Angery','support']
     }]
 
