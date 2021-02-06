@@ -3,28 +3,40 @@ const bycrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    //mail required
+    mail:{
+        type: String,
+        unique:true,
+        maxlength:20,
+        required:true
+    },
     username:{
         type: String,
         unique:true,
-        maxlength:140,
-        required:true,
+        maxlength:140
+       
     },
     password:{
         type: String,
-        required:true,
+        required:true
     },
     firstname:{
         type: String,
-        maxlength:140,
-        required:true,
+        maxlength:20
+       
+    },
+    lastname:{
+        type: String,
+        maxlength:20     
     }
+    // toJSON:{
+    //     transform:(doc,ret,options)=>{
+    //         delete ret.password;
+    //         return ret;
+    //     }
+    //}
     
-        // toJSON: {
-        //     transform: (doc,ret,options)=>{
-        //         delete ret.password;
-        //         return ret;
-        //     },
-        // },
+      
 });
 userSchema.pre('save',function preSave(next){
     this.password=bycrypt.hashSync(this.password,8);

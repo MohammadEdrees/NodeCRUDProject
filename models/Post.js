@@ -30,7 +30,8 @@ const postSchema = new Schema({
     img:{
         type:String,
         default:"URL"
-    }
+    },
+    comments:[String]
 
 
 
