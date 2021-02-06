@@ -12,16 +12,30 @@ const postSchema = new Schema({
         maxlength:256,
         required:true
     },
-    createTime:{type:Date.now},
+    createTime:{type:Date , default:Date.now },
     userId:{
         type:Schema.Types.ObjectId,
-        ref:'User'
+        ref:'User',
+        default:null
     },
-    reactions:[{
+    likes:{
+     type:Number,
+     default:0
+    },
+    hidden:
+    {
+        type:Boolean,
+        default:false
+    },
+    img:{
         type:String,
-        enum:['like','dislike','love','Angery','support']
-    }],
+        default:"URL"
+    }
+
+
+
    
 });
 const postModel = mongoose.model('Post',postSchema);
 module.exports=postModel;
+
