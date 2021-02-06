@@ -18,9 +18,9 @@ const postSchema = new Schema({
         ref:'User',
         default:null
     },
-    reactions:{
-     type:[String],
-     default:"NoAction"
+    likes:{
+     type:Number,
+     default:0
     },
     hidden:
     {
