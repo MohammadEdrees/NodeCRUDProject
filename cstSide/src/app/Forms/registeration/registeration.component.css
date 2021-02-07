@@ -11,6 +11,10 @@ body {
     color: #dd95a7;
 }
 
+span{
+    color: #f98;
+}
+
 .img1 {
     background-image: url("../../../assets/1.jpg");
 }

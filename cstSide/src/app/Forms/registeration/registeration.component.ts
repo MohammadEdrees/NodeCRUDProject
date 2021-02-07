@@ -53,13 +53,15 @@ export class RegisterationComponent implements OnInit {
   }
   register(){
     console.log(this.myForm.value)
-    this._myservice.submitegister(this.myForm.value)
-    .subscribe(
-      data=>this.successMessage='Register Success',
-      error=>{
-        return this.successMessage = 'sorry Please Regist Again';
-      }
-    )
-  }
+    if(this.myForm.valid){
+      this._myservice.submitegister(this.myForm.value)
+      .subscribe(
+        data=>this.successMessage='Register Success',
+        error=>{
+          //return this.successMessage = 'sorry Please Regist Again';
+        }
+      );
+    }
 
+  }
 }
