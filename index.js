@@ -33,7 +33,7 @@ app.use((err, req, res, next) => {
         res.status(401).json({ statusCode:'UN_AUTHENTICATED' } );
         break;
     }
-   res.status(503).json();
+   
 });
 
 const { PORT = 3000 } = process.env;
