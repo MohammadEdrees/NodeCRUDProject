@@ -9,7 +9,7 @@ const auth = async (req,res,next)=>{
     try{
     const id =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
     const user = user.findById(id);
-    req.user=user;
+    req.user=user; //fixed 
     //if success next
         next();
     } catch(err){
