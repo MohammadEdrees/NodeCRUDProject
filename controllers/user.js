@@ -22,7 +22,7 @@ if(!isValidePass){
 const token = await asyncSign({
     mail: user.mail,
     password: user.password
-  }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2d' });
+  }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '10d' });
 
 return { ...user.toJSON(), token};
 //return user;
