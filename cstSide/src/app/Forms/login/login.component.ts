@@ -34,7 +34,11 @@ massage='';
         data => {
         console.log(data);
         localStorage.setItem('token',data.toString());
-      //  this._router.navigate(['../dashboard/4.jpg'])
+       // this._router.navigate(['../dashboard/4.jpg']);
+       
+       console.log("Edreees WasHere To Check!");
+       // try move to Home and send me feedback plz 8:53 PM
+
         },
         error=>{
        // return this.massage='sorry Please Regist Again';
