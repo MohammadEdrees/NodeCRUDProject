@@ -14,7 +14,7 @@ export class RegisterationComponent implements OnInit {
 
   constructor(private _myservice:RegisterService) {
     this.myForm =new FormGroup({
-      email:new FormControl(null,Validators.email),
+      mail:new FormControl(null,Validators.email),
       username:new FormControl(null,Validators.required),
       password:new FormControl(null,Validators.required),
       cmfpass:new FormControl(null,this.passvalidator)
