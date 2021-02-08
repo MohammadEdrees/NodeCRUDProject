@@ -20,7 +20,8 @@ if(!isValidePass){
     throw Error('UN_AUTHENTICATED');
 }
 const token = await asyncSign({
-    username: user.username
+    mail: user.mail,
+    password: user.password
   }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2d' });
 
 return { ...user.toJSON(), token};
