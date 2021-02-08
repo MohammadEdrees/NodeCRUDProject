@@ -63,3 +63,4 @@ return bycrypt.compareSync(password,this.password);
 }
 const userModel = mongoose.model('User',userSchema);
 module.exports=userModel;
+//change

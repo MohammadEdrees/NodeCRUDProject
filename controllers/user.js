@@ -8,8 +8,8 @@ const getAllUsers=()=>User.find({});
 const editOne=(id,data)=>User.findByIdAndUpdate(id,data,{ new: true }).exec();
 const {promisify}=require('util');
 const asyncSign=promisify(jwt.sign);
-const login= async ({ username,password })=>{
-const user = await User.findOne({ username }).exec();
+const login= async ({ mail,password })=>{
+const user = await User.findOne({ mail }).exec();
 if(!user){
     throw Error('UN_AUTHENTICATED');
 }
@@ -20,8 +20,9 @@ if(!isValidePass){
     throw Error('UN_AUTHENTICATED');
 }
 const token = await asyncSign({
-    username: user.username
-  }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2d' });
+    mail: user.mail,
+    password: user.password
+  }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '10d' });
 
 return { ...user.toJSON(), token};
 //return user;
