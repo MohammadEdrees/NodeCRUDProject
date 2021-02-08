@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/serve/register.service';
 
 @Component({
@@ -10,17 +11,17 @@ import { RegisterService } from 'src/app/serve/register.service';
 export class LoginComponent implements OnInit {
 loginForm : FormGroup;
 massage='';
-  constructor(private _myservice:RegisterService) { 
+  constructor(private _myservice:RegisterService, private _router:Router, private _activteRouter:ActivatedRoute) {
     this.loginForm =new FormGroup({
-      email:new FormControl(null,Validators.required),
+      mail:new FormControl(null,Validators.required),
       password:new FormControl(null,Validators.required)
     });
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
   }
 
-  
+
   isValid(controlName:any){
     return this.loginForm.get(controlName)?.invalid && this.loginForm.get(controlName)?.touched;
   }
@@ -32,7 +33,8 @@ massage='';
       .subscribe(
         data => {
         console.log(data);
-        localStorage.setItem('token',data.toString())
+        localStorage.setItem('token',data.toString());
+      //  this._router.navigate(['../dashboard/4.jpg'])
         },
         error=>{
        // return this.massage='sorry Please Regist Again';
@@ -40,7 +42,7 @@ massage='';
       );
 
     }
-    
+
   }
 
 }
