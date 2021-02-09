@@ -26,6 +26,8 @@ app.use((err, req, res, next) => {
         else
         if( err.code===11000 )
         res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
+        if( err.code===500 )
+        res.status(422).json({ statusCode: 'Server Err ', property: err.keyValue });
         else
         if(err.message==='UN_AUTHENTICATED')
         res.status(401).json({ statusCode:'UN_AUTHENTICATED' } );
