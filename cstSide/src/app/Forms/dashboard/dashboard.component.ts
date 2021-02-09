@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import { RegisterService } from 'src/app/serve/register.service';
 import { Blogs } from 'src/app/_models/blogs';
 import { BlogsService } from 'src/app/_servives/blogs.service';
 @Component({
@@ -9,10 +10,9 @@ import { BlogsService } from 'src/app/_servives/blogs.service';
 })
 export class DashboardComponent implements OnInit {
   blogs:Blogs[]=[];
-
-
-  constructor(private blogsService:BlogsService,private router:Router) {
-
+  logged:boolean=false;
+  
+  constructor(private blogsService:BlogsService,private router:Router,registerService:RegisterService) {
    }
 
   ngOnInit(): void {
@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
      d=>{
        console.log("observe");
        this.blogs=d;
+
        
        console.log(d);
       },
