@@ -33,7 +33,9 @@ massage='';
       .subscribe(
         data => {
         console.log(data);
-        localStorage.setItem('token',data.toString());
+        let user=data;
+        localStorage.setItem('token',data.token);
+        this._router.navigateByUrl('/home');
        // this._router.navigate(['../dashboard/4.jpg']);
        
        console.log("Edreees WasHere To Check!");

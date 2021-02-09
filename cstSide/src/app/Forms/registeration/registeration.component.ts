@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegisterService } from 'src/app/serve/register.service';
-
+import { observable, Observable } from "rxjs";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registeration',
   templateUrl: './registeration.component.html',
@@ -12,7 +13,7 @@ export class RegisterationComponent implements OnInit {
   myForm : FormGroup;
   successMessage='';
 
-  constructor(private _myservice:RegisterService) {
+  constructor(private _myservice:RegisterService,private rotuer:Router) {
     this.myForm =new FormGroup({
       mail:new FormControl(null,Validators.email),
       username:new FormControl(null,Validators.required),
@@ -56,7 +57,8 @@ export class RegisterationComponent implements OnInit {
     if(this.myForm.valid){
       this._myservice.submitegister(this.myForm.value)
       .subscribe(
-        data=>this.successMessage='Register Success',
+        data=>{this.successMessage='Register Success';this.rotuer.navigateByUrl('home')  },
+        
         error=>{
           //return this.successMessage = 'sorry Please Regist Again';
         }
