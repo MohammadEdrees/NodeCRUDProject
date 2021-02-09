@@ -12,7 +12,7 @@ router.post('/',authMiddleware, async (req, res, next) => {
     const post = await create({...body, userId: id });
     res.json(post);
    }catch(e){
-       res.json(e);
+    next(e);
    }
 
 });

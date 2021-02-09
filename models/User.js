@@ -37,7 +37,11 @@ const userSchema = new Schema({
         type:Date,
         default:Date.now
     },
-    posts:[{type:Schema.Types.ObjectId , default:null}]
+    posts:[{type:Schema.Types.ObjectId , default:null}],
+    //with no test 1:
+    following:[{ type:Schema.Types.ObjectId,ref:'User' }],
+    followers:[{ type:Schema.Types.ObjectId,ref:'User' }]
+
     // toJSON:{
     //     transform:(doc,ret,options)=>{
     //         delete ret.password;
