@@ -4,9 +4,11 @@ const { create, getAll, getById, edit, deletP } = require('../controllers/post')
 const router = express.Router();
 
 router.post('/', async (req, res, next) => {
+    const {body , user:{ id } } = req;
    try{
-    const { body } = req;
-    const post = await create(body);
+   // const { body } = req;
+   // user id in the blog 
+    const post = await create({...body, userId: id });
     res.json(post);
    }catch(e){
        res.json(e);

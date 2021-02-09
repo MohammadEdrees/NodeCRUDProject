@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const {promisify}=require('util');
+const User  = require('../models/User.js');
 const asyncVerify=promisify(jwt.verify);//transform to promise
 const auth = async (req,res,next)=>{
     const { headers: { authorization } } =req;
@@ -9,7 +10,7 @@ const auth = async (req,res,next)=>{
     }
     
     const id =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
-    const user = user.findById(id);
+    const user = await User.findById(id).exec();
     console.log("verified user");
     req.user=user; //fixed 
     //if success next
