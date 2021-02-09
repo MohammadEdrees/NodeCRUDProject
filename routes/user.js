@@ -14,7 +14,7 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-router.get('/', authMiddleware, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const allUsers = await getAllUsers();
         res.json(allUsers);
@@ -22,7 +22,7 @@ router.get('/', authMiddleware, async (req, res, next) => {
         next(err);
     }
 });
-router.get('/:id', authMiddleware, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const users = await getById(req.params.id);
         res.json(users);
