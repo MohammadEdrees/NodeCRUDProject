@@ -35,7 +35,7 @@ router.post('/login', async (req, res, next) => {
     try {
         const user = await login(body);
         res.json(user);
-      
+       
     } catch (err) {
         next(err);
     }
@@ -80,26 +80,26 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
 })
 
 
-router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
-    User.findByIdAndUpdate(req.params.unfollowId, {
-        $pull: { followers: req.user._id }
-    }, {
-        new: true
-    }, (err, result) => {
-        if (err) {
-            return res.status(422).json({ error: err })
-        }
-        User.findByIdAndUpdate(req.user._id, {
-            $pull: { following: req.params.unfollowId }
+// router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
+//     User.findByIdAndUpdate(req.params.unfollowId, {
+//         $pull: { followers: req.user._id }
+//     }, {
+//         new: true
+//     }, (err, result) => {
+//         if (err) {
+//             return res.status(422).json({ error: err })
+//         }
+//         User.findByIdAndUpdate(req.user._id, {
+//             $pull: { following: req.params.unfollowId }
 
-        }, { new: true }).select("").then(result => {
-            res.json(result)
-        }).catch(err => {
-            return res.status(422).json({ error: err })
-        })
+//         }, { new: true }).select("").then(result => {
+//             res.json(result)
+//         }).catch(err => {
+//             return res.status(422).json({ error: err })
+//         })
 
-    })
-});
+//     })
+// });
 
 
 

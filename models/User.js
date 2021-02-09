@@ -39,8 +39,8 @@ const userSchema = new Schema({
     },
     posts:[{type:Schema.Types.ObjectId , default:null}],
     //with no test 1:
-    following:[{ type:Schema.Types.ObjectId,ref:'User' }],
-    followers:[{ type:Schema.Types.ObjectId,ref:'User' }]
+  //  following:[{ type:Schema.Types.ObjectId,ref:'User' }]
+    //followers:[{ type:Schema.Types.ObjectId,ref:'User' }]
 
     // toJSON:{
     //     transform:(doc,ret,options)=>{
