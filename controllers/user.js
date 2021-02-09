@@ -2,20 +2,27 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 //second change with no test :
-const follow=(id)=>{
-    if(User.follow.indexOf(id)=== -1){
-        User.follow.push(id);
-    }
-    return User.save();
+const follow = (userid, followid) => {
+    User.findByIdAndUpdate(userid, { $addToSet: { following: followid } }, { new: true }).exec()
+    User.findByIdAndUpdate(followid, { $addToSet: { follower: userid } }, { new: true }).exec()
+
+    return ("status:followed");
 }
 
-const unfollow=(id)=>{
-    User.remove(id);
-    return User.save();
+const unfollow = (userid, followid) => {
+    User.findByIdAndUpdate(userid, { $pull: { following: followid } }, { new: true }).exec()
+    User.findByIdAndUpdate(followid, { $pull: { follower: userid } }, { new: true }).exec()
+    return ("status:unfollowe");
 }
-const isFollowing=(id)=>{
-    return User.follow.some((followId)=>{return followId.toString()=== id.toString()})
 
+const getfollowers = async(id) => {
+    const { followers } = await getById(id)
+    return User.find().where('_id').in(followers).exec();
+}
+
+const getfollowing = async(id) => {
+    const { following } = await getById(id)
+    return User.find().where('_id').in(following).exec();
 }
 //-----------------------------------------------
 const create =(user)=>{
@@ -47,5 +54,5 @@ return { ...user.toJSON(), token};
 }
 
 module.exports={
-    create,getAllUsers,login,editOne,getById,follow
+    create,getAllUsers,login,editOne,getById,follow,unfollow,getfollowers,getfollowing
 }
