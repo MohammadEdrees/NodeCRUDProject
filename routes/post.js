@@ -17,12 +17,17 @@ router.post('/', async (req, res, next) => {
 });
 
 router.get('/', async (req, res, next) => {
+    const {body , user:{ id } } = req;
+        if(req.id==user.id){
     try {
         const posts = await getAll();
         res.json(posts);
     } catch (err) {
-        next(err);
+       // next(err);
+       res.json("Error in load posts ..");
+
     };
+}
 
 
 });
