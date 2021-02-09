@@ -34,8 +34,8 @@ router.post('/login', async (req, res, next) => {
     const { body } = req;
     try {
         const user = await login(body);
-       // res.json(user);
-       res.json({msg:"logged in"});
+        res.json(user);
+      
     } catch (err) {
         next(err);
     }
