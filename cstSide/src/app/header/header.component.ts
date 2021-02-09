@@ -8,7 +8,7 @@ import { RegisterService } from '../serve/register.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-logged:boolean;
+logged:any;
   constructor(private registerService:RegisterService,private router:Router) { 
     //this.registerService.getlogged().subscribe(a=>{this.logged=a;console.log(a)})
     router.events.subscribe(()=>this.registerService.getlogged().subscribe(a=>{this.logged=a}))
