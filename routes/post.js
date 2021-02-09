@@ -5,15 +5,20 @@ const authMiddleware=require('../middelwares/auth');
 const router = express.Router();
 
 router.post('/',authMiddleware, async (req, res, next) => {
-    const {body , user:{ id } } = req;
-   try{
-   // const { body } = req;
-   // user id in the blog 
-    const post = await create({...body, userId: id });
-    res.json(post);
-   }catch(e){
-       res.json(e);
-   }
+    const {header ,body , user:{ id } } = req;
+        if(header.authMiddleware){
+            res.json({msg:"you can add blog "})
+            try{
+                // const { body } = req;
+                // user id in the blog 
+                 const post = await create({...body, userId: id });
+                 res.json(post);
+                }catch(e){
+                    res.json(e);
+                }
+
+        }
+ 
 
 });
 
