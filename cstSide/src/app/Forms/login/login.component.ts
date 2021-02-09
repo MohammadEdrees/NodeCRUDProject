@@ -37,9 +37,7 @@ massage='';
         localStorage.setItem('token',data.token);
         this._router.navigateByUrl('/home');
        // this._router.navigate(['../dashboard/4.jpg']);
-       
-       console.log("Edreees WasHere To Check!");
-       // try move to Home and send me feedback plz 8:53 PM
+
 
         },
         error=>{
