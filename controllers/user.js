@@ -1,5 +1,23 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+
+//second change with no test :
+const follow=(id)=>{
+    if(User.follow.indexOf(id)=== -1){
+        User.follow.push(id);
+    }
+    return User.save();
+}
+
+const unfollow=(id)=>{
+    User.remove(id);
+    return User.save();
+}
+const isFollowing=(id)=>{
+    return User.follow.some((followId)=>{return followId.toString()=== id.toString()})
+
+}
+//-----------------------------------------------
 const create =(user)=>{
 return User.create(user);
 }
@@ -29,5 +47,5 @@ return { ...user.toJSON(), token};
 }
 
 module.exports={
-    create,getAllUsers,login,editOne,getById
+    create,getAllUsers,login,editOne,getById,follow
 }
