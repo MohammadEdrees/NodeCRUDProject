@@ -1,9 +1,7 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from 'src/app/serve/register.service';
-import  * as moment from "moment";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +10,6 @@ import  * as moment from "moment";
 })
 export class LoginComponent implements OnInit {
 loginForm : FormGroup;
-
 massage='';
   constructor(private _myservice:RegisterService, private _router:Router, private _activteRouter:ActivatedRoute) {
     this.loginForm =new FormGroup({
@@ -22,7 +19,6 @@ massage='';
   }
 
   ngOnInit(): void {
-   
   }
 
 
@@ -38,15 +34,8 @@ massage='';
         data => {
         console.log(data);
         let user=data;
-        this._myservice.setloggedwhenlogin(true);
-        const expiresAt = moment().add(data.expiresIn,'second');
-        this._myservice.getlogged().subscribe(a=>{console.log(a)});
-
         localStorage.setItem('token',data.token);
-        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-        
-        this._router.navigateByUrl('/home', {skipLocationChange: true});
-        
+        this._router.navigateByUrl('/home');
        // this._router.navigate(['../dashboard/4.jpg']);
 
 
@@ -59,6 +48,5 @@ massage='';
     }
 
   }
-
 
 }
