@@ -9,13 +9,15 @@ const auth = async (req,res,next)=>{
         console.log("non verified user");
         next((new Error('UN_AUTHENTICATED')));
     }
+    try{
     const id =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
     const user = await User.findById(id).exec();
     console.log("verified user");
     req.user=user; //fixed 
-    res.json(user);
-        next();
-    
+    next();
+    }catch(e){
+        next((new Error('UN_AUTHENTICATED')));
+    }
 };
 module.exports=auth;
 //verify jwt
