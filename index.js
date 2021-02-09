@@ -6,7 +6,7 @@ const { MONGODB_URI } = process.env;
 mongoose.connect( MONGODB_URI , { useUnifiedTopology: true });
 const cors = require('cors');
 
-app.use(express.json());
+app.use(express.json());``
 app.use(cors());
 app.use('/', routes);
 
@@ -23,16 +23,14 @@ app.use((err, req, res, next) => {
     
         if( err instanceof (mongoose.Error.ValidationError))
         res.status(422).json(err.errors);
-        else
         if( err.code===11000 )
         res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
         if( err.code===500 )
-        res.status(422).json({ statusCode: 'Server Err ', property: err.keyValue });
-        else
+        res.status(500).json({ statusCode: 'Server Err ', property: err.keyValue });
         if(err.message==='UN_AUTHENTICATED')
         res.status(401).json({ statusCode:'UN_AUTHENTICATED' } );
         else    
-        res.status(503).json({statusCode:"Edrees Say helllo , Don't worry  "});
+        res.status(503).json({statusCode:"Not Valid  "});
    
 });
 
