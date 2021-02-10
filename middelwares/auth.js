@@ -14,7 +14,7 @@ const auth = async (req,res,next)=>{
     const id =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
     const user = await User.findById(id).exec();
     //req.user=user; //fixed 
-     res.json(user);
+     res.json({user});
     next();
     }catch(e){
       //  next((new Error('UN_AUTHENTICATED')));

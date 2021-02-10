@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', authMiddleware,async (req, res, next) => {
    try{
-    const token = req.header.token;
     const {body , user } = req;
    // const { body } = req;
    // user id in the blog 
@@ -27,7 +26,7 @@ router.post('/', authMiddleware,async (req, res, next) => {
     const post = await create(body);
    //const postId = post.id;
    // user.posts.push(postId);
-    res.json(token);
+    res.json(post);
    }catch(e){
     next(e);
    }
