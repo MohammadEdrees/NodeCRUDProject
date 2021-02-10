@@ -57,7 +57,6 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
     if (req.user.id === req.params.id) {
         return res.status(400).json({ alreadyfollow: "You cannot follow yourself" })
     }
-   res.json({msg:"passed"});
 
 
     User.findById(req.params.id)
@@ -68,9 +67,9 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                 follower.user.toString() === req.user.id).length > 0) {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" })
             }
-
-            user.followers.unshift({ user: req.user.id });
-            user.save()
+            res.json({msg:"passed"});
+            User.followers.unshift({ user: req.user.id });
+            User.save()
             User.findOne({ username: req.user.username })
                 .then(user => {
                     console.log(user)
