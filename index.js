@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const routes = require('./routes');//by defult index invoked
 const app = express();
+//--Mongoose Connection
 const { MONGODB_URI } = process.env;
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
 
@@ -32,6 +33,7 @@ app.use('*', (req, res, next) => {
 
 });
 
+//Err Handler
 app.use((err, req, res, next) => {
 
     if (err instanceof mongoose.Error.ValidationError )
@@ -50,6 +52,7 @@ app.use((err, req, res, next) => {
     res.json(err.message);
 });
 
+//PORT
 const { PORT = 3000 } = process.env;
 app.listen(PORT, () => {
     console.log('ServerIsReadyOn:', PORT);

@@ -1,39 +1,43 @@
 const express = require('express');
 const { create, getAll, getById, edit, deletP } = require('../controllers/post');
-const authMiddleware=require('../middelwares/auth');
+const authMiddleware = require('../middelwares/auth');
 
 const router = express.Router();
-
+//------------------------------------------------------------
+//--All-posts--
 router.get('/', async (req, res, next) => {
     try {
         const posts = await getAll();
         res.json(posts);
     } catch (err) {
-       // next(err);
-       res.json("Error in load posts ..");
-
+        // next(err);
+        res.json("Error in load posts ..");
     };
 
 });
 
-
-router.post('/', authMiddleware,async (req, res, next) => {
-   try{
-    const {body , user } = req;
-   // const { body } = req;
-   // user id in the blog 
-   // const post = await create({ ...body, userId: user.id });
-    const post = await create(body);
-   //const postId = post.id;
-   // user.posts.push(postId);
-    res.json(post);
-   }catch(e){
-    next(e);
-   }
+//--Add--Blog----------------------------------------------------
+router.post('/', authMiddleware, async (req, res, next) => {
+    try {
+        res.json({ case4: "--into post ----" });
+        const { body, user } = req;
+        res.json({ case5: "line 23 ok " });
+        // const { body } = req;
+        // user id in the blog 
+        // const post = await create({ ...body, userId: user.id }); // issue
+        const post = await create(body); //work
+        res.json({ case6: "line 28 ok " });
+        //const postId = post.id;
+        // user.posts.push(postId);
+        res.json(post);
+    } catch (e) {
+        res.json({ case7: "out of post area" });
+        next(e);
+    }
 
 });
 
-
+//--get Blog with id 
 router.get('/:id', async (req, res, next) => {
     // const { params:{ id } } = req;
     try {
@@ -48,6 +52,7 @@ router.get('/:id', async (req, res, next) => {
 
 });
 
+//--modify Blog with id 
 router.patch('/:id', async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
@@ -58,9 +63,8 @@ router.patch('/:id', async (req, res, next) => {
         console.log(err);
         next(err);
     };
-
-
 });
+// delete Blog with id 
 router.delete('/:id', async (req, res, next) => {
     const { params: { id } } = req;
     try {

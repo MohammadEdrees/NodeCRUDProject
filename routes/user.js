@@ -4,32 +4,32 @@ const authMiddleware = require('../middelwares/auth');
 
 const router = express.Router();
 
+//--registeration---------------------------------------------------------------------//
 router.post('/', async (req, res, next) => {
     const { body } = req;
     try {
         const user = await create(body);
         res.json(user);
-    } catch (err) {
-        next(err);
-    }
+        }
+     catch (err) {next(err);}
 });
-
+//--getAll-users--------------------------------------------------------------------//
 router.get('/', async (req, res, next) => {
     try {
         const allUsers = await getAllUsers();
         res.json(allUsers);
-    } catch (err) {
-        next(err);
-    }
+        } 
+    catch (err) {next(err);}
 });
+//get--user--by-id--------------------------------------------------------------------//
 router.get('/:id', async (req, res, next) => {
     try {
         const users = await getById(req.params.id);
         res.json(users);
-    } catch (err) {
-        next(err);
-    }
+    } 
+    catch (err) {next(err);}
 });
+//Login--------------------------------------------------------------------------------------------------//
 router.post('/login', async (req, res, next) => {
     const { body } = req;
     try {
@@ -40,7 +40,7 @@ router.post('/login', async (req, res, next) => {
         next(err);
     }
 });
-
+//Edit user---------------------------------------------------------//
 router.patch('/:id', async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
@@ -51,6 +51,7 @@ router.patch('/:id', async (req, res, next) => {
     }
 });
 
+//follow----------------------------------------------------------------//
 router.post("/follow/:id", authMiddleware, (req, res, next) => {
     if (req.user.id === req.params.user_id) {
         return res.status(400).json({ alreadyfollow: "You cannot follow yourself" })
@@ -60,7 +61,6 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
         .then(user => {
             console.log(user)
             // check if the requested user is already in follower list of other user then 
-
             if (user.followers.filter(follower =>
                 follower.user.toString() === req.user.id).length > 0) {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" })
@@ -79,7 +79,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
 
 })
 
-
+//unfollow-----------------------------------------------------------------------------------------//
 router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
     User.findByIdAndUpdate(req.params.unfollowId, {
         $pull: { followers: req.user._id }
