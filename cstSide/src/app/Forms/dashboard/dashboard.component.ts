@@ -10,10 +10,12 @@ import { BlogsService } from 'src/app/_servives/blogs.service';
 })
 export class DashboardComponent implements OnInit {
   blogs:Blogs[]=[];
-  logged:boolean=false;
+  logged:any;
   
-  constructor(private blogsService:BlogsService,private router:Router,registerService:RegisterService) {
-   }
+  constructor(private blogsService:BlogsService,private router:Router,private registerService:RegisterService) {
+    router.events.subscribe(()=>this.registerService.getlogged().subscribe(a=>{this.logged=a}))
+ 
+  }
 
   ngOnInit(): void {
    this.blogsService.getAll().subscribe(

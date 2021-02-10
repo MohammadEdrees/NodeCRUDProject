@@ -47,17 +47,21 @@
     <header class="bg-primary text-white">
         <div class="container text-center">
             <h1>Welcome to Scrolling Nav</h1>
-            <p class="lead">A landing page template freshly redesigned for Bootstrap 4</p>
+            <h2 class="lead">A landing page template freshly redesigned for Bootstrap 4</h2>
+
         </div>
     </header>
 
     <div class=" layout_padding">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="heading">
+                <div class="col-6 ">
+                    <div class="heading  ">
                         <h3>Blo<span class="orange_color">Gs</span></h3>
                     </div>
+                </div>
+                <div class=" offset-4">
+                    <a routerLink="/createblog" class="btn btn-warning b " *ngIf="logged"> Create Blog</a>
                 </div>
             </div>
             <div class="row">
