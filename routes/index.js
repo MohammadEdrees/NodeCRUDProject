@@ -7,5 +7,6 @@ const router = express.Router();
 //auth =>Post
 router.use('/posts',post);
 router.use('/users',user);
+router.use('/add',authMiddleware,'/posts');
 
 module.exports=router;

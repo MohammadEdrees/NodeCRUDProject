@@ -16,8 +16,8 @@ router.get('/', async (req, res, next) => {
 
 });
 
-router.use(authMiddleware);
-router.post('/', async (req, res, next) => {
+
+router.post('/add', async (req, res, next) => {
     const {body , user:{ id } } = req;
    try{
    // const { body } = req;
