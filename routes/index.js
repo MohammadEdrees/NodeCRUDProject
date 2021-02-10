@@ -4,12 +4,12 @@ const user = require('./user');
 const allposts = require('./allposts');
 
 const authMiddleware=require('../middelwares/auth');
-// const cors = require('cors');
+
 const router = express.Router();
 //auth =>Post
-router.use('/posts',post);
+router.use('/posts',authMiddleware,post);
 router.use('/users',user);
-//router.use('/allposts',allposts);
+router.use('/allposts',allposts);
 
 
 
