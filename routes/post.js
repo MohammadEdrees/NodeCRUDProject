@@ -18,11 +18,14 @@ router.get('/', async (req, res, next) => {
 
 
 router.post('/', async (req, res, next) => {
-    const {body , user:{ id } } = req;
    try{
+    const {body , user } = req;
    // const { body } = req;
    // user id in the blog 
-    const post = await create({...body, userId: id });
+   // const post = await create({ ...body, userId: user.id });
+    const post = await create(body);
+   //const postId = post.id;
+   // user.posts.push(postId);
     res.json(post);
    }catch(e){
     next(e);
