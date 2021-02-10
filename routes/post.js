@@ -19,14 +19,14 @@ router.get('/', async (req, res, next) => {
 //--Add--Blog----------------------------------------------------
 router.post('/', authMiddleware, async (req, res, next) => {
     try {
-        res.json({ case4: "--into post ----" });
+        //res.json({ case4: "--into post ----" });
         const { body, user } = req;
-        res.json({ case5: "line 23 ok " });
+       // res.json({ case5: "line 23 ok " });
         // const { body } = req;
         // user id in the blog 
         // const post = await create({ ...body, userId: user.id }); // issue
         const post = await create(body); //work
-        res.json({ case6: "line 28 ok " });
+       // res.json({ case6: "line 28 ok " });
         //const postId = post.id;
         // user.posts.push(postId);
         res.json(post);
