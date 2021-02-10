@@ -23,8 +23,8 @@ router.post('/', authMiddleware, async (req, res, next) => {
         const post = await create({ ...body, userId: user.id }); // issue
        // const post = await create(body); //work
        // res.json({ case6: "line 28 ok " });
-        //const postId = post.id;
-        // user.posts.push(postId);
+        const postId = post.id;
+        user.posts.push(postId);
         res.json(post);
     } catch (e) {
         res.json({ case7: "out of post area" });
