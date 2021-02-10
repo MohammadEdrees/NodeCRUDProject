@@ -7,7 +7,8 @@ const auth = async (req,res,next)=>{
     const { headers: { authorization } } =req;
     if(!authorization){
         console.log("non verified user");
-        next((new Error('UN_AUTHENTICATED')));
+        //next((new Error('UN_AUTHENTICATED')));
+        res.json({msg:"Not login "});
     }
     try{
     const id =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
@@ -17,7 +18,9 @@ const auth = async (req,res,next)=>{
      res.json(user);
     next();
     }catch(e){
-        next((new Error('UN_AUTHENTICATED')));
+      //  next((new Error('UN_AUTHENTICATED')));
+      res.json({msg:"login but cant access "});
+
     }
 };
 module.exports=auth;
