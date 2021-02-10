@@ -55,7 +55,7 @@ const login = async ({ mail, password }) => {
         mail: user.mail,
         password: user.password
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '1d' });
-    return { ...user.toJSON(), token };
+    return { ...user.toJSON(), expiresIn, token };
 
 }
 // Export models

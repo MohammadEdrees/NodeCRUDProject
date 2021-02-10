@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
         res.status(400).json({ type: err.type });
     }
  
-    res.send(err);
+    res.json(err.message);
 });
 
 const { PORT = 3000 } = process.env;
