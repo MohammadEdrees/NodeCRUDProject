@@ -67,13 +67,12 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                 follower.user.toString() === req.user.id).length > 0) {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" })
             }
-            res.json({msg:"passed"});
             User.followers.unshift({ user: req.user.id });
             User.save()
-            User.findOne({ username: req.user.username })
+            User.findOne({ mail: req.user.mail })
                 .then(user => {
                     console.log(user)
-                    user.following.unshift({ user: req.params.user_id });
+                    user.following.unshift({ user: req.params.id });
                     user.save().then(user => res.json(user))
                 })
                 .catch(err => res.status(404).json({ alradyfollow: "you already followed the user" }))
