@@ -21,8 +21,9 @@ logged:any;
     
   this.registerService.logout();
   this.registerService.setloggedwhenlogin(false);
+  this.router.navigateByUrl('/home', { skipLocationChange: true });
   this.registerService.getlogged().subscribe(a=>{this.logged=a;console.log(a)});
-  this.router.navigateByUrl('/home')
+  
     
   }
   login(){
