@@ -25,9 +25,8 @@ router.post('/', authMiddleware, async (req, res, next) => {
        // res.json({ case6: "line 28 ok " });
         const postId = post.id;
         user.posts.push(postId);
-       // res.json(post);
-       res.json(user.posts);
-
+        res.json(post);
+       
     } catch (e) {
         res.json({ case7: "out of post area" });
         next(e);
