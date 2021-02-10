@@ -5,7 +5,6 @@ const asyncVerify=promisify(jwt.verify);//transform to promise
 
 const auth = async (req,res,next)=>{
     const { headers: { authorization } } =req;
-    const authorization
     if(!authorization){
         //next((new Error('UN_AUTHENTICATED')));
         res.json({msg:"Not login "});
