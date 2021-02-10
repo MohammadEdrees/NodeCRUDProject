@@ -19,8 +19,8 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
    try{
-    
-    const {body , user ,token} = req;
+    const token = req.header.token;
+    const {body , user } = req;
    // const { body } = req;
    // user id in the blog 
    // const post = await create({ ...body, userId: user.id });
