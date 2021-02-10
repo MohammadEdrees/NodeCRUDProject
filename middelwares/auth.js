@@ -1,31 +1,25 @@
 const jwt = require('jsonwebtoken');
-const {promisify}=require('util');
-const User  = require('../models/User.js');
-const asyncVerify=promisify(jwt.verify);//transform to promise
+const { promisify } = require('util');
+const User = require('../models/User.js');
+const asyncVerify = promisify(jwt.verify);//transform to promise
 
-const auth = async (req,res,next)=>{
-    
-    const { headers: { authorization } } =req;
-    if(!authorization){
-        //next((new Error('UN_AUTHENTICATED')));
-        res.json({msg:"Not login "});
-    }
-    try{
-    const {id} =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
-   // res.json({id});
+const auth = async (req, res, next) => {
+
+  const { headers: { authorization } } = req;
+  if (!authorization) {
+    //next((new Error('UN_AUTHENTICATED')));
+    res.json({ msg: "Confirm You Are Logged in Please.." });
+  }
+  try {
+    const { id } = await asyncVerify(authorization, 'ZZZZZZZZZZZZZZZZZZZZ');
     const user = await User.findById(id).exec();
-   // res.json({case2:" line 15 ok"});
-     req.user=user; //fixed Who is user
-   // res.json(user);
-    // res.json(user);
-    
-
+    req.user = user;
     next();
-    }catch(e){
-      //  next((new Error('UN_AUTHENTICATED')));
-      res.json({msg:"login but can't access ",err: e.msg});
+  } catch (e) {
+    //  next((new Error('UN_AUTHENTICATED')));
+    res.json({ msg: "login but can't access ", err: e.msg });
 
-    }
+  }
 };
-module.exports=auth;
+module.exports = auth;
 //verify jwt

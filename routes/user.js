@@ -1,6 +1,7 @@
 const express = require('express');
 const { create, getAllUsers, login, editOne, getById} = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
+const User = require('../models/User');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ router.post('/', async (req, res, next) => {
      catch (err) {next(err);}
 });
 //--getAll-users--------------------------------------------------------------------//
-router.get('/', async (req, res, next) => {
+router.get('/',authMiddleware, async (req, res, next) => {
     try {
         const allUsers = await getAllUsers();
         res.json(allUsers);
@@ -22,7 +23,7 @@ router.get('/', async (req, res, next) => {
     catch (err) {next(err);}
 });
 //get--user--by-id--------------------------------------------------------------------//
-router.get('/:id', async (req, res, next) => {
+router.get('/:id',authMiddleware, async (req, res, next) => {
     try {
         const users = await getById(req.params.id);
         res.json(users);
@@ -41,7 +42,7 @@ router.post('/login', async (req, res, next) => {
     }
 });
 //Edit user---------------------------------------------------------//
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id',authMiddleware, async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const users = await editOne(id, body);
