@@ -54,6 +54,7 @@ router.patch('/:id',authMiddleware, async (req, res, next) => {
 
 //follow----------------------------------------------------------------//
 router.post("/follow/:id", authMiddleware, (req, res, next) => {
+    res.json({msg:"passed"});
     if (req.user.id === req.params.user_id) {
         return res.status(400).json({ alreadyfollow: "You cannot follow yourself" })
     }
