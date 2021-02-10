@@ -4,7 +4,20 @@ const authMiddleware=require('../middelwares/auth');
 
 const router = express.Router();
 
-router.post('/',authMiddleware, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
+    try {
+        const posts = await getAll();
+        res.json(posts);
+    } catch (err) {
+       // next(err);
+       res.json("Error in load posts ..");
+
+    };
+
+});
+
+
+router.post('/add', async (req, res, next) => {
     const {body , user:{ id } } = req;
    try{
    // const { body } = req;
@@ -17,21 +30,8 @@ router.post('/',authMiddleware, async (req, res, next) => {
 
 });
 
-router.get('/', async (req, res, next) => {
-    try {
-        const posts = await getAll();
-        res.json(posts);
-    } catch (err) {
-       // next(err);
-       res.json("Error in load posts ..");
 
-    };
-
-
-
-});
-
-router.get('/:id',authMiddleware, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     // const { params:{ id } } = req;
     try {
         const updateOne = await getById(req.params.id);
@@ -45,7 +45,7 @@ router.get('/:id',authMiddleware, async (req, res, next) => {
 
 });
 
-router.patch('/:id',authMiddleware, async (req, res, next) => {
+router.patch('/:id', async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
@@ -58,7 +58,7 @@ router.patch('/:id',authMiddleware, async (req, res, next) => {
 
 
 });
-router.delete('/:id',authMiddleware, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
     const { params: { id } } = req;
     try {
         const deleted = await deletP(id);
