@@ -10,10 +10,10 @@ import { BlogsService } from 'src/app/_servives/blogs.service';
 })
 export class DashboardComponent implements OnInit {
   blogs:Blogs[]=[];
-  logged:any;
+  dashlogged:any;
   
   constructor(private blogsService:BlogsService,private router:Router,private registerService:RegisterService) {
-    router.events.subscribe(()=>this.registerService.getlogged().subscribe(a=>{this.logged=a}))
+    router.events.subscribe(()=>this.registerService.getlogged().subscribe(a=>{this.dashlogged=a}))
  
   }
 
