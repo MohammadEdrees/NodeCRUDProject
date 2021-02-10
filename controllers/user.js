@@ -54,8 +54,8 @@ const login = async ({ mail, password }) => {
     const token = await asyncSign({
         mail: user.mail,
         password: user.password
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '1d' });
-    return { ...user.toJSON(), expiresIn, token };
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
+    return { ...user.toJSON(), token };
 
 }
 // Export models
