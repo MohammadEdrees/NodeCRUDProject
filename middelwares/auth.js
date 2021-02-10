@@ -4,8 +4,8 @@ const User  = require('../models/User.js');
 const asyncVerify=promisify(jwt.verify);//transform to promise
 
 const auth = async (req,res,next)=>{
-   // const { headers: { authorization } } =req;
-    const authorization= Headers.authorization;
+    const { headers: { authorization } } =req;
+    const authorization
     if(!authorization){
         console.log("non verified user");
         //next((new Error('UN_AUTHENTICATED')));
