@@ -20,13 +20,10 @@ router.get('/', async (req, res, next) => {
 router.post('/', authMiddleware, async (req, res, next) => {
     try {
         const { body, user } = req;
-        const post = await create({ ...body, userId: user.id }); // issue
-       // const post = await create(body); //work
-       // res.json({ case6: "line 28 ok " });
+        const post = await create({ ...body, userId: user.id }); 
         const postId = post.id;
         user.posts.push(postId);
-        res.json(post);
-       
+        res.json(post);     
     } catch (e) {
         res.json({ case7: "out of post area" });
         next(e);
@@ -35,7 +32,7 @@ router.post('/', authMiddleware, async (req, res, next) => {
 });
 
 //--get Blog with id 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id',authMiddleware, async (req, res, next) => {
     // const { params:{ id } } = req;
     try {
         const updateOne = await getById(req.params.id);
@@ -50,7 +47,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //--modify Blog with id 
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id',authMiddleware, async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
@@ -62,7 +59,7 @@ router.patch('/:id', async (req, res, next) => {
     };
 });
 // delete Blog with id 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id',authMiddleware, async (req, res, next) => {
     const { params: { id } } = req;
     try {
         const deleted = await deletP(id);
