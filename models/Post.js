@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const postSchema = new Schema({
     title:{
         type: String,
-        maxlength:20,
+        maxlength:30,
         required:true
     },
     body:{

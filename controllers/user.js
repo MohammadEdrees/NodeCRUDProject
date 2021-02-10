@@ -42,7 +42,7 @@ const asyncSign = promisify(jwt.sign);
 //login
 const login = async ({ mail, password , id }) => {
 
-    const user = await User.findOne({ mail }).exec();
+    const user = await User.findOne({ id }).exec();
     if (!user) {
         throw Error('UN_AUTHENTICATED');
     }
