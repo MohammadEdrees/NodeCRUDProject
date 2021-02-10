@@ -8,5 +8,4 @@ const router = express.Router();
 router.use('/posts',post);
 router.use('/users',user);
 
-
 module.exports=router;
