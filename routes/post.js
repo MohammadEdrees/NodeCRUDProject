@@ -4,20 +4,20 @@ const authMiddleware=require('../middelwares/auth');
 
 const router = express.Router();
 
-// router.get('/', async (req, res, next) => {
-//     try {
-//         const posts = await getAll();
-//         res.json(posts);
-//     } catch (err) {
-//        // next(err);
-//        res.json("Error in load posts ..");
+router.get('/', async (req, res, next) => {
+    try {
+        const posts = await getAll();
+        res.json(posts);
+    } catch (err) {
+       // next(err);
+       res.json("Error in load posts ..");
 
-//     };
+    };
 
-// });
+});
 
 
-router.post('/add', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
     const {body , user:{ id } } = req;
    try{
    // const { body } = req;

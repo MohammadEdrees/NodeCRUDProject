@@ -9,7 +9,7 @@ const router = express.Router();
 //auth =>Post
 router.use('/posts',authMiddleware,post);
 router.use('/users',user);
-router.use('/allposts',allposts);
+//router.use('/allposts',allposts);
 
 
 
