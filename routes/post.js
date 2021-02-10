@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
 });
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', authMiddleware,async (req, res, next) => {
    try{
     const token = req.header.token;
     const {body , user } = req;
