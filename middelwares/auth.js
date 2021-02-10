@@ -13,11 +13,11 @@ const auth = async (req,res,next)=>{
     try{
     const {id} =  await asyncVerify(authorization,'SECRET_MUST_BE_COMPLEX');
     res.json({id});
-    const user = await User.findById(id).exec();
-    res.json({user});
+    //const user = await User.findById(id).exec();
+    //res.json({user});
    // res.json({case2:" line 15 ok"});
-     req.user=user; //fixed Who is user
-     res.json(user);
+   //  req.user=user; //fixed Who is user
+    // res.json(user);
     
 
     next();
