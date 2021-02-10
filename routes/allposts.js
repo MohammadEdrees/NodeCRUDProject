@@ -1,5 +1,6 @@
-const express = require('express');
-const {  getAll } = require('../controllers/post');
+// const express = require('express');
+// const {getAll} = require('../controllers/post');
+// const router = express.Router();
 
 // router.get('/', async (req, res, next) => {
 //     try {
@@ -12,3 +13,4 @@ const {  getAll } = require('../controllers/post');
 //     };
 
 // });
+// module.exports=router;

@@ -17,13 +17,17 @@ router.get('/', async (req, res, next) => {
 });
 
 
-router.post('/', async (req, res, next) => {
-    const {body , user:{ id } } = req;
+router.post('/', authMiddleware,async (req, res, next) => {
    try{
+    const token = req.header.token;
+    const {body , user } = req;
    // const { body } = req;
    // user id in the blog 
-    const post = await create({...body, userId: id });
-    res.json(post);
+   // const post = await create({ ...body, userId: user.id });
+    const post = await create(body);
+   //const postId = post.id;
+   // user.posts.push(postId);
+    res.json(token);
    }catch(e){
     next(e);
    }
