@@ -3,7 +3,7 @@ const { create, getAll, getById, edit, deletP } = require('../controllers/post')
 const authMiddleware=require('../middelwares/auth');
 
 const router = express.Router();
-
+router.use(authMiddleware);
 // router.get('/', async (req, res, next) => {
 //     try {
 //         const posts = await getAll();

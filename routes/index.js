@@ -7,7 +7,7 @@ const authMiddleware=require('../middelwares/auth');
 
 const router = express.Router();
 //auth =>Post
-router.use('/posts',authMiddleware,post);
+router.use('/posts',post);
 router.use('/users',user);
 router.use('/allposts',allposts);
 
