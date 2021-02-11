@@ -8,19 +8,19 @@ const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 //--------------------------------------
 
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-      folder: '../images/',
-      format: async (req, file) => 'png', // supports promises as well
-      public_id: (req, file) => 'computed-filename-using-request',
-    },
-  });
-   
-  const parser = multer({ storage: storage });
-   
-router.post('/image',parser.single('image'),async (req, res, next) => {
-  res.json(req.file);
+// const storage = new CloudinaryStorage({
+//     cloudinary: cloudinary,
+//     params: {
+//         folder: '../images/',
+//         format: async (req, file) => 'png', // supports promises as well
+//         public_id: (req, file) => 'computed-filename-using-request',
+//     },
+// });
+
+// const parser = multer({ storage: storage });
+
+router.post('/image', parser.single('image'), async (req, res, next) => {
+    res.json(req.file);
 })
 
 
