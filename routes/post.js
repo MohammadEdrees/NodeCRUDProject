@@ -3,7 +3,6 @@ const { create, getAll, getById, edit, deletP } = require('../controllers/post')
 const authMiddleware = require('../middelwares/auth');
 const multer = require('multer');
 //const path = require('path');
-const file = require('../images');
 const router = express.Router();
 //--------------------------------------
 var storage = multer.diskStorage({
