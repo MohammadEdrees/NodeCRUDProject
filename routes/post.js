@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
         cb(null,'/images')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname + '-' + Date.now() )
+        cb(null, file.filename );
     }
 })
 const upload = multer({
