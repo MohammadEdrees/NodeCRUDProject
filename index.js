@@ -8,7 +8,7 @@ const { MONGODB_URI } = process.env;
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
 //----------------------------------------------multer//
 const storage=multer.diskStorage({
-    destination : function(req,res,cb){
+    destination: function(req,res,cb){
         cb(null,'./images')
     },
     filename: function (req, file, cb) {
