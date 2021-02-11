@@ -2,15 +2,14 @@ const express = require('express');
 const { create, getAll, getById, edit, deletP } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const multer = require('multer');
-//const path = require('path');
 const router = express.Router();
 //--------------------------------------
 var storage = multer.diskStorage({
     destination: function(req,res,cb){
-        cb(null,'/images')
+        cb(null, '/images')
     },
     filename: function (req, file, cb) {
-        cb(null, file.filename );
+        cb(null, file.fieldname + '-' + Date.now() );
     }
 })
 const upload = multer({
@@ -31,8 +30,9 @@ router.get('/', async (req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware,upload.single('images'), async (req, res, next) => {
+router.post('/', authMiddleware, async (req, res, next) => {
     try {
+        multer().single('image')
         const { body, user } = req;
        // const filename=req.file.filename;
         const path = req.file.path;
