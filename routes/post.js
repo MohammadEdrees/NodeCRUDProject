@@ -9,19 +9,19 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 //--------------------------------------
 
-// cloudinary.config({
-//     cloud_name: 'dc42zftko',
-//     api_key: '311751364261898',
-//     api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
-// });
+cloudinary.config({
+    cloud_name: 'dc42zftko',
+    api_key: '311751364261898',
+    api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
+});
 
-// const storage = cloudinaryStorage({
-//     cloudinary: cloudinary,
-//     folder: "/images",
-//     allowedFormats: ['jpg', 'jpeg', 'png'],
-//     transformation: [{ width: 960, height: 960, crop: "limit" }],
-// });
-// const parser = multer({ storage });
+const storage = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "/images",
+    allowedFormats: ['jpg', 'jpeg', 'png'],
+    transformation: [{ width: 960, height: 960, crop: "limit" }],
+});
+const parser = multer({ storage });
 
 
 router.post('/image', parser.single('image'), async (req, res, next) => {
