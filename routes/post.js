@@ -19,23 +19,7 @@ const router = express.Router();
 // })
 
 router.post('/image',upload.single('image'),async (req, res, next) => {
-    upload(req, res, function (err) {
-        if (err instanceof multer.MulterError) {
-          res.json({Err:"Error while uploading"});
-        } else if (err) {
-            res.json({Err: err});
-
-        }
-        try{
-        const fileName= req.file.filename;
-        const path= req.file.path;
-    }catch(err){
-        res.json({msg:"Getter Errors"});
-
-    }
-        // Everything went fine.
-      })
-
+  res.json(req.file);
 })
 
 
