@@ -35,7 +35,7 @@ router.post('/', authMiddleware,upload.single('../images'), async (req, res, nex
         const { body, user } = req;
         const filename=req.file.filename;
         const path = req.file.path;
-        const post = await create({ ...body, userId: user.id , img: path }); 
+        const post = await create({ ...body, userId: user.id  }); 
         const postId = post.id;
         user.posts.push(postId);
         
