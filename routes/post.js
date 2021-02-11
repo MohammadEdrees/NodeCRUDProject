@@ -2,19 +2,21 @@ const express = require('express');
 const { create, getAll, getById, edit, deletP } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const multer = require('multer');
+const upload = multer({dest: "/images/"})
+
 const router = express.Router();
 //--------------------------------------
-var storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        cb(null, 'images/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now());
-    }
-})
-const upload = multer({
-    storage: storage
-})
+// var storage = multer.diskStorage({
+//     destination: function (req, res, cb) {
+//         cb(null, 'images/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, file.fieldname + '-' + Date.now());
+//     }
+// })
+// const upload = multer({
+//     storage: storage
+// })
 
 router.post('/image',upload.single('image'),async (req, res, next) => {
     upload(req, res, function (err) {
