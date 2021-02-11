@@ -24,7 +24,7 @@ const multer = require('multer');
 // const parser = multer({ storage });
 
 
-router.post('/image', parser.single('image'), async (req, res, next) => {
+router.post('/image', async (req, res, next) => {
     res.json(req.file);
 })
 
