@@ -30,9 +30,9 @@ router.get('/', async (req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware, async (req, res, next) => {
+router.post('/', authMiddleware, upload.single('image') , async (req, res, next) => {
     try {
-        upload.single('image')
+       
         const { body, user } = req;
        // const filename=req.file.filename;
         const path = req.file.path;
