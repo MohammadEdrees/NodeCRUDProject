@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware,upload.single('../images'), async (req, res, next) => {
+router.post('/', authMiddleware,upload.single('images'), async (req, res, next) => {
     try {
         const { body, user } = req;
        // const filename=req.file.filename;
