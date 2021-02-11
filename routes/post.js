@@ -11,8 +11,8 @@ var storage=multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, file.originalname)
     }
-})var
-const upload = multer({
+})
+var upload = multer({
     storage: storage
 })
 
