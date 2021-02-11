@@ -15,7 +15,7 @@ cloudinary.config({
     api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
 });
 
-const storage = cloudinaryStorage({
+const storage = CloudinaryStorage({
     cloudinary: cloudinary,
     folder: "/images",
     allowedFormats: ['jpg', 'jpeg', 'png'],
