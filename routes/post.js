@@ -2,7 +2,7 @@ const express = require('express');
 const { create, getAll, getById, edit, deletP } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const multer = require('multer');
-const upload = multer({dest: "/images/"})
+const upload = multer({dest: "images/"})
 
 const router = express.Router();
 //--------------------------------------
