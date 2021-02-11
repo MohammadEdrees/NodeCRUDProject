@@ -32,7 +32,7 @@ router.get('/', async (req, res, next) => {
 //--Add--Blog----------------------------------------------------
 router.post('/', authMiddleware, async (req, res, next) => {
     try {
-        multer().single('image')
+        upload.single('image')
         const { body, user } = req;
        // const filename=req.file.filename;
         const path = req.file.path;
