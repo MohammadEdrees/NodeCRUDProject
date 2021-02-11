@@ -1,10 +1,29 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer');
 const routes = require('./routes');//by defult index invoked
 const app = express();
 //--Mongoose Connection
 const { MONGODB_URI } = process.env;
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
+//----------------------------------------------multer//
+const storage=multer.diskStorage({
+    destination : function(req,res,cb){
+        cb(null,'./images')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({
+    storage: storage
+})
+
+
+
+
+
+
 
 app.use(express.json());
 

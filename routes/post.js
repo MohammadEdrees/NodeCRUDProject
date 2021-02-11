@@ -1,8 +1,21 @@
 const express = require('express');
 const { create, getAll, getById, edit, deletP } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
-
+const multer = require('multer');
 const router = express.Router();
+//--------------------------------------
+const storage=multer.diskStorage({
+    destination : function(req,res,cb){
+        cb(null,'./images')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+const upload = multer({
+    storage: storage
+})
+
 //------------------------------------------------------------
 //--All-posts--
 router.get('/', async (req, res, next) => {
@@ -17,13 +30,20 @@ router.get('/', async (req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware, async (req, res, next) => {
+router.post('/', authMiddleware,upload.single('../images'), async (req, res, next) => {
     try {
         const { body, user } = req;
-        const post = await create({ ...body, userId: user.id }); 
+        const filename=req.file.filename;
+        const path = req.file.path;
+        const post = await create({ ...body, userId: user.id , img: path }); 
         const postId = post.id;
         user.posts.push(postId);
-        res.json(post);     
+        
+        res.json({'message': 'File uploaded'}); 
+        
+        //res.json(post); 
+            
+
     } catch (e) {
         res.json({ case7: "out of post area" });
         next(e);
