@@ -3,7 +3,7 @@ export class Blogs {
       public body:string,
       public createTime:Date,
       public userId:number,public likes:number
-      ,public hidden:boolean,public image:string,
+      ,public hidden:boolean,public img:string,
       public comments:string
       ){}
 }
