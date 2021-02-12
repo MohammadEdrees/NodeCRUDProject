@@ -123,7 +123,7 @@ router.get('/post/:userid', function(req, res,next) {
          res.json(req.posts);
        }
     });
-});
+});//
 
 
 
