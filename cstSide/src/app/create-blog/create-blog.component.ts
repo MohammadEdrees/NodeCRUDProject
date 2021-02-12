@@ -30,7 +30,7 @@ export class CreateBlogComponent implements OnInit {
     this.fd.append('title',this.newblog.title);
     console.log(this.newblog.body);
     this.fd.append('body',this.newblog.body);
-    this.blogService.addblog(this.newblog).subscribe(
+    this.blogService.addblog(this.fd).subscribe(
       a=>{
 
         console.log(a);

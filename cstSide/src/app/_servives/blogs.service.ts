@@ -10,8 +10,8 @@ export class BlogsService {
   getAll(){
    return this.http.get<Blogs[]>("https://myfirstnode7.herokuapp.com/posts");
   }
-  addblog(blog:Blogs){
-    return this.http.post<Blogs>("https://myfirstnode7.herokuapp.com/posts",blog);
+  addblog(fd:FormData){
+    return this.http.post<Blogs>("https://myfirstnode7.herokuapp.com/posts",fd);
   }
   addblogimg(fd:FormData){
     return this.http.post<Blogs>("https://myfirstnode7.herokuapp.com/posts/image",fd,{
