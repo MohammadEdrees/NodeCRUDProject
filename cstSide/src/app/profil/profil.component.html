@@ -30,7 +30,7 @@
                     <div class="row ">
                         <div class="col-12 ">
                             <div class="xp-social-profile-title ">
-                                <h5 class="my-1 text-black ">Rania Bdr(username)</h5>
+                                <h5 class="my-1 text-black ">{{user.username}}(username)</h5>
                             </div>
                             <!-- <div class="xp-social-profile-subtitle ">
                                 <p class="mb-3 text-muted ">Karina Simons</p>
@@ -45,21 +45,21 @@
                     <div class="row ">
                         <div class="col-4 ">
                             <div class="xp-social-profile-media pt-3 ">
-                                <h5 class="text-black my-1 ">10</h5>
+                                <h5 class="text-black my-1 ">{{user.posts.length}}</h5>
                                 <p class="mb-0 text-muted" style=" font-size: 1em;color: Mediumslateblue;"> <i class="fa fa-clipboard" aria-hidden="true" style=" font-size: 1em;color: Mediumslateblue;"></i> Posts</p>
                             </div>
                         </div>
                         <div class="col-4 ">
                             <div class="xp-social-profile-followers pt-3 ">
-                                <h5 class="text-black my-1 ">27k</h5>
+                                <h5 class="text-black my-1 ">{{user.followers.length}}</h5>
 
-                                <p class="mb-0 text-muted " style="font-size: 1em; color: Tomato;"> <i class="fa fa-heart" aria-hidden="true" style="font-size: 1em; color: Tomato;"></i> Fans</p>
+                                <p class="mb-0 text-muted " style="font-size: 1em; color: Tomato;"> <i class="fa fa-heart" aria-hidden="true" style="font-size: 1em; color: Tomato;"></i> Followers</p>
                             </div>
                         </div>
                         <div class="col-4 ">
                             <div class="xp-social-profile-following pt-3 ">
-                                <h5 class="text-black my-1 ">55</h5>
-                                <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue;"> <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 1em; color: Dodgerblue;"></i> Likes</p>
+                                <h5 class="text-black my-1 ">{{user.following.length}}</h5>
+                                <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue;"> <i class="fa fa-thumbs-up" aria-hidden="true" style="font-size: 1em; color: Dodgerblue;"></i> Followings</p>
                             </div>
                         </div>
                     </div>

@@ -8,6 +8,7 @@ import * as moment from 'moment';
 })
 export class RegisterService {
 logged:boolean=false;
+userID:string="";
   constructor(private _http:HttpClient) { }
   submitegister(body:any){
     return this._http.post(' https://myfirstnode7.herokuapp.com/users/ ',body,{
@@ -43,8 +44,17 @@ setloggedwhenlogin(s:boolean){
   this.logged=s;
 }
 getlogged(){
-  return new Observable<boolean>(obj=>{obj.next(this.logged)})
+  return new Observable<any>(obj=>{obj.next(this.logged)})
 }
+setuserId(id:string){
+  this.userID=id;
+}
+getuserId(){
+  return new Observable<any>(obj=>{obj.next(this.userID)})
+}
+getUser(id:string){
+ return this._http.get<User>("https://myfirstnode7.herokuapp.com/users/"+id)
+   }
   
 
 }

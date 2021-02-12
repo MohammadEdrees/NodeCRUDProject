@@ -11,7 +11,8 @@ const routes: Routes = [
   {path:'register',component:RegisterationComponent},
   {path:'login',component:LoginComponent},
   {path:'createblog',component:CreateBlogComponent},
-  {path:'profile',component:ProfilComponent}
+  {path:'profile',component:ProfilComponent},
+  {path:'profile/:id',component:ProfilComponent},
 
 
   //{path:'**',component:notFound}

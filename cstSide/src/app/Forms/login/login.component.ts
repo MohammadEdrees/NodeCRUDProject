@@ -41,7 +41,7 @@ massage='';
         this._myservice.setloggedwhenlogin(true);
         const expiresAt = moment().add(data.expiresIn,'second');
         this._myservice.getlogged().subscribe(a=>{console.log(a)});
-
+        this._myservice.setuserId(data._id);
         localStorage.setItem('token',data.token);
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
         
