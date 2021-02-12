@@ -49,7 +49,7 @@ router.post('/', authMiddleware, parser.single('image'), async (req, res, next) 
     try {
 
         const { body, user } = req;
-        const post = await create({ ...body, userId: user.id });
+        const post = await create({ ...body, userId: user.id, img: req.file.path});
         const postId = post.id;
         user.posts.push(postId);
         res.json(post);
