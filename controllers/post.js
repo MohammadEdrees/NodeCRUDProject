@@ -1,5 +1,4 @@
 const Post = require('../models/Post');
-const User = require('../models/User');
 //Create blog--------------------------------------//
 const create=(post)=>{return Post.create(post);}
 //get All blogs--------------------------//
@@ -14,5 +13,5 @@ const deletP =(id)=>Post.findByIdAndRemove(id).exec();
 //const currentUposts=(id)=>Post.find({ 'userId': id }).exec();
 
 module.exports={
-    create,getAll,getById,edit,deletP,currentUposts
+    create,getAll,getById,edit,deletP
 }
