@@ -5,7 +5,7 @@ const router = express.Router();
 
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
-const {cloudinaryStorage}  = require('multer-storage-cloudinary');
+//const {cloudinaryStorage}  = require('multer-storage-cloudinary');
 
 //--------------------------------------
 
@@ -15,13 +15,13 @@ cloudinary.config({
     api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
 });
 
-const storage = cloudinaryStorage({
-    cloudinary,
-    folder: 'images',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 500, height: 500, crop: 'limit' }]
-});
-const parser = multer({ storage });
+// const storage = cloudinaryStorage({
+//     cloudinary,
+//     folder: 'images',
+//     allowedFormats: ['jpg', 'png'],
+//     transformation: [{ width: 500, height: 500, crop: 'limit' }]
+// });
+//const parser = multer({ storage });
 
 
 
