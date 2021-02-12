@@ -8,9 +8,9 @@
         <hr class="my-4">
         <p class="lead text-wrap ">
             <a class="btn btn-outline-info btn-lg mr-2 " (click)='createpost();'>Create a Blog </a>
-    
+
         </p>
-    
+
     </div> -->
 
     <!-- <div id='body' class="container p-lg ">
@@ -50,7 +50,8 @@
             </h1>
             <h2 class="lead">A landing page template freshly redesigned for Bootstrap 4</h2>
             <div class="mt-5">
-                <a routerLinkActive="/createblog" *ngIf="dashlogged" class="btn btn-warning btn-lg"> Create Blog</a>
+                <a routerLink="/createblog" *ngIf="dashlogged" class="btn btn-warning btn-lg"> Create Blog</a>
+                <!-- routerLink routerLinkActive -->
             </div>
         </div>
     </header>
@@ -78,9 +79,9 @@
                 </div>
             </div>
             <div class="row" *ngFor="let blog of blogs">
-                <div class="col-6">
-                    <img id='cardImg' [src]="blog.img" alt="Card image cap" />
-                </div>
+                <!-- <div class="col-6">
+                    <img id='cardImg' src="{{blog.img}}" alt="Card image cap" />
+                </div> -->
                 <div class="col-6">
                     <div class="full blog_cont">
                         <h4>{{blog.title}}</h4>

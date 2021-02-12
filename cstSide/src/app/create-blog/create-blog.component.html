@@ -10,28 +10,28 @@
 				</span>
 
             <div class="wrap-input1 validate-input" data-validate="title is required">
-                <input class="input1" type="text" name="title" placeholder="Title">
+                <input class="input1" [(ngModel)]="newblog.title" type="text" name="title" placeholder="Title" [ngModelOptions]="{standalone:true}">
                 <span class="shadow-input1"></span>
             </div>
 
-            <div class="wrap-input1 validate-input" data-validate="tags is required">
+            <!-- <div class="wrap-input1 validate-input" data-validate="tags is required">
                 <input class="input1" type="text" name="tags" placeholder="Tags">
                 <span class="shadow-input1"></span>
-            </div>
+            </div> -->
             <div class="wrap-input1 validate-input" data-validate="Message is required">
-                <textarea class="input1" name="Body" placeholder="Body"></textarea>
+                <textarea class="input1" [(ngModel)]="newblog.body" name="Body" placeholder="Body" [ngModelOptions]="{standalone:true}"></textarea>
                 <span class="shadow-input1"></span>
             </div>
 
 
-            <div class="custom-file mb-4 rounded">
-                <input type="file" class="custom-file-input" id="customFile" name="blogImg">
+            <!-- <div class="custom-file mb-4 rounded">
+                <input type="file" (change)="onfileselected($event)" class="custom-file-input" id="customFile" name="blogImg">
                 <label class="custom-file-label" name="blogImg" for="customFile">Blog Image</label>
-            </div>
+            </div> -->
 
 
             <div class="container-contact1-form-btn">
-                <button class="contact1-form-btn">
+                <button class="contact1-form-btn" (click)="save()">
 						<span>
 							Create Blog
 							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
