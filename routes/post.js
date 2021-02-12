@@ -30,6 +30,7 @@ router.post('/image',parser.single('image'), async (req, res, next) => {
 })
 
 
+
 //------------------------------------------------------------
 //--All-posts--
 router.get('/', async (req, res, next) => {
@@ -44,7 +45,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware, async (req, res, next) => {
+router.post('/', authMiddleware, parser.single('image'), async (req, res, next) => {
     try {
 
         const { body, user } = req;
