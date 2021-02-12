@@ -56,7 +56,7 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
 
 
     } catch (e) {
-        res.json({ case7: "out of post area" });
+        res.json({e});
         next(e);
     }
 
