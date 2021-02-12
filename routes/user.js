@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAllUsers, login, editOne, getById} = require('../controllers/user');
+const { create, getAllUsers, login, editOne, getById } = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
 
 
@@ -11,24 +11,24 @@ router.post('/', async (req, res, next) => {
     try {
         const user = await create(body);
         res.json(user);
-        }
-     catch (err) {next(err);}
+    }
+    catch (err) { next(err); }
 });
 //--getAll-users--------------------------------------------------------------------//
-router.get('/',authMiddleware, async (req, res, next) => {
+router.get('/', authMiddleware, async (req, res, next) => {
     try {
         const allUsers = await getAllUsers();
         res.json(allUsers);
-        } 
-    catch (err) {next(err);}
+    }
+    catch (err) { next(err); }
 });
 //get--user--by-id--------------------------------------------------------------------//
-router.get('/:id',authMiddleware, async (req, res, next) => {
+router.get('/:id', authMiddleware, async (req, res, next) => {
     try {
         const users = await getById(req.params.id);
         res.json(users);
-    } 
-    catch (err) {next(err);}
+    }
+    catch (err) { next(err); }
 });
 //Login--------------------------------------------------------------------------------------------------//
 router.post('/login', async (req, res, next) => {
@@ -36,13 +36,13 @@ router.post('/login', async (req, res, next) => {
     try {
         const user = await login(body);
         res.json(user);
-       
+
     } catch (err) {
         next(err);
     }
 });
 //Edit user---------------------------------------------------------//
-router.patch('/:id',authMiddleware, async (req, res, next) => {
+router.patch('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const users = await editOne(id, body);
@@ -68,7 +68,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" })
             }
             user.followers.unshift({ user: req.user.id });
-            res.json({case:"Passed"})
+            res.json({ case: "Passed" })
 
             User.save()
             User.findOne({ mail: req.user.mail })
