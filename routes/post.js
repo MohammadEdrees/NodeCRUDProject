@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAll, getById, edit, deletP } = require('../controllers/post');
+const { create, getAll, getById, edit, deletP ,currentUposts } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 
@@ -24,8 +24,8 @@ const storage = new CloudinaryStorage({
 const parser = multer({ storage });
 
 
-
-router.post('/image',parser.single('image'), async (req, res, next) => {
+//
+router.post('/image', parser.single('image'), async (req, res, next) => {
     res.json(req.file);
 })
 
@@ -51,17 +51,17 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
         var { body, user } = req;
 
         // request Content
-        const post = await create({ ...body, userId: user.id, img: req.file.path});
+        const post = await create({ ...body, userId: user.id, img: req.file.path });
         // save in mongoose
         const postId = post.id;
         user.posts.push(postId);
         user.save();
         // set post id => user 
-        res.json({posts :user.posts });
+        res.json({ posts: user.posts });
 
 
     } catch (e) {
-        res.json({e});
+        res.json({ e });
         next(e);
     }
 
@@ -107,4 +107,15 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 
 });
+
+// User's Blogs
+router.get('/userid', async (req, res, next) => {
+    const currenUser = req.user.id;
+    // filter 
+    // return array
+    let currentUserBlogs = [];
+    currentUserBlogs = currentUposts(currenUser);
+    res.json({currentUserBlogs});
+
+})
 module.exports = router 
