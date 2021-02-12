@@ -54,9 +54,9 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
         const post = await create({ ...body, userId: user.id, img: req.file.path});
         // save in mongoose
         const postId = post.id;
-        user.posts.push(postId);
+        user.posts += postId;
         // set post id => user 
-        res.json({ post, user });
+        res.json({posts :user.posts });
 
 
     } catch (e) {
