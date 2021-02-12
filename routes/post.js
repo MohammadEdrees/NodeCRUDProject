@@ -47,11 +47,16 @@ router.get('/', async (req, res, next) => {
 //--Add--Blog----------------------------------------------------
 router.post('/', authMiddleware, parser.single('img'), async (req, res, next) => {
     try {
-
+        // Data from  angular 
         const { body, user } = req;
+        res.json(body);
+        
+        // request Content
         const post = await create({ ...body, userId: user.id, img: req.file.path});
+        // save in mongoose
         const postId = post.id;
         user.posts.push(postId);
+        // set post id => user 
         res.json(post);
 
 
