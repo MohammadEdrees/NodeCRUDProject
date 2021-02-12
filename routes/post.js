@@ -116,7 +116,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 // })
 router.get('/post/:userid', function(req, res,next) {
-    Post.find({userId:req.user._id}, (err, res) => {
+    Post.find({userId: req.params.id}, (err, res) => {
        if(err) {
          console.log(err);
        } else {
