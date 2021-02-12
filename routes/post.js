@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAll, getById, edit, deletP  } = require('../controllers/post');
+const { create, getAll, getById, edit, deletP,currentUposts  } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 const multer = require('multer');
@@ -107,16 +107,16 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-// router.get('/:uid',(req,res,next)=>{
-//     try{
-//     let currenUser = req.params.uid;
-//     const result = await currentUposts(currenUser);
-//     res.json(result);
-//     }catch(e){
-//     res.json({e});
+router.get('/:uid',(req,res,next)=>{
+    try{
+    let currenUser = req.params.uid;
+    const result = await currentUposts(currenUser);
+    res.json(result);
+    }catch(e){
+    res.json({e});
     
-//     }
-// })
+    }
+})
 
 
 // User's Blogs
