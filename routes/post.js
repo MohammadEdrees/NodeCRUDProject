@@ -4,8 +4,8 @@ const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 
 const multer = require('multer');
- const cloudinary = require('cloudinary').v2;
-// const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 //--------------------------------------
 
@@ -15,13 +15,14 @@ cloudinary.config({
     api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
 });
 
-// const storage = CloudinaryStorage({
-//     cloudinary: cloudinary,
-//     folder: "/images",
-//     allowedFormats: ['jpg', 'jpeg', 'png'],
-//     transformation: [{ width: 960, height: 960, crop: "limit" }],
-// // });
-// const parser = multer({ storage });
+const storage = CloudinaryStorage({
+    cloudinary,
+    folder: 'images',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }]
+});
+const parser = multer({ storage });
+
 
 
 router.post('/image', async (req, res, next) => {
