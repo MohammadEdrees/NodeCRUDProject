@@ -4,16 +4,16 @@ const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 
 const multer = require('multer');
-// const cloudinary = require('cloudinary').v2;
+ const cloudinary = require('cloudinary').v2;
 // const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 //--------------------------------------
 
-// cloudinary.config({
-//     cloud_name: 'dc42zftko',
-//     api_key: '311751364261898',
-//     api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
-// });
+cloudinary.config({
+    cloud_name: 'dc42zftko',
+    api_key: '311751364261898',
+    api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
+});
 
 // const storage = CloudinaryStorage({
 //     cloudinary: cloudinary,
