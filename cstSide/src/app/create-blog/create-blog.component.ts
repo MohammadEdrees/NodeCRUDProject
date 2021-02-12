@@ -18,12 +18,12 @@ export class CreateBlogComponent implements OnInit {
   fd:FormData=new FormData();
   constructor(private blogService:BlogsService,private _router:Router) { }
 
-  // onfileselected(event:any){
-  //   var selectedfile=event.target.files[0];
-  //   this.fd=new FormData();
-  //   this.fd.append('img',selectedfile,selectedfile.name);
-  //   console.log(selectedfile);
-  // }
+  onfileselected(event:any){
+    var selectedfile=event.target.files[0];
+    this.fd=new FormData();
+    this.fd.append('img',selectedfile,selectedfile.name);
+    console.log(selectedfile);
+  }
 
   save(){
     console.log(this.newblog.title);
@@ -43,8 +43,8 @@ export class CreateBlogComponent implements OnInit {
   ngOnInit(): void {
     this.blogService.getAll().subscribe(
       blogs=>{
-       // console.log("blog Img"+blogs);
-       // blogs.forEach(blog => blog.img=""+blog.img);
+       console.log("blog Img"+blogs);
+       blogs.forEach(blog => blog.img="https://myfirstnode7.herokuapp.com/posts/image"+blog.img);
         this.blogs=blogs;
 
 

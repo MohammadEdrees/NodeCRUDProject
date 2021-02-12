@@ -58,9 +58,9 @@ export class RegisterationComponent implements OnInit {
       this._myservice.submitegister(this.myForm.value)
       .subscribe(
         data=>{this.successMessage='Register Success';this.rotuer.navigateByUrl('home')  },
-        
+
         error=>{
-          //return this.successMessage = 'sorry Please Regist Again';
+          return this.successMessage = 'sorry Please Regist Again';
         }
       );
     }
