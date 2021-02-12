@@ -56,7 +56,7 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
         const postId = post.id;
         user.posts.push(postId);
         // set post id => user 
-        res.json(post);
+        res.json({ post, user });
 
 
     } catch (e) {
