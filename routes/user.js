@@ -1,7 +1,7 @@
 const express = require('express');
 const { create, getAllUsers, login, editOne, getById} = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
-const User = require('../models/User');
+
 
 const router = express.Router();
 
@@ -103,6 +103,7 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
 
     })
 });
+
 
 
 

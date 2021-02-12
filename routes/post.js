@@ -107,6 +107,14 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 
 });
+router.get('/post/:uid',(req,res,next)=>{
+    try{
+    let currenUser = req.params.uid;
+    const result = await currentUposts(currenUser);
+    res.json(result);
+    }catch(e){res.json(e);}
+})
+
 
 // User's Blogs
 // router.get('/post/:userid', authMiddleware , async (req, res, next) => {
@@ -115,15 +123,15 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 //     res.json(result);
 
 // })
-router.get('/post/:userid', function(req, res,next) {
-    Post.find({userId: req.params.id}, (err, res) => {
-       if(err) {
-         console.log(err);
-       } else {
-         res.json(req.posts);
-       }
-    });
-});//
+// router.get('/post/:userid', function(req, res,next) {
+//     Post.find({userId: req.params.id}, (err, res) => {
+//        if(err) {
+//          console.log(err);
+//        } else {
+//          res.json(req.posts);
+//        }
+//     });
+// });//
 
 
 
