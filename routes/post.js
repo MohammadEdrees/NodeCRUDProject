@@ -21,11 +21,11 @@ const storage = new CloudinaryStorage({
     allowedFormats: ['jpg', 'png'],
     transformation: [{ width: 500, height: 500, crop: 'limit' }]
 });
-//const parser = multer({ storage });
+const parser = multer({ storage });
 
 
 
-router.post('/image', async (req, res, next) => {
+router.post('/image',parser.single('image'), async (req, res, next) => {
     res.json(req.file);
 })
 
