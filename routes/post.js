@@ -25,7 +25,7 @@ const parser = multer({ storage });
 
 
 
-router.post('/image', parser.single('image'), async(req, res, next) => {
+router.post('/image',parser.single('image'), async (req, res, next) => {
     res.json(req.file);
 })
 
@@ -33,7 +33,7 @@ router.post('/image', parser.single('image'), async(req, res, next) => {
 
 //------------------------------------------------------------
 //--All-posts--
-router.get('/', async(req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const posts = await getAll();
         res.json(posts);
@@ -45,25 +45,30 @@ router.get('/', async(req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware, parser.single('img'), async(req, res, next) => {
+router.post('/', authMiddleware, parser.single('img'), async (req, res, next) => {
     try {
-
+        // Data from  angular 
         const { body, user } = req;
-        const post = await create({...body, userId: user.id, img: req.file.path });
+        res.json(body);
+        
+        // request Content
+        const post = await create({ ...body, userId: user.id, img: req.file.path});
+        // save in mongoose
         const postId = post.id;
         user.posts.push(postId);
+        // set post id => user 
         res.json(post);
 
 
     } catch (e) {
-        res.json({ case7: "out of post area" });
+        res.json({e});
         next(e);
     }
 
 });
 
 //--get Blog with id 
-router.get('/:id', authMiddleware, async(req, res, next) => {
+router.get('/:id', authMiddleware, async (req, res, next) => {
     // const { params:{ id } } = req;
     try {
         const updateOne = await getById(req.params.id);
@@ -78,7 +83,7 @@ router.get('/:id', authMiddleware, async(req, res, next) => {
 });
 
 //--modify Blog with id 
-router.patch('/:id', authMiddleware, async(req, res, next) => {
+router.patch('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
@@ -90,7 +95,7 @@ router.patch('/:id', authMiddleware, async(req, res, next) => {
     };
 });
 // delete Blog with id 
-router.delete('/:id', authMiddleware, async(req, res, next) => {
+router.delete('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id } } = req;
     try {
         const deleted = await deletP(id);
@@ -102,4 +107,4 @@ router.delete('/:id', authMiddleware, async(req, res, next) => {
 
 
 });
-module.exports = router
+module.exports = router 
