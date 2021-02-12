@@ -15,12 +15,12 @@ cloudinary.config({
     api_secret: 'OsKUzsu6eV0braFO_sPUIOu_WNE'
 });
 
-// const storage = CloudinaryStorage({
-//     cloudinary,
-//     folder: 'images',
-//     allowedFormats: ['jpg', 'png'],
-//     transformation: [{ width: 500, height: 500, crop: 'limit' }]
-// });
+const storage = new CloudinaryStorage({
+    cloudinary,
+    folder: 'images',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }]
+});
 //const parser = multer({ storage });
 
 
