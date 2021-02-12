@@ -109,13 +109,11 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 });
 
 // User's Blogs
-router.get('/userid', async (req, res, next) => {
+router.get('/post/:userid', authMiddleware , async (req, res, next) => {
+
     const currenUser = req.user.id;
-    // filter 
-    // return array
-    let currentUserBlogs = [];
-    currentUserBlogs = currentUposts(currenUser);
-    res.json({currentUserBlogs});
+    const result = await currentUposts(currenUser);
+    res.json(result);
 
 })
 module.exports = router 
