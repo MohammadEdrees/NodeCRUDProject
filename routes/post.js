@@ -2,7 +2,7 @@ const express = require('express');
 const { create, getAll, getById, edit, deletP ,currentUposts } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
-
+const Post = require('../models/Post.js');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
@@ -109,12 +109,21 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 });
 
 // User's Blogs
-router.get('/post/:userid', authMiddleware , async (req, res, next) => {
-    const currenUser =req.params.id;
-    const result = await currentUposts(currenUser);
-    res.json(result);
+// router.get('/post/:userid', authMiddleware , async (req, res, next) => {
+//     const currenUser =req.params.id;
+//     const result = await currentUposts(currenUser);
+//     res.json(result);
 
-})
+// })
+router.get('/post/:userid', function(req, res,next) {
+    Post.find({userId:req.user._id}, (err, res) => {
+       if(err) {
+         console.log(err);
+       } else {
+         res.json(req.posts);
+       }
+    });
+});
 
 
 
