@@ -113,8 +113,8 @@ router.put('/post', async(req, res, next) => {
     const { user: { mail } } = req;
     
     try {
-        const blogs = await getAlll( {mail : mail} );
-        res.json(blogs);
+      //  const blogs = await getAlll( {'mail' :{  "$regex" : mail } }  );
+        res.json({'mail':mail});
     } catch (e) {
         next(e);
     }
