@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAll, getById, edit, deletP, currentUposts } = require('../controllers/post');
+const { create, getAll, getById, edit, deletP,currentUposts  } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 const multer = require('multer');
@@ -24,7 +24,7 @@ const parser = multer({ storage });
 
 
 //
-router.post('/image', parser.single('image'), async(req, res, next) => {
+router.post('/image', parser.single('image'), async (req, res, next) => {
     res.json(req.file);
 })
 
@@ -32,7 +32,7 @@ router.post('/image', parser.single('image'), async(req, res, next) => {
 
 //------------------------------------------------------------
 //--All-posts--
-router.get('/', async(req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const posts = await getAll();
         res.json(posts);
@@ -44,13 +44,13 @@ router.get('/', async(req, res, next) => {
 });
 
 //--Add--Blog----------------------------------------------------
-router.post('/', authMiddleware, parser.single('img'), async(req, res, next) => {
+router.post('/', authMiddleware, parser.single('img'), async (req, res, next) => {
     try {
         // Data from  angular 
         var { body, user } = req;
 
         // request Content
-        const post = await create({...body, userId: user.id, img: req.file.path });
+        const post = await create({ ...body, userId: user.id, img: req.file.path });
         // save in mongoose
         const postId = post.id;
         user.posts.push(postId);
@@ -67,7 +67,7 @@ router.post('/', authMiddleware, parser.single('img'), async(req, res, next) => 
 });
 
 //--get Blog with id 
-router.get('/:id', authMiddleware, async(req, res, next) => {
+router.get('/:id', authMiddleware, async (req, res, next) => {
     // const { params:{ id } } = req;
     try {
         const updateOne = await getById(req.params.id);
@@ -82,7 +82,7 @@ router.get('/:id', authMiddleware, async(req, res, next) => {
 });
 
 //--modify Blog with id 
-router.patch('/:id', authMiddleware, async(req, res, next) => {
+router.patch('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
@@ -94,7 +94,7 @@ router.patch('/:id', authMiddleware, async(req, res, next) => {
     };
 });
 // delete Blog with id 
-router.delete('/:id', authMiddleware, async(req, res, next) => {
+router.delete('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id } } = req;
     try {
         const deleted = await deletP(id);
@@ -107,14 +107,17 @@ router.delete('/:id', authMiddleware, async(req, res, next) => {
 
 });
 
-router.get('/post/:uid', authMiddleware, async(req, res, next) => {
-    try {
-        const currenUser = req.params.uid;
-        const result = await currentUposts(currenUser);
-        res.json(result);
-    } catch (e) {
-        res.json({ e });
-
+router.get('/:uid', async (req,res,next)=>{
+    try{
+    let arr =[];
+    
+   const currenUser = req.params.uid;
+    const result =  await currentUposts(currenUser);
+    
+    res.json(result);
+    }catch(e){
+    res.json({e});
+    
     }
 })
 
@@ -138,4 +141,4 @@ router.get('/post/:uid', authMiddleware, async(req, res, next) => {
 
 
 
-module.exports = router
+module.exports = router 
