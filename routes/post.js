@@ -110,7 +110,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 });
 
 // get current user blogs 
-router.put('/post', authMiddleware , async(req, res, next) => {
+router.post('/post', authMiddleware , async(req, res, next) => {
      const { user: { id } } = req;   
     try {
        const blogs = await getAlll( { userId: id} );
