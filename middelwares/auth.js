@@ -11,7 +11,8 @@ const auth = async (req, res, next) => {
     res.json({ msg: "Confirm You Are Logged in Please.." });
   }
   try {
-    const { id } = await asyncVerify(authorization, 'SECRET_MUST_BE_COMPLEX_2');
+    const { id } = await asyncVerify(authorization, 'SECRET_MUST_BE_COMPLEX','REFRESH');
+    
     const user = await User.findById(id).exec();
     req.user = user;
     next();
