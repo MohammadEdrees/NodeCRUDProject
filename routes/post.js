@@ -108,15 +108,24 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-router.put('/post', authMiddleware ,async(req, res, next) => {
+router.put('/post', async(req, res, next) => {
     const { user: { id } } = req;
     try {
-        const blogs = await getAlll(id);
+        const blogs = await getAlll({ userId: id });
         res.json(blogs);
     } catch (e) {
         next(e);
     }
 });
+// router.put('/post', authMiddleware ,async(req, res, next) => {
+//     const { user: { id } } = req;
+//     try {
+//         const blogs = await getAlll(id);
+//         res.json(blogs);
+//     } catch (e) {
+//         next(e);
+//     }
+// });
 
 // router.get('/posts/:uid', async (req,res)=>{
 //     try{
