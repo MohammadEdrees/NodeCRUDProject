@@ -62,7 +62,6 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
     }
     User.findById({ _id: targetTobeFollowedId })
         .then(user => {
-        res.json("here---2")
             if (user.followers.filter(follower =>
                 follower._id === currentUserId).length > 0) {
         res.json("here---3")
