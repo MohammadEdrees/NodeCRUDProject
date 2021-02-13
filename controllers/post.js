@@ -10,7 +10,7 @@ const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{new:true}).exec();
 //delete by id -----------------------------------------//
 const deletP =(id)=>Post.findByIdAndRemove(id).exec();
 //PostsOfOneUser
-const currentUposts=(id)=>Post.find({}).exec();
+const currentUposts=()=>Post.find({ userId : req.user._id}).exec();
 
 module.exports={
     create,getAll,getById,edit,deletP,currentUposts

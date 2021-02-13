@@ -111,13 +111,10 @@ router.get('/:uid', async (req,res,next)=>{
     try{
     let arr =[];
     let result =[];
-    const currenUser = req.params.uid;
-    result =  await currentUposts(currenUser);
-    result.forEach(element => {
-        if(element.userId == {currenUser})
-        arr.push(element);
-    });
-    res.json(arr);
+   // const currenUser = req.params.uid;
+    result =  await currentUposts();
+    
+    res.json(result);
     }catch(e){
     res.json({e});
     
