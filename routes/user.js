@@ -61,7 +61,6 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
         return res.status(400).json({ alreadyfollow: "You cannot follow yourself" });
     }
     User.findById({ _id: targetTobeFollowedId })
-        res.json("here---1")
         .then(user => {
         res.json("here---2")
             if (user.followers.filter(follower =>
