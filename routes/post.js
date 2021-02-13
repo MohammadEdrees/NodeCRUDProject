@@ -114,7 +114,7 @@ router.put('/post', authMiddleware , async(req, res, next) => {
     
     try {
        const blogs = await getAlll( {id} );
-        res.json(id);
+        res.json(blogs);
     } catch (e) {
         next(e);
     }
