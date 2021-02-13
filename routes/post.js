@@ -113,8 +113,8 @@ router.get('/:uid', async (req,res,next)=>{
     const currenUser = req.params.uid;
     const result =  await currentUposts(currenUser);
     arr.forEach(element => {
-        if(element.userId===currenUser)
-        arr.push(element);
+        if(element.userId == {currenUser})
+        arr.push(element.userId);
     });
     res.json(arr);
     }catch(e){
