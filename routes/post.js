@@ -113,7 +113,7 @@ router.put('/post', async(req, res, next) => {
     const { user: { mail } } = req;
     
     try {
-        const blogs = await getAlll( mail );
+        const blogs = await getAlll( {mail : mail} );
         res.json(blogs);
     } catch (e) {
         next(e);
