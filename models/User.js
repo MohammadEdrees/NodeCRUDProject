@@ -41,6 +41,7 @@ const userSchema = new Schema({
     //with no test 1:
     following:[{ type:Schema.Types.ObjectId,ref:'User' }],
     followers:[{ type:Schema.Types.ObjectId,ref:'User' }]
+    
 
     // toJSON:{
     //     transform:(doc,ret,options)=>{
@@ -65,6 +66,11 @@ userSchema.pre('findOneAndUpdate',function preSave(next){
 userSchema.methods.validatePassword = function(password){
 return bycrypt.compareSync(password,this.password);
 }
+// userSchema.virtual("posts", {
+//     ref: "Post",
+//     foreignField: "userId",
+//     localField: "_id"
+//   });
 const userModel = mongoose.model('User',userSchema);
 module.exports=userModel;
 //change

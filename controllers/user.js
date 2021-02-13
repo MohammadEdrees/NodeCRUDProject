@@ -59,6 +59,8 @@ const login = async ({ mail, password , id }) => {
     return { ...user.toJSON(), token };
 
 }
+//const UsePosts=(id)=>User.findById(id).populate('posts');
+
 // Export models
 module.exports = {
     create,
@@ -70,4 +72,5 @@ module.exports = {
     unfollow,
     getfollowers,
     getfollowing
+    
 }

@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAllUsers, login, editOne, getById } = require('../controllers/user');
+const { create, getAllUsers, login, editOne, getById ,UsePosts } = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
 const User = require('../models/User');
 
@@ -103,7 +103,16 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
 
     })
 });
-
+//---------------------------------------//
+// router.get('/posts/:uid', async (req,res)=>{
+//     try{
+//     const result =  await UsePosts(req.user.id);   
+//     res.json(result);
+//     }catch(e){
+//     res.json(e.msg);
+    
+//     }
+// })
 
 
 

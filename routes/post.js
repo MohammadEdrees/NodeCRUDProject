@@ -107,13 +107,9 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-router.get('/:uid', async (req,res,next)=>{
+router.get('/posts/:uid', async (req,res)=>{
     try{
-    let arr =[];
-    
-   const currenUser = req.params.uid;
-    const result =  await currentUposts(currenUser);
-    
+    const result =  await currentUposts(req.user.id);   
     res.json(result);
     }catch(e){
     res.json({e});
