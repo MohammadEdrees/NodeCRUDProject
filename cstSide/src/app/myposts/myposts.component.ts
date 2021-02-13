@@ -12,7 +12,7 @@ import { BlogsService } from '../_servives/blogs.service';
 })
 export class MypostsComponent implements OnInit {
   
-
+id:any;
   blogs:Blogs[]=[];
     constructor(private blogsSrevice:BlogsService,private registerService:RegisterService,private active:ActivatedRoute) {
     
@@ -27,6 +27,12 @@ export class MypostsComponent implements OnInit {
       })
     });
     
+  }
+  deleteById(){
+    console.log(this.id);
+    this.blogsSrevice.deleteBlog(this.id).subscribe(a=>console.log(a)
+    )
+
   }
 
 }
