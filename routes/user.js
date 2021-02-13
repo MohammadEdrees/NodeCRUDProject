@@ -66,7 +66,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                 follower._id === currentUserId).length > 0) {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" });
             }
-            user.followers.unshift({ user: currentUserId });
+            user.followers.unshift({ _id : currentUserId });
         res.json("here---5")
             res.json({ case: "Passed" });
         res.json("here---6")
