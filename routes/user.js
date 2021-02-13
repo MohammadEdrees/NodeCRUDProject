@@ -107,13 +107,13 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
 
 router.get('/:idd', authMiddleware, async (req, res, next) => {
     try {
-        const users = await getById(req.params.id);
+        const users = await getById(req.params.idd);
         res.json({users : {posts} });
     }
     catch (err) { next(err); }
 });
 
-router.get('/user', async (req,res)=>{
+router.put('/user', async (req,res)=>{
     try{
     res.json("work");
     }catch(e){
