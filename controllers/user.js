@@ -34,6 +34,8 @@ const getById = (id) => User.findById(id).exec();
 const getAllUsers = () => User.find({});
 //edit------------------------------------------
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
+//-----------------------------------------------
+const deletee = (id) =>User.deleteOne(id).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
@@ -55,13 +57,13 @@ const login = async ({ mail, password , id }) => {
         mail: user.mail,
         password: user.password,
         id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '99999999999999999999999999999999999' });
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
 
     const refreshToken = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user.id,
-    }, 'REFRESH', { expiresIn: '999999999999999999999999999999999999' });
+    }, 'REFRESH', { expiresIn: '1y' });
 
     return { ...user.toJSON(), token , refreshToken  };
 
@@ -79,6 +81,7 @@ module.exports = {
     follow,
     unfollow,
     getfollowers,
-    getfollowing
+    getfollowing,
+    deletee
     
 };
