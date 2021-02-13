@@ -54,27 +54,27 @@ router.patch('/:id', authMiddleware, async (req, res, next) => {
 
 //follow----------------------------------------------------------------//
 router.post("/follow/:id", authMiddleware, (req, res, next) => {
-    if (req.user.id === req.params.id) {
-        return res.status(400).json({ alreadyfollow: "You cannot follow yourself" })
+    const currentUserId=req.user.id;
+    const targetTobeFollowedId=req.params.id;
+
+    if (currentUserId === targetTobeFollowedId) {
+        return res.status(400).json({ alreadyfollow: "You cannot follow yourself" });
     }
-
-
-    User.findById(req.params.id)
+    User.findById(targetTobeFollowedId)
         .then(user => {
-            console.log(user)
+            res.log(user)
             // check if the requested user is already in follower list of other user then 
             if (user.followers.filter(follower =>
-                follower.user.toString() === req.user.id).length > 0) {
-                return res.status(400).json({ alreadyfollow: "You already followed the user" })
+                follower.user.toString() === currentUserId).length > 0) {
+                return res.status(400).json({ alreadyfollow: "You already followed the user" });
             }
-            user.followers.unshift({ user: req.user.id });
-            res.json({ case: "Passed" })
-
+            user.followers.unshift({ user: currentUserId });
+            res.json({ case: "Passed" });
             User.save()
             User.findOne({ mail: req.user.mail })
                 .then(user => {
                     console.log(user)
-                    user.following.unshift({ user: req.params.id });
+                    user.following.unshift({ user: targetTobeFollowedId });
                     user.save().then(user => res.json(user))
                 })
                 .catch(err => res.status(404).json({ alradyfollow: "you already followed the user" }))
