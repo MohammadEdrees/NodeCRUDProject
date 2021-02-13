@@ -113,7 +113,7 @@ router.put('/post', authMiddleware , async(req, res, next) => {
     //const { user: { mail } } = req;
     
     try {
-       const blogs = await getAlll( id );
+       const blogs = await getAlll( {id} );
         res.json(id);
     } catch (e) {
         next(e);
