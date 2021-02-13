@@ -108,7 +108,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-router.get('/post/:id', authMiddleware ,async(req, res, next) => {
+router.get('/post', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
     const token = req.token;
 
