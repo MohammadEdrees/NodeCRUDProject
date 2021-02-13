@@ -112,7 +112,7 @@ router.get('/post/:id', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
     res.json("ok1");
     try {
-        const blogs = await getAlll({ userId: mongoose.Types.ObjectId(id) });
+        const blogs = await getAlll({ userId: mongoose.Types.ObjectId(id.toString()) });
         res.json(blogs);
     } catch (e) {
         next(e);
