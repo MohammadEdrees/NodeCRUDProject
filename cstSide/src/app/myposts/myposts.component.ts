@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../serve/register.service';
 import { Blogs } from '../_models/blogs';
 import { User } from '../_models/user';
@@ -14,7 +14,7 @@ export class MypostsComponent implements OnInit {
   
 id:any;
   blogs:Blogs[]=[];
-    constructor(private blogsSrevice:BlogsService,private registerService:RegisterService,private active:ActivatedRoute) {
+    constructor(private blogsSrevice:BlogsService,private registerService:RegisterService,private active:ActivatedRoute,private router:Router) {
     
    }
 
@@ -32,6 +32,11 @@ id:any;
     console.log(this.id);
     this.blogsSrevice.deleteBlog(this.id).subscribe(a=>console.log(a)
     )
+    console.log(this.id)
+    
+    this.router.navigateByUrl('/profile')
+
+    
 
   }
 
