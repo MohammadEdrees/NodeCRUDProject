@@ -56,9 +56,6 @@ getuserId(){
 getUser(id:string){
  return this._http.get<User>("https://myfirstnode7.herokuapp.com/users/"+id) 
    }
-getUserPosts(id:string){
-  return this._http.get<Blogs[]>("https://myfirstnode7.herokuapp.com/post/"+id)
-}
-  
+
 
 }

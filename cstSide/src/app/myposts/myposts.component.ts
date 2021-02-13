@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RegisterService } from '../serve/register.service';
 import { Blogs } from '../_models/blogs';
 import { User } from '../_models/user';
+import { BlogsService } from '../_servives/blogs.service';
 
 @Component({
   selector: 'app-myposts',
@@ -9,16 +11,22 @@ import { User } from '../_models/user';
   styleUrls: ['./myposts.component.css']
 })
 export class MypostsComponent implements OnInit {
-  userId:string="";
+  
 
   blogs:Blogs[]=[];
-    constructor(private registerService:RegisterService) {
-    this.registerService.getuserId().subscribe(a=>{this.userId=a;console.log(a)})
-    this.registerService.getUserPosts(this.userId).subscribe(a=>{this.blogs=a;console.log(a);
-    })
+    constructor(private blogsSrevice:BlogsService,private registerService:RegisterService,private active:ActivatedRoute) {
+    
    }
 
   ngOnInit(): void {
+    let id=0;
+    this.active.params.subscribe(a=>{
+      id=a['id'];
+      console.log(id);
+      this.blogsSrevice.getUserBlogs(id).subscribe(a=>{this.blogs=a;console.log(a);
+      })
+    });
+    
   }
 
 }

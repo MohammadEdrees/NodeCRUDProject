@@ -22,5 +22,11 @@ export class BlogsService {
   getbyId(id:any){
    return this.http.get<Blogs>("https://myfirstnode7.herokuapp.com/posts/"+id);
   }
+  getUserBlogs(uid:any){
+    return this.http.post<Blogs[]>("https://myfirstnode7.herokuapp.com/posts/post",uid);
+  }
+  editBlog(id:any,body:any){
+   return this.http.patch("https://myfirstnode7.herokuapp.com/posts/"+id,body)
+  }
   constructor(private http:HttpClient) { }
 }
