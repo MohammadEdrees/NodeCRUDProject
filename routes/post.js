@@ -110,7 +110,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 router.get('/post/:id', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
-    let idd = mongoose.Types.ObjectId(id);
+    let idd = (mongoose.Types.ObjectId)id;
     try {
         const blogs = await getAlll({ userId: idd });
         res.json(blogs);
@@ -146,7 +146,5 @@ router.get('/post/:id', authMiddleware ,async(req, res, next) => {
 //        }
 //     });
 // });//
-
-
 
 module.exports = router 
