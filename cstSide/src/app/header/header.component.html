@@ -2,7 +2,7 @@
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand " href="#">
+    <a class="navbar-brand " routerLink="/home">
         <h3>Blo<span class="orange_color">Gs</span></h3>
     </a>
 
@@ -12,11 +12,9 @@
                 <a routerLink="/home" class="nav-link">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" routerLink="/myposts" *ngIf="logged">My Blogs</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AuthInterceptor } from './_servives/auth.interceptor';
+import { MypostsComponent } from './myposts/myposts.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AuthInterceptor } from './_servives/auth.interceptor';
     FooterComponent,
     CreateBlogComponent,
     ProfilComponent,
+    MypostsComponent,
   ],
   imports: [
     BrowserModule,

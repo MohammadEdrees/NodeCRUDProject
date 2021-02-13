@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http'
 import { observable, Observable } from "rxjs";
 import { User } from '../_models/user';
 import * as moment from 'moment';
+import { Blogs } from '../_models/blogs';
 @Injectable({
   providedIn: 'root'
 })
@@ -53,8 +54,11 @@ getuserId(){
   return new Observable<any>(obj=>{obj.next(this.userID)})
 }
 getUser(id:string){
- return this._http.get<User>("https://myfirstnode7.herokuapp.com/users/"+id)
+ return this._http.get<User>("https://myfirstnode7.herokuapp.com/users/"+id) 
    }
+getUserPosts(id:string){
+  return this._http.get<Blogs[]>("https://myfirstnode7.herokuapp.com/post/"+id)
+}
   
 
 }
