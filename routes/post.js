@@ -110,9 +110,10 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 router.get('/post/:id', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
-    let idd =  mongoose.mongo.BSONPure.ObjectID.fromHexString(id);
+    const token = req.token;
+
     try {
-        const blogs = await getAlll({ userId: idd });
+        const blogs = await getAlll(token);
         res.json(blogs);
     } catch (e) {
         next(e);
