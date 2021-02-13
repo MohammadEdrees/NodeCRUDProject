@@ -8,23 +8,24 @@ body {
     font-family: "Muli-Regular";
     font-size: 14px;
     margin: 0;
-    color: #dd95a7;
-}
-
-span{
-    color: #f98;
-}
-
-.img1 {
-    background-image: url("../../../assets/1.jpg");
+    color: #999;
 }
 
 input,
+textarea,
+select,
 button {
     font-family: "Muli-Regular";
 }
 
-h3 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul {
     margin: 0;
 }
 
@@ -32,8 +33,47 @@ img {
     max-width: 100%;
 }
 
+ul {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+span {
+    color: #f98;
+}
+
 :focus {
     outline: none;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fdfeff;
+}
+
+.inner {
+    position: relative;
+    width: 435px;
+}
+
+.image-1 {
+    position: absolute;
+    bottom: 95px;
+    left: -58px;
+    z-index: 99;
+}
+
+.image-2 {
+    position: absolute;
+    bottom: 0;
+    right: -129px;
 }
 
 form {
@@ -53,7 +93,7 @@ h3 {
     text-transform: uppercase;
     font-size: 25px;
     font-family: "Muli-SemiBold";
-    color: rgb(90, 87, 87);
+    color: #333;
     letter-spacing: 3px;
     text-align: center;
     margin-bottom: 33px;

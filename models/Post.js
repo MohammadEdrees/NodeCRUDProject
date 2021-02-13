@@ -9,7 +9,7 @@ const postSchema = new Schema({
     },
     body:{
         type: String,
-        maxlength:256,
+        maxlength:500,
         required:true
     },
     createTime:{type:Date , default:Date.now },

@@ -94,6 +94,7 @@ router.patch('/:id', authMiddleware, async (req, res, next) => {
         next(err);
     };
 });
+
 // delete Blog with id 
 router.delete('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id } } = req;
@@ -108,43 +109,15 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-router.put('/post', authMiddleware ,async(req, res, next) => {
-    //const { user: { id } } = req;
-    var id = mongoose.Types.ObjectId(req.user.id);
+// get current user blogs 
+router.post('/post', authMiddleware , async(req, res, next) => {
+     const { user: { id } } = req;   
     try {
-        const blogs = await getAlll(id);
+       const blogs = await getAlll( { userId: id} );
         res.json(blogs);
     } catch (e) {
         next(e);
     }
 });
-
-// router.get('/posts/:uid', async (req,res)=>{
-//     try{
-//     const result =  await currentUposts(req.params.uid);   
-//     res.json(result);
-//     }catch(e){
-//     res.json({e});
-    
-//     }
-// })
-
-
-// User's Blogs
-// router.get('/post/:userid', authMiddleware , async (req, res, next) => {
-//     const currenUser =req.params.id;
-//     const result = await currentUposts(currenUser);
-//     res.json(result);
-
-// })
-// router.get('/post/:userid', function(req, res,next) {
-//     Post.find({userId: req.params.id}, (err, res) => {
-//        if(err) {
-//          console.log(err);
-//        } else {
-//          res.json(req.posts);
-//        }
-//     });
-// });//
 
 module.exports = router 

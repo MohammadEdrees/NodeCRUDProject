@@ -67,7 +67,7 @@ const login = async ({ mail, password , id }) => {
 
 
 }
-//const UsePosts=(id)=>User.findById(id).populate('posts');
+
 
 // Export models
 module.exports = {
