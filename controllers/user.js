@@ -55,13 +55,13 @@ const login = async ({ mail, password , id }) => {
         mail: user.mail,
         password: user.password,
         id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '99999999999999999999999999999999999' });
 
     const refreshToken = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user.id,
-    }, 'REFRESH', { expiresIn: '1y' });
+    }, 'REFRESH', { expiresIn: '999999999999999999999999999999999999' });
 
     return { ...user.toJSON(), token , refreshToken  };
 
