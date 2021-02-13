@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAllUsers, login, editOne, getById  } = require('../controllers/user');
+const { create, getAllUsers, login, editOne, getById ,deletee } = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
 const User = require('../models/User');
 
@@ -104,12 +104,12 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
     })
 });
 //---------------------------------------//
-// router.delete('/:id',authMiddleware,(req,res)=>{
-//     const { params: { id } } = req;
-// try{
-//     const deleted = await deletP(id);
-//     res.json(deleted + " deleted ");
-// }catch(e){res.json(e)}
-// })
+router.delete('/:id',authMiddleware, async(req,res)=>{
+    const { params: { id } } = req;
+try{
+    const deleted = await deletee(id);
+    res.json(deleted + " deleted ");
+}catch(e){res.json(e)}
+})
 
 module.exports = router;
