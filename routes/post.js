@@ -109,6 +109,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 router.get('/post/:id', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
+    res.json("ok1");
     try {
         const blogs = await getAlll({ userId: id });
         res.json(blogs);
