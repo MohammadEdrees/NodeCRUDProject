@@ -115,7 +115,7 @@ router.get('/:idd', authMiddleware, async (req, res, next) => {
 
 router.put('/user', async (req,res)=>{
     try{
-    res.json({user : req.user });
+    res.json({user : User.posts });
     }catch(e){
     res.json("err");
     
