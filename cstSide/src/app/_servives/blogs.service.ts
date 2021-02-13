@@ -28,5 +28,8 @@ export class BlogsService {
   editBlog(id:any,body:any){
    return this.http.patch("https://myfirstnode7.herokuapp.com/posts/"+id,body)
   }
+  deleteBlog(id:any){
+   return this.http.delete("https://myfirstnode7.herokuapp.com/posts/"+id);
+  }
   constructor(private http:HttpClient) { }
 }
