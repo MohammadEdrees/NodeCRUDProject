@@ -55,7 +55,7 @@ const login = async ({ mail, password , id }) => {
         mail: user.mail,
         password: user.password,
         id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7days' });
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
     return { ...user.toJSON(), token };
 
 }
