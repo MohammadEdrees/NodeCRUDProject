@@ -63,7 +63,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
     User.findById({ _id: targetTobeFollowedId })
         .then(user => {
             if (user.followers.filter(follower =>
-                follower.toString() === currentUserId).length > 0) {
+                follower._id === currentUserId).length > 0) {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" });
             }
             user.followers.unshift({ user: currentUserId });
