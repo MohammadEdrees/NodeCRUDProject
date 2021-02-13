@@ -110,7 +110,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 router.put('/post', async(req, res, next) => {
     //const { user: { id } } = req;
-    const { user: { mail } } = req;
+    //const { user: { mail } } = req;
     
     try {
       //  const blogs = await getAlll( {'mail' :{  "$regex" : mail } }  );
