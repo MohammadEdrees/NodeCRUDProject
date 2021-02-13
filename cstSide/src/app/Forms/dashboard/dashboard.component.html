@@ -78,15 +78,33 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngFor="let blog of blogs">
-                <div class="col-6">
-                    <img id='cardImg' src="{{blog.img}}" alt="Card image cap" />
+            <div class="row mb-3" *ngFor="let blog of blogs">
+                <div class="row">
+                    <div class="col-6">
+                        <img id='cardImg' src="{{blog.img}}" alt="Card image cap" />
+                    </div>
+                    <div class="col-6">
+                        <div class="full blog_cont">
+                            <a routerLink="/post/details/{{blog._id}}">
+                                <h4>{{blog.title}}</h4>
+                            </a>
+                            <p>{{blog.body}}</p>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="col-6">
-                    <div class="full blog_cont">
-                        <h4>{{blog.title}}</h4>
-                        <h5>{{blog.createTime}}</h5>
-                        <p>{{blog.body}}</p>
+                <div class=" row col-12 ">
+                    <div class="col-6 ">
+                        <div class="xp-social-profile-following pt-3 ">
+
+                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "> <i class="fa fa-thumbs-up " aria-hidden="true " style="font-size: 1em; color: Dodgerblue; "></i> Like</p>
+                        </div>
+                    </div>
+                    <div class="col-6 ">
+                        <div class="xp-social-profile-following pt-3 ">
+
+                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "> <i class="fa fa-comment " aria-hidden="true " style="font-size: 1em; color: Dodgerblue; "></i> Comment</p>
+                        </div>
                     </div>
                 </div>
             </div>

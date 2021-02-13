@@ -14,7 +14,7 @@ export class CreateBlogComponent implements OnInit {
 
   blogs:Blogs[]=[];
   //massage="";
-  newblog:Blogs=new Blogs("","",new Date(),0,0,true,"","");
+  newblog:Blogs=new Blogs("","","",new Date(),0,0,true,"","");
   fd:FormData=new FormData();
   constructor(private blogService:BlogsService,private _router:Router) { }
 

@@ -19,5 +19,8 @@ export class BlogsService {
       observe:'events'
     });
   }
+  getbyId(id:any){
+   return this.http.get<Blogs>("https://myfirstnode7.herokuapp.com/posts/"+id);
+  }
   constructor(private http:HttpClient) { }
 }
