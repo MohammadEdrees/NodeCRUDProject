@@ -108,13 +108,13 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-router.put('/post', async(req, res, next) => {
-   // const { user: { id } } = req;
+router.put('/post', authMiddleware , async(req, res, next) => {
+     const { user: { id } } = req;
     //const { user: { mail } } = req;
     
     try {
       //  const blogs = await getAlll( {'mail' :{  "$regex" : mail } }  );
-        res.json(req.token);
+        res.json(id);
     } catch (e) {
         next(e);
     }
