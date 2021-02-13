@@ -34,6 +34,8 @@ const getById = (id) => User.findById(id).exec();
 const getAllUsers = () => User.find({});
 //edit------------------------------------------
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
+//-----------------------------------------------
+const deletee = (id) =>User.deleteOne(id).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
@@ -79,6 +81,7 @@ module.exports = {
     follow,
     unfollow,
     getfollowers,
-    getfollowing
+    getfollowing,
+    deletee
     
 };
