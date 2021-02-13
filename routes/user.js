@@ -104,7 +104,7 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
     })
 });
 //---------------------------------------//
-router.delete('/:id',authMiddleware,(req,res)=>{
+router.delete('/:id',authMiddleware, async(req,res)=>{
     const { params: { id } } = req;
 try{
     const deleted = await deletee(id);
