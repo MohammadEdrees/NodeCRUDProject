@@ -16,6 +16,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { AuthInterceptor } from './_servives/auth.interceptor';
 import { MypostsComponent } from './myposts/myposts.component';
 import { PostDetailsComponent } from './post-details/post-details.component';
+import { PostEditComponent } from './post-edit/post-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
     ProfilComponent,
     MypostsComponent,
     PostDetailsComponent,
+    PostEditComponent,
   ],
   imports: [
     BrowserModule,

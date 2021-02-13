@@ -1,1 +1,33 @@
+<h1>
+    my posts</h1>
 
+<div class="row mb-3" *ngFor="let blog of blogs">
+    <div class="row">
+        <div class="col-6">
+            <img id='cardImg' src="{{blog.img}}" alt="Card image cap" />
+        </div>
+        <div class="col-6">
+            <div class="full blog_cont">
+                <a routerLink="/post/details/">
+                    <h4>{{blog.title}}</h4>
+                </a>
+                <p class="lead text-break text-justify ">{{blog.body}}</p>
+            </div>
+        </div>
+
+    </div>
+    <div class=" row col-12 ">
+        <div class="col-6 ">
+            <div class="xp-social-profile-following pt-3 ">
+
+                <p class="mb-0 text-muted" style=" font-size: 1em;color: Mediumslateblue;"> <i class="fa fa-clipboard" aria-hidden="true" style=" font-size: 1em;color: Mediumslateblue;"></i> <a routerLink="/posts/edit/{{blog._id}}" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Posts</a></p>
+            </div>
+        </div>
+        <div class="col-6 ">
+            <div class="xp-social-profile-following pt-3 ">
+
+                <p class="mb-0 text-muted" style=" font-size: 1em;color: Mediumslateblue;"> <i class="fa fa-clipboard" aria-hidden="true" style=" font-size: 1em;color: Mediumslateblue;"></i> <a routerLink="/posts/edit/{{blog._id}}" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Posts</a></p>
+            </div>
+        </div>
+    </div>
+</div>
