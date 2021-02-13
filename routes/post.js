@@ -68,7 +68,7 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
 });
 
 //--get Blog with id 
-router.get('/:id', authMiddleware, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     // const { params:{ id } } = req;
     try {
         const updateOne = await getById(req.params.id);
