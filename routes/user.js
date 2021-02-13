@@ -60,7 +60,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
     if (currentUserId === targetTobeFollowedId) {
         return res.status(400).json({ alreadyfollow: "You cannot follow yourself" });
     }
-    User.findById({ targetTobeFollowedId })
+    User.findById({ _id: targetTobeFollowedId })
         .then(user => {
             res.json(user);
             // check if the requested user is already in follower list of other user then 
