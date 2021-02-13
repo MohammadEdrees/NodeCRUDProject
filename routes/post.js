@@ -109,10 +109,10 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 });
 
 router.get('/post/:id', authMiddleware ,async(req, res, next) => {
-    const { user: { mail } } = req;
-    let idd = id;
+    const { user: { id } } = req;
+    let idd =  mongoose.mongo.BSONPure.ObjectID.fromHexString(id);
     try {
-        const blogs = await getAlll({ mail: mail });
+        const blogs = await getAlll({ userId: idd });
         res.json(blogs);
     } catch (e) {
         next(e);
