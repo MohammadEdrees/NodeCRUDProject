@@ -103,7 +103,7 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
 
     })
 });
-//---------------------------------------//
+//--delete-------------------------------------//
 router.delete('/:id',authMiddleware, async(req,res)=>{
     const { params: { id } } = req;
 try{
