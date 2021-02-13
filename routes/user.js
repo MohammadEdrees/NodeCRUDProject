@@ -62,8 +62,6 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
     }
     User.findById({ _id: targetTobeFollowedId })
         .then(user => {
-            res.json(user);
-            // check if the requested user is already in follower list of other user then 
             if (user.followers.filter(follower =>
                 follower.user.toString() === currentUserId).length > 0) {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" });
