@@ -106,13 +106,13 @@ router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
 //---------------------------------------//
 router.get('/user', async (req,res)=>{
     try{
-    res.json(req.user);
+    res.json(req.user.mail);
     }catch(e){
-    res.json(e.msg);
+    res.json("err");
     
     }
 })
 
-
+//
 
 module.exports = router;
