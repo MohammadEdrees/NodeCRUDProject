@@ -108,12 +108,10 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
-router.get('/post', authMiddleware ,async(req, res, next) => {
+router.put('/post', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
-    const token = req.token;
-
     try {
-        const blogs = await getAlll(token);
+        const blogs = await getAlll(id);
         res.json(blogs);
     } catch (e) {
         next(e);
