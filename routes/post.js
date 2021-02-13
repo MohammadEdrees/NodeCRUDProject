@@ -5,6 +5,7 @@ const router = express.Router();
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const mongoose = require('mongoose');
 
 //--------------------------------------
 
@@ -111,7 +112,7 @@ router.get('/post/:id', authMiddleware ,async(req, res, next) => {
     const { user: { id } } = req;
     res.json("ok1");
     try {
-        const blogs = await getAlll({ userId: id });
+        const blogs = await getAlll({ userId: mongoose.Types.ObjectId(id) });
         res.json(blogs);
     } catch (e) {
         next(e);
