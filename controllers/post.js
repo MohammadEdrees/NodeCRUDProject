@@ -10,7 +10,7 @@ const getById=(id)=>Post.findById(id).exec();
 //editOne--------------------------------------//
 const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{new:true}).exec();
 //delete by id -----------------------------------------//
-const deletP =(id)=>Post.findByIdAndRemove(id).exec();
+const deletP =(id)=>Post.findByIdAndDelete(id).exec();
 //PostsOfOneUser
 //const currentUposts=(id)=>Post.find({'userId' :mongoose.Types.ObjectId(id)})
 const getAlll = (query) => Post.find(query).exec();
