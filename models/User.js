@@ -66,11 +66,7 @@ userSchema.pre('findOneAndUpdate',function preSave(next){
 userSchema.methods.validatePassword = function(password){
 return bycrypt.compareSync(password,this.password);
 }
-// userSchema.virtual("posts", {
-//     ref: "Post",
-//     foreignField: "userId",
-//     localField: "_id"
-//   });
+
 const userModel = mongoose.model('User',userSchema);
 module.exports=userModel;
 //change

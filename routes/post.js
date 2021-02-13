@@ -94,6 +94,7 @@ router.patch('/:id', authMiddleware, async (req, res, next) => {
         next(err);
     };
 });
+
 // delete Blog with id 
 router.delete('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id } } = req;
@@ -108,10 +109,9 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 });
 
+// get current user blogs 
 router.put('/post', authMiddleware , async(req, res, next) => {
-     const { user: { id } } = req;
-    //const { user: { mail } } = req;
-    
+     const { user: { id } } = req;   
     try {
        const blogs = await getAlll( { userId: id} );
         res.json(blogs);
@@ -119,42 +119,5 @@ router.put('/post', authMiddleware , async(req, res, next) => {
         next(e);
     }
 });
-// router.put('/post', authMiddleware ,async(req, res, next) => {
-//     const { user: { id } } = req;
-//     try {
-//         const blogs = await getAlll(id);
-//         res.json(blogs);
-//     } catch (e) {
-//         next(e);
-//     }
-// });
-
-// router.get('/posts/:uid', async (req,res)=>{
-//     try{
-//     const result =  await currentUposts(req.params.uid);   
-//     res.json(result);
-//     }catch(e){
-//     res.json({e});
-    
-//     }
-// })
-
-
-// User's Blogs
-// router.get('/post/:userid', authMiddleware , async (req, res, next) => {
-//     const currenUser =req.params.id;
-//     const result = await currentUposts(currenUser);
-//     res.json(result);
-
-// })
-// router.get('/post/:userid', function(req, res,next) {
-//     Post.find({userId: req.params.id}, (err, res) => {
-//        if(err) {
-//          console.log(err);
-//        } else {
-//          res.json(req.posts);
-//        }
-//     });
-// });//
 
 module.exports = router 
