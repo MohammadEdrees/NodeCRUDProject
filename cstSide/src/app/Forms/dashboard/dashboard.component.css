@@ -199,3 +199,19 @@
                 background-position: center;
                 background-repeat: no-repeat
             }
+            
+            .xp-social-profile-avatar img {
+                border: 5px solid #fff;
+                margin-top: -10px;
+            }
+            
+            .xp-social-profile-avatar .xp-social-profile-live {
+                position: absolute;
+                bottom: 15px;
+                margin: 0px -20px;
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                border: 2px solid #ffffff;
+                background-color: #2bcd72;
+            }

@@ -15,6 +15,7 @@ import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AuthInterceptor } from './_servives/auth.interceptor';
 import { MypostsComponent } from './myposts/myposts.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MypostsComponent } from './myposts/myposts.component';
     CreateBlogComponent,
     ProfilComponent,
     MypostsComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,

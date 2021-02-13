@@ -6,15 +6,17 @@ import{LoginComponent}from './Forms/login/login.component';
 import { CreateBlogComponent } from './create-blog/create-blog.component';
 import { ProfilComponent } from './profil/profil.component';
 import { MypostsComponent } from './myposts/myposts.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 const routes: Routes = [
   {path:'home',component:DashboardComponent},
-  {path:'',redirectTo:'/home',pathMatch:'full'},
   {path:'register',component:RegisterationComponent},
   {path:'login',component:LoginComponent},
   {path:'createblog',component:CreateBlogComponent},
   {path:'profile',component:ProfilComponent},
   {path:'profile/:id',component:ProfilComponent},
-  {path:'myposts',component:MypostsComponent}
+  {path:'myposts',component:MypostsComponent},
+  {path:"post/details/:id",component:PostDetailsComponent},
+  {path:'',redirectTo:'/home',pathMatch:'full'},
 
 
   //{path:'**',component:notFound}
