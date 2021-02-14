@@ -33,10 +33,10 @@ router.get('/:id', authMiddleware, async (req, res, next) => {
 //Login--------------------------------------------------------------------------------------------------//
 router.post('/login', async (req, res, next) => {
     const { body } = req;
-    res.json( { 'User' : body });
+  // 1  res.json( { 'User' : body });
     try {
         const user = await login(body);
-        res.json(user);
+        res.json({ 'User=>' : user });
 
     } catch (err) {
         next(err);
