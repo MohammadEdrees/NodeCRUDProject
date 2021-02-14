@@ -87,7 +87,7 @@ router.put('/:id', authMiddleware,parser.single('img'), async (req, res, next) =
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit( id , { body , img: body.file.path });
-        res.json(specificPost);
+        res.json("seccess");
 
     } catch (err) {
         console.log(err);
