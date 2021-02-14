@@ -83,7 +83,7 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
     const currentUser= user.id;
     const FollowedOne= id ;
     //check i is not my id
-    if(!(FollowedOne === currentUser)){
+    if(!({FollowedOne} == {currentUser})){
         if(user.following.includes(FollowedOne)){
             //unfollow
             res.json("1");
