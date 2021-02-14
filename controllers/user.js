@@ -73,8 +73,8 @@ const login =  async({ mail, password }) => {
     }, 'REFRESH', { expiresIn: '1y' });
 
     //res.json('6');
-
-  //  return { ...user.toJSON(), token, refreshToken };
+    res.json(user);
+    //return { ...user.toJSON(), token, refreshToken };
 
 
 }
