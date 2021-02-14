@@ -33,8 +33,9 @@ router.get('/:id', authMiddleware, async (req, res, next) => {
 //Login--------------------------------------------------------------------------------------------------//
 router.post('/login', async (req, res, next) => {
     const { body } = req;
-        
-     res.json( { 'User' : body });
+        const m = body.mail;
+        const p = body.password;
+     res.json( { 'User' : `${m}+${p}`});
     try {
         const user = await login({ body });//issue got it 
         res.json(`something happened here => ${user}`);
