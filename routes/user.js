@@ -78,21 +78,28 @@ router.post("/follow/:id", authMiddleware, (req, res) => {
 })
 
 //unfollow-----------------------------------------------------------------------------------------//
-router.put('/unfollow/:id', authMiddleware, (req, res) => {
+router.post('/unfollow/:id', authMiddleware, (req, res) => {
     const { user, params:{ id } }=req
     const currentUser= user.id;
     const FollowedOne= id ;
     //check i is not my id
-    
-        if(user.following.includes(FollowedOne)){
+     const targerUser=User.findById({ _id : FollowedOne });
+        if(user.following.includes(targerUser)){
             //unfollow
-             let index =  user.following.indexOf(FollowedOne);
+             let index =  user.following.indexOf(targerUser);
+             let index2 =  targerUser.following.indexOf(user);
+
                 user.following.slice(index,1);
             //update
             //save
         }else{
             res.json({msg:"He is not in your follwing list "});
         }
+        User.findById({ _id : FollowedOne }).then(one=>{
+            if(one.followers.includes(user)){
+                targerUser.followers.slice(index2,0);
+            }
+        }).catch(e=>{res.json("err")});
     
     //else cheer him 
     
