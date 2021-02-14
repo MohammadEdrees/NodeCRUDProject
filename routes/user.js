@@ -84,13 +84,10 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
     const FollowedOne= id ;
     //check i is not my id
     
-        if(user.followers.includes(FollowedOne)){
+        if(user.following.includes(FollowedOne)){
             //unfollow
-            res.json("1");
-            User.findById(FollowedOne).then(f=>{
-            res.json("2");
-                res.json(f.mail);
-            });
+             let index =  user.following.indexOf(FollowedOne);
+                user.following.slice(index,1);
             //update
             //save
         }else{
@@ -99,24 +96,24 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
     
     //else cheer him 
     
-    User.findByIdAndUpdate(req.params.unfollowId, {
-        $pull: { followers: req.user._id }
-    }, {
-        new: true
-    }, (err, result) => {
-        if (err) {
-            return res.status(422).json({ error: err })
-        }
-        User.findByIdAndUpdate(req.user._id, {
-            $pull: { following: req.params.unfollowId }
+    // User.findByIdAndUpdate(req.params.unfollowId, {
+    //     $pull: { followers: req.user._id }
+    // }, {
+    //     new: true
+    // }, (err, result) => {
+    //     if (err) {
+    //         return res.status(422).json({ error: err })
+    //     }
+    //     User.findByIdAndUpdate(req.user._id, {
+    //         $pull: { following: req.params.unfollowId }
 
-        }, { new: true }).select("").then(result => {
-            res.json(result)
-        }).catch(err => {
-            return res.status(422).json({ error: err })
-        })
+    //     }, { new: true }).select("").then(result => {
+    //         res.json(result)
+    //     }).catch(err => {
+    //         return res.status(422).json({ error: err })
+    //     })
 
-    })
+    // })
 });
 //--delete-------------------------------------//
 router.delete('/:id',authMiddleware, async(req,res)=>{
