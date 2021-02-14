@@ -53,7 +53,7 @@ router.patch('/:id', authMiddleware, async (req, res, next) => {
 });
 
 //follow----------------------------------------------------------------//
-router.post("/follow/:id", authMiddleware, (req, res, next) => {
+router.post("/follow/:id", authMiddleware, (req, res) => {
     const currentUserId=req.user.id;
     const targetTobeFollowedId=req.params.id;
 
