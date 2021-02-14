@@ -33,6 +33,7 @@ router.get('/:id', authMiddleware, async (req, res, next) => {
 //Login--------------------------------------------------------------------------------------------------//
 router.post('/login', async (req, res, next) => {
     const { body } = req;
+    console.log(body);
     try {
         const user = await login(body);
         res.json(user);
