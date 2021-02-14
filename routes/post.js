@@ -83,7 +83,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //--modify Blog with id 
-router.patch('/:id', authMiddleware,parser.single('img'), async (req, res, next) => {
+router.put('/:id', authMiddleware,parser.single('img'), async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
