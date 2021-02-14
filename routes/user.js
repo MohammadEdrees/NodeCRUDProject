@@ -68,7 +68,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
             }
             user.followers.unshift({ _id : currentUserId });
             user.save();
-            User.findById({ _id : targetTobeFollowedId })
+            User.findOne({mail:req.mail})
                 .then(user => {
                     user.following.unshift({ _id : targetTobeFollowedId });
                     user.save().then(user => res.json(user))
