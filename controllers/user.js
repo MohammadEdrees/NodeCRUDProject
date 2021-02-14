@@ -42,9 +42,9 @@ const asyncSign = promisify(jwt.sign);
 //------------------------------------------------------------------
 
 //login
-const login = ( { mail, password }) => {
+const login = async ({ mail, password }) => {
      res.json('passed');
-    const user = User.findOne({ mail }).exec();
+    const user = await User.findOne({ mail }).exec();
     //res.json('0');
     if (!user) {
      //   res.json('1');
@@ -60,13 +60,13 @@ const login = ( { mail, password }) => {
 
    // res.json('4');
 
-    const token =  asyncSign({
+    const token = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user.id
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
    // res.json('5');
-    const refreshToken =  asyncSign({
+    const refreshToken = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user.id
