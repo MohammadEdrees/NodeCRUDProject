@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAllUsers, login, editOne, getById ,deletee } = require('../controllers/user');
+const { create, getAllUsers, login, editOne, getById, deletee } = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
 const User = require('../models/User');
 
@@ -54,22 +54,22 @@ router.patch('/:id', authMiddleware, async (req, res, next) => {
 
 //follow----------------------------------------------------------------//
 router.post("/follow/:id", authMiddleware, (req, res) => {
-    const currentUserId=req.user.id;
-    const targetTobeFollowedId=req.params.id;
+    const currentUserId = req.user.id;
+    const targetTobeFollowedId = req.params.id;
 
     if (currentUserId === targetTobeFollowedId) {
         return res.status(400).json({ alreadyfollow: "You cannot follow yourself" });
     }
     User.findById({ _id: targetTobeFollowedId })
         .then(user => {
-            if (user.followers.includes(currentUserId) ) {
+            if (user.followers.includes(currentUserId)) {
                 return res.status(400).json({ alreadyfollow: "You already followed Him" });
             }
-            user.followers.unshift({ _id : currentUserId });
+            user.followers.unshift({ _id: currentUserId });
             user.save();
-            User.findOne({mail:req.mail})
+            User.findOne({ mail: req.mail })
                 .then(user => {
-                    user.following.unshift({ _id : targetTobeFollowedId });
+                    user.following.unshift({ _id: targetTobeFollowedId });
                     user.save().then(user => res.json(user))
                 })
                 .catch(err => res.status(404).json({ alradyfollow: "Done" }))
@@ -79,28 +79,29 @@ router.post("/follow/:id", authMiddleware, (req, res) => {
 
 //unfollow-----------------------------------------------------------------------------------------//
 router.put('/unfollow/:id', authMiddleware, (req, res) => {
-    const { user, params:{ id } }=req
-    const currentUser= user.id;
-    const FollowedOne= id ;
+    const { user, params: { id } } = req
+    const currentUser = user.id;
+    const FollowedOne = id;
     //check i is not my id
-    if(!({FollowedOne} == {currentUser})){
-        if(user.following.includes(FollowedOne)){
+    if (FollowedOne == currentUser) {
+        res.json({ msg: "He is not in your follwing list " });
+
+    } else {
+        if (user.following.includes(FollowedOne)) {
             //unfollow
             res.json("1");
-            User.findById(FollowedOne).then(f=>{
-            res.json("2");
+            User.findById(FollowedOne).then(f => {
+                res.json("2");
                 res.json(f.mail);
             });
             //update
             //save
-        }else{
-            res.json({msg:"He is not in your follwing list "});
         }
-    }else{
-        res.json({ msg :" Not Allowed "});
+    }else {
+        res.json({ msg: " Not Allowed " });
     }
     //else cheer him 
-    
+
     User.findByIdAndUpdate(req.params.unfollowId, {
         $pull: { followers: req.user._id }
     }, {
@@ -121,12 +122,12 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
     })
 });
 //--delete-------------------------------------//
-router.delete('/:id',authMiddleware, async(req,res)=>{
+router.delete('/:id', authMiddleware, async (req, res) => {
     const { params: { id } } = req;
-try{
-    const deleted = await deletee(id);
-    res.json(deleted + " deleted ");
-}catch(e){res.json(e)}
+    try {
+        const deleted = await deletee(id);
+        res.json(deleted + " deleted ");
+    } catch (e) { res.json(e) }
 })
 
 module.exports = router;
