@@ -47,7 +47,7 @@ const login = async ({ mail, password, id }) => {
     const user = await User.findOne({ mail: mail }).exec();
     if (!user) {
         console.log(mail, 'Your user name is not valid Check again please');
-        throw Error('UN_AUTHENTICATED');
+          throw Error('UN_AUTHENTICATED');
 
     }
     const isValidePass = user.validatePassword(password);
@@ -56,11 +56,7 @@ const login = async ({ mail, password, id }) => {
         console.log(`your pass is :+${password}`, 'Your password  is not valid Check again please');
         throw Error('UN_AUTHENTICATED');
     }
-    if (token == null) {
-        console.log(`your token is :+${token}`, 'must be null');
-    } else if (token) {
-
-
+    
         const token = await asyncSign({
             mail: user.mail,
             password: user.password,
@@ -72,7 +68,7 @@ const login = async ({ mail, password, id }) => {
             password: user.password,
             id: user.id
         }, 'REFRESH', { expiresIn: '1y' });
-    }
+    
     return { ...user.toJSON(), token, refreshToken };
 
 

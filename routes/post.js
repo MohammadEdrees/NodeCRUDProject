@@ -122,7 +122,7 @@ router.post('/post', authMiddleware , async(req, res, next) => {
 });
 
 //Comments for specific Post 
-router.post('/post/:id/comment',authMiddleware,async(req,res)=>{
+// router.post('/post/:id/comment',authMiddleware,async(req,res)=>{
 
-});
+// });
 module.exports = router 
