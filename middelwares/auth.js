@@ -6,7 +6,7 @@ const asyncVerify = promisify(jwt.verify); //transform to promise
 const auth = async(req, res, next) => {
     // try spread it ...auth = > { Access token - refresh token }
     const { headers: { authorization } } = req;
-    if (!authorization) {
+    if (authorization == null) {
         //next((new Error('UN_AUTHENTICATED')));
         res.json({ msg: "Confirm You Are Logged in Please.." });
     }

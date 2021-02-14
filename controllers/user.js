@@ -56,13 +56,13 @@ const login = async ({ mail, password , id }) => {
     const token = await asyncSign({
         mail: user.mail,
         password: user.password,
-        id: user.id,
+        id: user.id
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
 
     const refreshToken = await asyncSign({
         mail: user.mail,
         password: user.password,
-        id: user.id,
+        id: user.id
     }, 'REFRESH', { expiresIn: '1y' });
 
     return { ...user.toJSON(), token , refreshToken  };
