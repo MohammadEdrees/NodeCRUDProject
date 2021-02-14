@@ -86,7 +86,7 @@ router.post('/unfollow/:id', authMiddleware, (req, res) => {
         if(user.following.includes(FollowedOne)){
             //unfollow
              let index =  user.following.indexOf(FollowedOne);
-             let index2 =  targerUser.following.indexOf(user);
+             let index2 =  FollowedOne.following.indexOf(user);
              user.following.splice(index,1);
              res.json(user.following);
             //update
