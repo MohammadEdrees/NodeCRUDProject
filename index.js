@@ -59,7 +59,7 @@ app.use((err, req, res, next) => {
     if (err.message === 'UN_AUTHENTICATED')
         res.status(401).json({ statusCode: 'UN_AUTHENTICATED' });
 
-    if (err.status === 400) {
+    if (err.code === 400) {
         res.status(400).json({ type: err.type });
     }
  
