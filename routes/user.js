@@ -96,7 +96,7 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
             });
             //update
             //save
-        }
+        
     }else {
         res.json({ msg: " Not Allowed " });
     }
