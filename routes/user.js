@@ -96,8 +96,8 @@ router.post('/unfollow/:id', authMiddleware, (req, res) => {
         }
         User.findById({ _id : FollowedOne }).then(one=>{
             if(one.followers.includes(currentUser)){
-                targerUser.followers.splice(index2,1);
-                res.json(targerUser.followers);
+                one.followers.splice(index2,1);
+                res.json(one.followers);
             }
         }).catch(e=>{res.json("err in deleting follower")});
     
