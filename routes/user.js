@@ -83,23 +83,23 @@ router.post('/unfollow/:id', authMiddleware, (req, res) => {
     const currentUser= user.id;
     const FollowedOne= id ;
     //check i is not my id
-     const targerUser=User.findById({ _id : FollowedOne });
-        if(user.following.includes(targerUser)){
+        if(user.following.includes(FollowedOne)){
             //unfollow
-             let index =  user.following.indexOf(targerUser);
+             let index =  user.following.indexOf(FollowedOne);
              let index2 =  targerUser.following.indexOf(user);
-
-                user.following.slice(index,1);
+             user.following.splice(index,1);
+             res.json(user.following);
             //update
             //save
         }else{
-            res.json({msg:"He is not in your follwing list "});
+            res.json({msg:"err in deleting follwing user"});
         }
         User.findById({ _id : FollowedOne }).then(one=>{
-            if(one.followers.includes(user)){
-                targerUser.followers.slice(index2,0);
+            if(one.followers.includes(currentUser)){
+                targerUser.followers.splice(index2,1);
+                res.json(targerUser.followers);
             }
-        }).catch(e=>{res.json("err")});
+        }).catch(e=>{res.json("err in deleting follower")});
     
     //else cheer him 
     
