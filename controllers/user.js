@@ -35,37 +35,45 @@ const getAllUsers = () => User.find({});
 //edit------------------------------------------
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
 //-----------------------------------------------
-const deletee = (id)=> User.findByIdAndRemove(id).exec();
+const deletee = (id) => User.findByIdAndRemove(id).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
 
 
 //login
-const login = async ({ mail, password , id }) => {
+const login = async ({ mail, password, token }) => {
 
     const user = await User.findOne({ mail }).exec();
     if (!user) {
-        throw Error('UN_AUTHENTICATED');
+        //throw Error('UN_AUTHENTICATED');
+        console.log(mail, 'Your user name is not valid Check again please');
     }
     const isValidePass = user.validatePassword(password);
 
     if (!isValidePass) {
-        throw Error('UN_AUTHENTICATED');
+        //throw Error('UN_AUTHENTICATED');
+        console.log(`your pass is :+${password}`, 'Your password  is not valid Check again please');
+
     }
-    const token = await asyncSign({
-        mail: user.mail,
-        password: user.password,
-        id: user.id
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
+    if (token == null) {
+        console.log(`your token is :+${token}`, 'must be null');
+    } else if (token) {
 
-    const refreshToken = await asyncSign({
-        mail: user.mail,
-        password: user.password,
-        id: user.id
-    }, 'REFRESH', { expiresIn: '1y' });
 
-    return { ...user.toJSON(), token , refreshToken  };
+        const token = await asyncSign({
+            mail: user.mail,
+            password: user.password,
+            id: user.id
+        }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
+
+        const refreshToken = await asyncSign({
+            mail: user.mail,
+            password: user.password,
+            id: user.id
+        }, 'REFRESH', { expiresIn: '1y' });
+    }
+    return { ...user.toJSON(), token, refreshToken };
 
 
 }
@@ -83,5 +91,5 @@ module.exports = {
     getfollowers,
     getfollowing,
     deletee
-    
+
 };
