@@ -78,7 +78,31 @@ router.post("/follow/:id", authMiddleware, (req, res) => {
 })
 
 //unfollow-----------------------------------------------------------------------------------------//
-router.put('/unfollow/:unfollowId', authMiddleware, (req, res) => {
+router.put('/unfollow/:id', authMiddleware, (req, res) => {
+    const { user, params:{ id } }=req
+    const currentUser= user.id;
+    const FollowedOne= id ;
+    //check i is not my id
+    res.json("-1");
+    if(!(FollowedOne === currentUser)){
+        res.json("0");
+        if(user.following.includes(FollowedOne)){
+            //unfollow
+            res.json("1");
+            User.findById(FollowedOne).then(f=>{
+            res.json("2");
+                res.json(f.mail);
+            });
+            //update
+            //save
+        }else{
+            res.json({msg:"He is not in your follwing list "});
+        }
+    }else{
+        res.json({ msg :" Not Allowed "});
+    }
+    //else cheer him 
+    
     User.findByIdAndUpdate(req.params.unfollowId, {
         $pull: { followers: req.user._id }
     }, {

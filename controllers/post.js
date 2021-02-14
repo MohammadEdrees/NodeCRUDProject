@@ -12,7 +12,6 @@ const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{new:true}).exec();
 //delete by id -----------------------------------------//
 const deletP =(id)=>Post.findByIdAndDelete(id).exec();
 //PostsOfOneUser
-//const currentUposts=(id)=>Post.find({'userId' :mongoose.Types.ObjectId(id)})
 const getAlll = (query) => Post.find(query).exec();
 module.exports={
     create,getAll,getById,edit,deletP,getAlll
