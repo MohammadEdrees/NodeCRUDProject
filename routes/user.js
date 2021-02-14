@@ -78,28 +78,60 @@ router.post("/follow/:id", authMiddleware, (req, res) => {
 })
 
 //unfollow-----------------------------------------------------------------------------------------//
-router.post('/unfollow/:id', authMiddleware, (req, res) => {
-    const { user, params:{ id } }=req
-    const currentUser= user.id;
-    const FollowedOne= id ;
-    //check i is not my id
-        if(user.following.includes(FollowedOne)){
-            //unfollow
-             let index =  user.following.indexOf(FollowedOne);
-             let index2 =  FollowedOne.following.indexOf(user);
-             user.following.splice(index,1);
-             res.json(user.following);
-            //update
-            //save
-        }else{
-            res.json({msg:"err in deleting follwing user"});
-        }
-        User.findById({ _id : FollowedOne }).then(one=>{
-            if(one.followers.includes(currentUser)){
-                one.followers.splice(index2,1);
-                res.json(one.followers);
+router.post("/unfollow/:id", authMiddleware, (req, res) => {
+    const currentUserId=req.user.id;
+    const targetTobeFollowedId=req.params.id;
+
+    if (currentUserId === targetTobeFollowedId) {
+        return res.json({ alreadyfollow: "its you " });
+    }
+    //-----------------------------------------------
+    User.findById({ _id: targetTobeFollowedId })
+        .then(user => {
+            if (user.followers.includes(currentUserId) ) {
+                user.followers.shift(currentUserId);
+                res.json("removed from followers")
             }
-        }).catch(e=>{res.json("err in deleting follower")});
+            user.followers.shift({ _id : currentUserId });
+            user.save();
+            User.findById({ _id : currentUserId })
+                .then(user => {
+                    user.following.shift({ _id : targetTobeFollowedId });
+                    user.save().then(user => res.json(user))
+                })
+                .catch(err => res.json({ alradyfollow: "removed from follwoing " }));
+        })
+
+})
+
+
+
+
+
+
+
+// router.post('/unfollow/:id', authMiddleware, (req, res) => {
+//     const { user, params:{ id } }=req
+//     const currentUser= user.id;
+//     const FollowedOne= id ;
+//     //check i is not my id
+//         if(user.following.includes(FollowedOne)){
+//             //unfollow
+//              let index =  user.following.indexOf(FollowedOne);
+//              let index2 =  FollowedOne.following.indexOf(user);
+//              user.following.splice(index,1);
+//              res.json(user.following);
+//             //update
+//             //save
+//         }else{
+//             res.json({msg:"err in deleting follwing user"});
+//         }
+//         User.findById({ _id : FollowedOne }).then(one=>{
+//             if(one.followers.includes(currentUser)){
+//                 one.followers.splice(index2,1);
+//                 res.json(one.followers);
+//             }
+//         }).catch(e=>{res.json("err in deleting follower")});
     
     //else cheer him 
     
