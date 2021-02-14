@@ -63,7 +63,7 @@ app.use((err, req, res, next) => {
         res.status(400).json({ type: err.type });
     }
  
-    res.json(err.message);
+    res.json(err);
 });
 
 //PORT
