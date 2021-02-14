@@ -84,6 +84,7 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
     const FollowedOne= id ;
     //check i is not my id
     if((FollowedOne == currentUser)){
+        res.json("same");
         if(user.following.includes(FollowedOne)){
             //unfollow
             res.json("1");
@@ -97,7 +98,7 @@ router.put('/unfollow/:id', authMiddleware, (req, res) => {
             res.json({msg:"He is not in your follwing list "});
         }
     }else{
-        res.json({ msg :" Not Allowed "});
+        res.json({ msg :" Not same "});
     }
     //else cheer him 
     
