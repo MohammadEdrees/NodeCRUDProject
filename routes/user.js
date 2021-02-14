@@ -73,7 +73,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                     user.following.unshift({ _id : targetTobeFollowedId });
                     user.save().then(user => res.json(user))
                 })
-                .catch(err => res.status(404).json({ alradyfollow: "you already followed the user" }))
+                .catch(err => res.status(404).json({ alradyfollow: "Done" }))
         })
 
 })
