@@ -17,7 +17,7 @@ const auth = async(req, res, next) => {
         next();
     } catch (e) {
         //  next((new Error('UN_AUTHENTICATED')));
-        res.json({ msg: "login but can't access ", err: e.msg });
+        res.json({ msg: "login but can't access "});
 
     }
 };
