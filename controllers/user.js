@@ -42,13 +42,14 @@ const asyncSign = promisify(jwt.sign);
 
 
 //login
-const login = async ({ mail, password, _id }) => {
-    res.json('-1');
+const login = async (body) => {
+    //params { mail, password, _id }
+      res.json('-1');
     const user = await User.findOne({ mail }).exec();
     res.json('0');
     if (!user) {
         res.json('1');
-          throw Error('UN_AUTHENTICATED');
+        throw Error('UN_AUTHENTICATED');
     }
     res.json('2');
     const isValidePass = user.validatePassword(password);
@@ -60,19 +61,19 @@ const login = async ({ mail, password, _id }) => {
 
     res.json('4');
 
-        const token = await asyncSign({
-            mail: user.mail,
-            password: user.password,
-            id: user.id
-        }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
-        res.json('5');
-        const refreshToken = await asyncSign({
-            mail: user.mail,
-            password: user.password,
-            id: user.id
-        }, 'REFRESH', { expiresIn: '1y' });
-    
-        res.json('6');
+    const token = await asyncSign({
+        mail: user.mail,
+        password: user.password,
+        id: user.id
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
+    res.json('5');
+    const refreshToken = await asyncSign({
+        mail: user.mail,
+        password: user.password,
+        id: user.id
+    }, 'REFRESH', { expiresIn: '1y' });
+
+    res.json('6');
 
     return { ...user.toJSON(), token, refreshToken };
 
