@@ -35,9 +35,9 @@ router.post('/login', async (req, res, next) => {
     const { body } = req;
         const m = body.mail;
         const p = body.password;
-     res.json( { 'User' : `${m}+${p}`});
+   //  res.json( { 'User' : `${m}+${p}`});
     try {
-        const user = await login({ body });//issue got it 
+        const user = await login(m,p);//issue got it 
         res.json(`something happened here => ${user}`);
 
     } catch (err) {

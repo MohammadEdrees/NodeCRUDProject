@@ -39,11 +39,11 @@ const deletee = (id) => User.findByIdAndRemove(id).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
-
+//------------------------------------------------------------------
 
 //login
-const login = ({ mail, password }) => {
-     res.json('-1');
+const login = (mail, password ) => {
+     res.json('passed');
     const user = User.findOne({ mail }).exec();
     //res.json('0');
     if (!user) {
