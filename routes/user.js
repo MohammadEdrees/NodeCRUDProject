@@ -35,11 +35,13 @@ router.post('/login', async (req, res, next) => {
     const { body } = req;
   // 1  res.json( { 'User' : body });
     try {
-        const user = await login(body);
+        const user = await login(body);//issue got it 
         res.json(user);
 
     } catch (err) {
-        next(err);
+     //   next(err);
+     res.json('Z3ama');
+
     }
 });
 //Edit user---------------------------------------------------------//
