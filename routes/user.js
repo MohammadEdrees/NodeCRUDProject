@@ -67,11 +67,11 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                 return res.status(400).json({ alreadyfollow: "You already followed the user" });
             }
             user.followers.unshift({ _id : currentUserId });
-            user.followers.save();
+            user.save();
             User.findById({ _id : targetTobeFollowedId })
                 .then(user => {
                     user.following.unshift({ _id : targetTobeFollowedId });
-                    user.following.save().then(user => res.json(user))
+                    user.save().then(user => res.json(user))
                 })
                 .catch(err => res.status(404).json({ alradyfollow: "you already followed the user" }))
         })
