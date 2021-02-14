@@ -85,7 +85,7 @@ router.get('/:id', async (req, res, next) => {
 //--modify Blog with id 
 router.put('/:id', authMiddleware,parser.single('img'), async (req, res, next) => {
     const { params: { id }, body , file } = req;
-    body.file=file;
+    //img = { file };
     try {
         const specificPost = await edit( id , body);
         res.json("seccess");
