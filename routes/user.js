@@ -101,6 +101,7 @@ router.post("/unfollow/:id", authMiddleware, (req, res) => {
                 })
                 .catch(err => res.json({ alradyfollow: "removed from follwoing " }));
         })
+    
 
 })
 
@@ -153,7 +154,7 @@ router.post("/unfollow/:id", authMiddleware, (req, res) => {
     //     })
 
     // })
-});
+
 //--delete-------------------------------------//
 router.delete('/:id',authMiddleware, async(req,res)=>{
     const { params: { id } } = req;
