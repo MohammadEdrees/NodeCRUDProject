@@ -33,16 +33,16 @@ router.get('/:id', authMiddleware, async (req, res, next) => {
 //Login--------------------------------------------------------------------------------------------------//
 router.post('/login', async (req, res, next) => {
     const { body } = req;
-        const m = body.mail;
-        const p = body.password;
+        let m = body.mail;
+        let p = body.password;
    //  res.json( { 'User' : `${m}+${p}`});
     try {
-        const user = await login(m,p);//issue got it 
+        const user = login({ body });//issue got it 
         res.json(`something happened here => ${user}`);
 
     } catch (err) {
      //   next(err);
-     res.json('Z3ama');
+     res.json('Z3amaError');
 
     }
 });
