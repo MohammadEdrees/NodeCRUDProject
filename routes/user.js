@@ -58,12 +58,12 @@ router.post("/follow/:id", authMiddleware, (req, res) => {
     const targetTobeFollowedId=req.params.id;
 
     if (currentUserId === targetTobeFollowedId) {
-        return res.status(400).json({ alreadyfollow: "You cannot follow yourself" });
+        return res.json({ alreadyfollow: "You cannot follow yourself" });
     }
     User.findById({ _id: targetTobeFollowedId })
         .then(user => {
             if (user.followers.includes(currentUserId) ) {
-                return res.status(400).json({ alreadyfollow: "You already followed Him" });
+                return res.json({ alreadyfollow: "You already followed Him" });
             }
             user.followers.unshift({ _id : currentUserId });
             user.save();
@@ -72,7 +72,7 @@ router.post("/follow/:id", authMiddleware, (req, res) => {
                     user.following.unshift({ _id : targetTobeFollowedId });
                     user.save().then(user => res.json(user))
                 })
-                .catch(err => res.status(404).json({ alradyfollow: "Done" }))
+                .catch(err => res.json({ alradyfollow: "Done" }))
         })
 
 })
