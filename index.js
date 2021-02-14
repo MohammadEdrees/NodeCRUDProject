@@ -50,18 +50,18 @@ app.use('*', (req, res, next) => {
 //Err Handler
 app.use((err, req, res, next) => {
 
-    if (err instanceof mongoose.Error.ValidationError )
-    return  res.status(422).json(err.errors);
+    // if (err instanceof mongoose.Error.ValidationError )
+    //   return res.status(422).json(err.errors);
 
-    if (err.code === 11000)
-        res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
+    // if (err.code === 11000)
+    //     res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
 
-    if (err.message === 'UN_AUTHENTICATED')
-        res.status(401).json({ statusCode: 'UN_AUTHENTICATED' });
+    // if (err.message === 'UN_AUTHENTICATED')
+    //     res.status(401).json({ statusCode: 'UN_AUTHENTICATED' });
 
-    if (err.code === 400) {
-        res.status(400).json({ type: err.type });
-    }
+    // if (err.code === 400) {
+    //     res.status(400).json({ type: err.type });
+    // }
  
     res.json({ err : err.message });
 });
