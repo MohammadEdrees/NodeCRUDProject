@@ -62,9 +62,8 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
     }
     User.findById({ _id: targetTobeFollowedId })
         .then(user => {
-            if (user.followers.filter(follower =>
-                follower._id === currentUserId).length > 0) {
-                return res.status(400).json({ alreadyfollow: "You already followed the user" });
+            if (user.followers.includes(currentUserId) ) {
+                return res.status(400).json({ alreadyfollow: "You already followed Him" });
             }
             user.followers.unshift({ _id : currentUserId });
             user.save();
@@ -73,7 +72,7 @@ router.post("/follow/:id", authMiddleware, (req, res, next) => {
                     user.following.unshift({ _id : targetTobeFollowedId });
                     user.save().then(user => res.json(user))
                 })
-                .catch(err => res.status(404).json({ alradyfollow: "you already followed the user" }))
+                .catch(err => res.status(404).json({ alradyfollow: "Done" }))
         })
 
 })
