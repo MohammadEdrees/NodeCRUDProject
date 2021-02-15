@@ -54,7 +54,9 @@ const login = async ({ mail, password }) => {
     // return user ;
     if (!isValidePass) {
       //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
-        throw Error('UN_AUTHENTICATED');
+     //   throw Error('UN_AUTHENTICATED');
+        throw Error(`Password is :${isValidePass}`);
+
     }
     let token = await asyncSign({
         mail: user.mail,
