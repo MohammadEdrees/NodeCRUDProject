@@ -38,7 +38,7 @@ router.post('/login', async(req, res, next) => {
         res.json({user : user});
     } catch (err) {
       //next(err);
-     res.json({error: err.message +" ------- " });
+     res.json({error: err.message});
     }
 });
 //Edit user---------------------------------------------------------//
