@@ -39,7 +39,9 @@ router.post('/login', async(req, res, next) => {
     // res.json( { 'User' : `${m}+${p}`});
     try {
         const user = await login( body );//issue got it 
+        
         res.json({user : user});
+        
 
     } catch (err) {
       //  next(err);
