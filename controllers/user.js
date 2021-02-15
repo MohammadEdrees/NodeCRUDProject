@@ -47,23 +47,28 @@ const login = async ({ mail, password }) => {
     //return user;
 
     if (!user) {
-      throw  Error(`user is ${user}`); //always undefined
+        throw Error(`user is ${user}`); //always undefined
     }
 
     //const isValidePass = user.validatePassword(user.password); //always false
     // return user ;
-    if (password != user.password) {
-      //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
-     //   throw Error('UN_AUTHENTICATED');
+    if (password === user.password) {
+        //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
+        //   throw Error('UN_AUTHENTICATED');
+
+        let token = await asyncSign({
+            mail: user.mail,
+            password: user.password
+            //  id: user.id,
+        }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
+        return { ...user.toJSON(), token };
+
+    } else {
+
         throw Error(`Password is :${password}`);
 
     }
-    let token = await asyncSign({
-        mail: user.mail,
-        password: user.password
-        //  id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn : 1000*60*60*24*30 });
-    return { ...user.toJSON(), token };
+
 
     // const refreshToken = await asyncSign({
     //     mail: user.mail,
@@ -74,7 +79,7 @@ const login = async ({ mail, password }) => {
 
     //res.json(user);
     //return user;
-   // return { ...user.toJSON(), token };
+    // return { ...user.toJSON(), token };
     // return { user, token };
 
 
