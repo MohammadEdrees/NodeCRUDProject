@@ -37,8 +37,8 @@ router.post('/login', async(req, res, next) => {
         const user = await login( body );//issue got it 
         res.json({user : user});
     } catch (err) {
-      next(err);
-    // res.json('Z3amaError');
+      //next(err);
+     res.json({error: err.message });
     }
 });
 //Edit user---------------------------------------------------------//
