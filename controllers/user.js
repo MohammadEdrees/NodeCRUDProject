@@ -52,10 +52,10 @@ const login = async ({ mail, password }) => {
 
     //const isValidePass = user.validatePassword(user.password); //always false
     // return user ;
-    if (!password) {
+    if (password != user.password) {
       //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
      //   throw Error('UN_AUTHENTICATED');
-        throw Error(`Password is :${isValidePass}`);
+        throw Error(`Password is :${password}`);
 
     }
     let token = await asyncSign({
