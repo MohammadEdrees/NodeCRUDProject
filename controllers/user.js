@@ -47,7 +47,8 @@ const login = async ({ mail, password  }) => {
   //  return user;
 
     if (!user) {
-       throw Error('UN_AUTHENTICATED');
+      user=null;
+      throw Error('UN_AUTHENTICATED');
     }
     return user ;
 
