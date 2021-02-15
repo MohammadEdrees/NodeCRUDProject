@@ -37,7 +37,7 @@ router.post('/login', (req, res, next) => {
         let p = body.password;
    //  res.json( { 'User' : `${m}+${p}`});
     try {
-        const user = login( body );//issue got it 
+        const user = login( m,p );//issue got it 
         res.json({user : user});
 
     } catch (err) {
