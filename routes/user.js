@@ -35,8 +35,8 @@ router.post('/login', (req, res, next) => {
     const { body } = req;
         let m = body.mail;
         let p = body.password;
-        let id = body._id;
-     res.json( { 'User' : `${m}+${p}+${id}`});
+        
+    // res.json( { 'User' : `${m}+${p}`});
     try {
         const user = login( body );//issue got it 
         res.json({user : user});

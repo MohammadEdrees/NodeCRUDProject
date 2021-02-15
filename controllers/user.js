@@ -46,7 +46,7 @@ const login = async ({ mail, password  }) => {
    // res.json({ intoLogin : `${mail}+${password}`});
     const user = await User.findOne({ mail : mail}).exec();
     //res.json('0');
-    return mail;
+   // return mail;
 
 
     if (!user) {
