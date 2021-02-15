@@ -55,11 +55,11 @@ const login = async ({ mail, password  }) => {
     //     throw Error('UN_AUTHENTICATED');
     // }
 
-    const token = await asyncSign({
-        mail: user.mail,
-        password: user.password
-      //  id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' });
+    // const token = await asyncSign({
+    //     mail: user.mail,
+    //     password: user.password
+    //   //  id: user.id,
+    // }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' });
    // res.json('5');
     // const refreshToken = await asyncSign({
     //     mail: user.mail,
