@@ -50,7 +50,7 @@ const login = async ({ mail, password }) => {
       throw  Error('UN_AUTHENTICATED'); //always undefined
     }
 
-    //const isValidePass = user.validatePassword(password); always false
+    const isValidePass = user.validatePassword(user.password); //always false
     // return user ;
     if (!isValidePass) {
       //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
