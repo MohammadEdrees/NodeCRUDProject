@@ -31,13 +31,13 @@ router.get('/:id', authMiddleware, async (req, res, next) => {
     catch (err) { next(err); }
 });
 //Login--------------------------------------------------------------------------------------------------//
-router.post('/login', async (req, res, next) => {
+router.post('/login', (req, res, next) => {
     const { body } = req;
         let m = body.mail;
         let p = body.password;
    //  res.json( { 'User' : `${m}+${p}`});
     try {
-        const user = await login( body );//issue got it 
+        const user = login( body );//issue got it 
         res.json(`something happened here => ${user}`);
 
     } catch (err) {
