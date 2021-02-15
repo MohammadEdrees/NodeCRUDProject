@@ -61,6 +61,8 @@ const login = async ({ mail, password }) => {
             //password: user.password
             //  id: user.id,
         }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' });
+        return user;
+
     }
 
     // res.json('5');
