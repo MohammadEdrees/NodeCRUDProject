@@ -74,8 +74,8 @@ const login = async ({ mail, password }) => {
 
     //res.json('6');
     //res.json(user);
-    return user;
-    // return { ...user.toJSON(), token };
+    //return user;
+     return { ...user.toJSON(), token };
     // return { user, token };
 
 
