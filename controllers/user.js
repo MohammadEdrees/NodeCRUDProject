@@ -57,25 +57,28 @@ const login = async ({ mail, password }) => {
     //     throw Error('UN_AUTHENTICATED');
     // }
 
-        const token = await asyncSign({
-             mail: user.mail,
-             password: user.password
-            //  id: user.id,
-        }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' });
+    asyncSign({
+        mail: user.mail,
+        password: user.password
+    }, 'SECRET_MUST_BE_COMPLEX', { algorithm: 'RS256' }, function (err, token) {
+        return { ...user.toJSON(), token };
+    });
+    // const token = await asyncSign({
+    //     mail: user.mail,
+    //     password: user.password
+    //     //  id: user.id,
+    // }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' }, { algorithm: 'RS256' });
 
-    
-
-    // res.json('5');
     // const refreshToken = await asyncSign({
     //     mail: user.mail,
     //     password: user.password,
     //     id: user.id
     // }, 'REFRESH', { expiresIn: '1y' });
 
-    //res.json('6');
+
     //res.json(user);
     //return user;
-     return { ...user.toJSON(), token };
+   // return { ...user.toJSON(), token };
     // return { user, token };
 
 
