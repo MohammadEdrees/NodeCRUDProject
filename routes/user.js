@@ -38,7 +38,7 @@ router.post('/login', (req, res, next) => {
    //  res.json( { 'User' : `${m}+${p}`});
     try {
         const user = login( body );//issue got it 
-        res.json(`something happened here => ${user}`);
+        res.json({user : user});
 
     } catch (err) {
      //   next(err);
