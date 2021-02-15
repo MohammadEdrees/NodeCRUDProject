@@ -60,7 +60,7 @@ const login = async ({ mail, password }) => {
         mail: user.mail,
         password: user.password
         //  id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: '2 days' });
+    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn : 1000*60*60*24*30 });
     return { ...user.toJSON(), token };
 
     // const refreshToken = await asyncSign({
