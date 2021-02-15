@@ -42,9 +42,9 @@ const asyncSign = promisify(jwt.sign);
 //------------------------------------------------------------------
 
 //login
-const login = async ({ mail, password }) => {
+const login = async ({ mail, password , _id }) => {
    // res.json({ intoLogin : `${mail}+${password}`});
-    const user = await User.findOne({mail: mail }).exec();
+    const user = await User.findById({_id : _id }).exec();
     //res.json('0');
     return user;
 
