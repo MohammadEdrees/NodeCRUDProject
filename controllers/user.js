@@ -45,23 +45,21 @@ const asyncSign = promisify(jwt.sign);
 const login = async ({ mail, password  }) => {
     const user = await User.findOne({'mail': mail}).exec();
     // if (user==null) {
-    //   throw  Error('UN_AUTHENTICATED');
+    //   throw  Error('UN_AUTHENTICATED'); always undefined
     // }
     
-    const isValidePass = user.validatePassword(password);
-    return isValidePass ;
-    if (!isValidePass) {
-      //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
-        throw Error('UN_AUTHENTICATED');
-    }
-
-   // res.json('4');
+    //const isValidePass = user.validatePassword(password); always false
+   // return user ;
+    // if (!isValidePass) {
+    //   //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
+    //     throw Error('UN_AUTHENTICATED');
+    // }
 
     const token = await asyncSign({
         mail: user.mail,
-        password: user.password,
-        id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 2d ' });
+        password: user.password
+      //  id: user.id,
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' });
    // res.json('5');
     // const refreshToken = await asyncSign({
     //     mail: user.mail,
