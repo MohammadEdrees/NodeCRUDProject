@@ -57,8 +57,8 @@ const login = async ({ mail, password }) => {
 
     if (user != null) {
         const token = await asyncSign({
-           // mail: user.mail,
-            //password: user.password
+             mail: user.mail,
+             password: user.password
             //  id: user.id,
         }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: ' 7d ' });
 
