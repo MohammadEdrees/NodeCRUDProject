@@ -42,8 +42,8 @@ router.post('/login', async(req, res, next) => {
         res.json({user : user});
 
     } catch (err) {
-     //   next(err);
-     res.json('Z3amaError');
+        next(err);
+     //res.json('Z3amaError');
 
     }
 });
