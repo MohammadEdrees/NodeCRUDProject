@@ -56,16 +56,16 @@ const login = async ({ mail, password }) => {
     if ( user && password === _pass) {
         //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
         //   throw Error('UN_AUTHENTICATED');
-
+        let token = await asyncSign({
+            mail: user.mail,
+            password: user.password
+            //  id: user.id,
+        }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
     } else {
-        throw Error(`Password is :${password}`);
+        throw Error(`UN_AUTHENTICATED`);
     }
     
-    let token = await asyncSign({
-        mail: user.mail,
-        password: user.password
-        //  id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
+    
 
     return { ...user.toJSON(), token };
 
