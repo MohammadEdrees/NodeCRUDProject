@@ -63,9 +63,9 @@ userSchema.pre('findOneAndUpdate',function preSave(next){
     next();
 });
 
-// userSchema.methods.validatePassword = function(password){
-// return bycrypt.compareSync(password,this.password);
-// }
+userSchema.methods.validatePassword = function(password){
+return bycrypt.compareSync(password,this.password);
+}
 
 const userModel = mongoose.model('User',userSchema);
 module.exports=userModel;

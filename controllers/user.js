@@ -48,23 +48,23 @@ const login = async ({ mail, password }) => {
     //return user;
 
     if (!user) {
-        throw Error(`UN_AUTHENTICATED`); //always undefined
+        throw Error('UN_AUTHENTICATED'); //always undefined
     }
 
-    //const isValidePass = user.validatePassword(user.password); //always false
+    const isValidePass = user.validatePassword(user.password); //always false
     // return user ;
-    if ( user && password === _pass) {
+    if ( !isValidePass) {
         //  res.json(`your pass is :+${password}`, 'Your password  is not valid Check again please');
         //   throw Error('UN_AUTHENTICATED');
-        let token = await asyncSign({
-            mail: user.mail,
-            password: user.password
-            //  id: user.id,
-        }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
-    } else {
-        throw Error(`UN_AUTHENTICATED`);
-    }
+        throw Error('Can not recognize ur pss ');
+     
+    } 
     
+    let token = await asyncSign({
+        mail: user.mail,
+        password: user.password
+        //  id: user.id,
+    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
     
 
     return { ...user.toJSON(), token };
