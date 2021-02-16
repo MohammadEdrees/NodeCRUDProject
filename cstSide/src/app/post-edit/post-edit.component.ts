@@ -16,7 +16,7 @@ export class PostEditComponent implements OnInit {
   constructor(private BlogsServis:BlogsService,private active:ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+
     this.active.params.subscribe(a=>{
       this.id=a['id']
       console.log(a['id']);
@@ -24,7 +24,7 @@ export class PostEditComponent implements OnInit {
       this.blog=a;
       console.log(a);
       })
-      
+
     })
   }
    onfileselected(event:any){
@@ -39,7 +39,7 @@ export class PostEditComponent implements OnInit {
     this.fd.append('title',this.blog.title);
     console.log(this.blog.body);
     this.fd.append('body',this.blog.body);
-    
+
     this.BlogsServis.editBlog(this.blog._id,this.fd).subscribe(d=>console.log(d)
     )
   }

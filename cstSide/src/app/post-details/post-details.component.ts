@@ -19,9 +19,9 @@ blog:Blogs=new Blogs("","","",new Date(),0,0,false,"","");
         id=a['id']
         console.log(id);
       this.blogsService.getbyId(id).subscribe(a=>{console.log(a);this.blog=a})
-    
-      
-    
+
+
+
     })
   }
 
