@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAll, getById, edit, deletP,getAlll,postComment } = require('../controllers/post');
+const { create, getAll, getById, edit, deletP,getAlll } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 const multer = require('multer');
@@ -126,13 +126,13 @@ router.post('/post', authMiddleware , async(req, res, next) => {
 
 // });
 //comment
-router.post('/comments/:blogid',auth, async (req, res, next) => {
-    const { user:{id, firstName, lastName} ,params: {blogid}, body } = req;
-    try{
-      const comment=await postComment(blogid,{ ...body, author: id , authorName: firstName+""+lastName});
-      res.json(comment);
-      }catch(e){
-      next(e);
-      }
-  });
+// router.post('/comments/:blogid',auth, async (req, res, next) => {
+//     const { user:{id, firstName, lastName} ,params: {blogid}, body } = req;
+//     try{
+//       const comment=await postComment(blogid,{ ...body, author: id , authorName: firstName+""+lastName});
+//       res.json(comment);
+//       }catch(e){
+//       next(e);
+//       }
+//   });
 module.exports = router 
