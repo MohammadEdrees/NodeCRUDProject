@@ -45,20 +45,20 @@ const userSchema = new Schema({
     
       
 });
-userSchema.pre('save',function preSave(next){
-    this.password=bycrypt.hashSync(this.password,8);
-    next();
-});
+// userSchema.pre('save',function preSave(next){
+//     this.password=bycrypt.hashSync(this.password,8);
+//     next();
+// });
 
-userSchema.pre('findOneAndUpdate',function preSave(next){
-    if(!this._update.password){return;}
-    this._update.password=bycrypt.hashSync(this._update.password,8);
-    next();
-});
+// userSchema.pre('findOneAndUpdate',function preSave(next){
+//     if(!this._update.password){return;}
+//     this._update.password=bycrypt.hashSync(this._update.password,8);
+//     next();
+// });
 
 userSchema.methods.validatePassword = function(password){
 
-return  { p: password , pass: this.password }//bycrypt.compareSync(password,this.password);
+return   password === this.password ;//bycrypt.compareSync(password,this.password);
 
 }
 
