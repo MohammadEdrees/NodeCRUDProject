@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const routes = require('./routes');//by defult index invoked
+const routes = require('./routes');
+const cors = require('cors');
 const app = express();
 //--Mongoose Connection
 const { MONGODB_URI } = process.env;
@@ -21,6 +22,7 @@ const upload = multer({
 
 
 app.use(express.json());
+app.use(cors);
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
