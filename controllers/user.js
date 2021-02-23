@@ -34,8 +34,11 @@ const getById = (id) => User.findById(id).exec();
 const getAllUsers = () => User.find({});
 //edit------------------------------------------
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
+<<<<<<< HEAD
 //-----------------------------------------------
 const deletee = (id) => User.findByIdAndRemove(id).exec();
+=======
+>>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
@@ -57,6 +60,7 @@ const login = async ({ mail, password }) => {
     
     let token = await asyncSign({
         mail: user.mail,
+<<<<<<< HEAD
         password: user.password
         //id: user.id,
     }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
@@ -65,6 +69,17 @@ const login = async ({ mail, password }) => {
     return { ...user.toJSON(), token };
 
 
+=======
+        password: user.password,
+        id: user.id,
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '99999999999999999999999999999999999' });
+
+    const refreshToken = await asyncSign({
+        mail: user.mail,
+        password: user.password,
+        id: user.id,
+    }, 'REFRESH', { expiresIn: '999999999999999999999999999999999999' });
+>>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 
     // const refreshToken = await asyncSign({
     //     mail: user.mail,
@@ -93,7 +108,12 @@ module.exports = {
     follow,
     unfollow,
     getfollowers,
+<<<<<<< HEAD
     getfollowing,
     deletee
 
+=======
+    getfollowing
+    
+>>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 };
