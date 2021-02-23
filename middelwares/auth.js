@@ -5,7 +5,7 @@ const asyncVerify = promisify(jwt.verify); //transform to promise
 
 const auth = async(req, res, next) => {
     const { headers: { authorization } } = req;
-    if (!authorization) {
+    if (authorization==null) {
         next((new Error('UN_AUTHENTICATED')));
     }
     try {
