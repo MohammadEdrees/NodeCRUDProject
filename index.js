@@ -24,7 +24,8 @@ const upload = multer({
 app.use(express.json());
 app.use(cors({
     origin:"*",
-    methods:['GET','POST','PATCH','DELETE','PUT']
+    methods:['GET','POST','PATCH','DELETE','PUT'],
+    preflightContinue:true
 
 }));
 
