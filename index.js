@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
-const routes = require('./routes');//by defult index invoked
+const routes = require('./routes');
+//const cors = require('cors');
 const app = express();
 //--Mongoose Connection
 const { MONGODB_URI } = process.env;
@@ -21,9 +22,17 @@ const upload = multer({
 
 
 app.use(express.json());
+// app.use(cors({
+//     origin:"*",
+//     methods:['GET','POST','PATCH','DELETE','PUT'],
+//     preflightContinue:true
+
+// }));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Credentials','true');
+
     res.setHeader(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept, Authorization"
@@ -32,6 +41,7 @@ app.use((req, res, next) => {
         "Access-Control-Allow-Methods",
         "GET, POST, PUT, PATCH, DELETE, OPTIONS"
     );
+    
 
     next();
 });
@@ -51,7 +61,7 @@ app.use('*', (req, res, next) => {
 app.use((err, req, res, next) => {
 
     if (err instanceof mongoose.Error.ValidationError )
-    return  res.status(422).json(err.errors);
+      return res.status(422).json(err.errors);
 
     if (err.code === 11000)
         res.status(422).json({ statusCode: 'ValidationError', property: err.keyValue });
@@ -59,11 +69,11 @@ app.use((err, req, res, next) => {
     if (err.message === 'UN_AUTHENTICATED')
         res.status(401).json({ statusCode: 'UN_AUTHENTICATED' });
 
-    if (err.status === 400) {
+    if (err.code === 400) {
         res.status(400).json({ type: err.type });
     }
  
-    res.json(err.message);
+    res.json({ err : err.message });
 });
 
 //PORT

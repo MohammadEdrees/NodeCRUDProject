@@ -44,6 +44,10 @@
     </div>
 </section> -->
 
+
+
+
+
     <header class="bg-primary text-white">
         <div class="container text-center">
             <h1>Welcome to <span>Blo<span class="orange_color">Gs</span></span>
@@ -56,7 +60,7 @@
         </div>
     </header>
 
-    <div class=" layout_padding">
+    <!-- <div class=" layout_padding">
         <div class="container">
             <div class="row">
                 <div class="col-12 ">
@@ -140,4 +144,51 @@
 
 
         </div>
-    </div>
+    </div> -->
+
+
+    <section class="blog-area section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-4 col-md-6 mt-4" *ngFor="let blog of blogs">
+                    <div class="card h-100">
+                        <div class="single-post post-style-1">
+
+                            <div class="blog-image">
+                                <img src="{{blog.img}}" alt="blog image">
+                            </div>
+                            <div class="blog-info">
+                                <h4 class=title>
+                                    <a routerLink="/post/details/{{blog._id}}">
+                                        <b>
+                                          {{blog.title}}
+                                      </b>
+                                    </a>
+                                </h4>
+                                <p>{{blog.body}}</p>
+                                <ul class="post-footer">
+                                    <li>
+                                        {{blog.createTime|date:'MM/dd/yy'}}
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-comment"></i></a>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>

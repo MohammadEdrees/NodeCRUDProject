@@ -42,13 +42,6 @@ const userSchema = new Schema({
     following:[{ type:Schema.Types.ObjectId,ref:'User' }],
     followers:[{ type:Schema.Types.ObjectId,ref:'User' }]
     
-
-    // toJSON:{
-    //     transform:(doc,ret,options)=>{
-    //         delete ret.password;
-    //         return ret;
-    //     }
-    //}
     
       
 });
@@ -65,6 +58,7 @@ userSchema.pre('findOneAndUpdate',function preSave(next){
 
 userSchema.methods.validatePassword = function(password){
 return bycrypt.compareSync(password,this.password);
+
 }
 
 const userModel = mongoose.model('User',userSchema);

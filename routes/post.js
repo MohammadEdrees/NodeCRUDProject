@@ -51,17 +51,17 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
         var { body, user } = req;
 
         // request Content
-        const post = await create({ ...body, userId: user.id, img: req.file.path });
+        const post = await create({ ...body, img: req.file.path });
         // save in mongoose
-        const postId = post.id;
-        user.posts.push(postId);
-        user.save();
+       // const postId = post.id;
+       // user.posts.push(postId);
+       // user.save();
         // set post id => user 
-        res.json({ posts: user.posts });
+        res.json({ posts: post });
 
 
     } catch (e) {
-        res.json({ e });
+        
         next(e);
     }
 
@@ -121,4 +121,18 @@ router.post('/post', authMiddleware , async(req, res, next) => {
     }
 });
 
+//Comments for specific Post 
+// router.post('/post/:id/comment',authMiddleware,async(req,res)=>{
+
+// });
+//comment
+// router.post('/comments/:blogid',auth, async (req, res, next) => {
+//     const { user:{id, firstName, lastName} ,params: {blogid}, body } = req;
+//     try{
+//       const comment=await postComment(blogid,{ ...body, author: id , authorName: firstName+""+lastName});
+//       res.json(comment);
+//       }catch(e){
+//       next(e);
+//       }
+//   });
 module.exports = router 

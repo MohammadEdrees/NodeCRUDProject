@@ -35,37 +35,50 @@ const getAllUsers = () => User.find({});
 //edit------------------------------------------
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
 //-----------------------------------------------
-const deletee = (id)=> User.findByIdAndRemove(id).exec();
+const deletee = (id) => User.findByIdAndRemove(id).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
-
+//------------------------------------------------------------------
 
 //login
-const login = async ({ mail, password , id }) => {
+const login = async ({ mail, password }) => {
+    let user = await User.findOne({ mail }).exec();
 
-    const user = await User.findOne({ mail }).exec();
+
     if (!user) {
-        throw Error('UN_AUTHENTICATED');
+        throw Error('UN_AUTHENTICATED'); 
     }
-    const isValidePass = user.validatePassword(password);
 
-    if (!isValidePass) {
-        throw Error('UN_AUTHENTICATED');
-    }
-    const token = await asyncSign({
+    const isValidePass = user.validatePassword(password); //always false
+    // return user ;
+    if ( !isValidePass) {
+        //  throw Error('UN_AUTHENTICATED');
+    } 
+    
+    let token = await asyncSign({
         mail: user.mail,
-        password: user.password,
-        id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '7d' });
+        password: user.password
+        //id: user.id,
+    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
+    
 
-    const refreshToken = await asyncSign({
-        mail: user.mail,
-        password: user.password,
-        id: user.id,
-    }, 'REFRESH', { expiresIn: '1y' });
+    return { ...user.toJSON(), token };
 
-    return { ...user.toJSON(), token , refreshToken  };
+
+
+    // const refreshToken = await asyncSign({
+    //     mail: user.mail,
+    //     password: user.password,
+    //     id: user.id
+    // }, 'REFRESH', { expiresIn: '1y' });
+
+
+    //res.json(user);
+    //return user;
+    // return { ...user.toJSON(), token };
+    // return { user, token };
+
 
 
 }
@@ -83,5 +96,5 @@ module.exports = {
     getfollowers,
     getfollowing,
     deletee
-    
+
 };

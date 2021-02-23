@@ -9,6 +9,15 @@
     width: 100%;
 }
 
+#cardImg {
+    width: 50%;
+}
+
+h4 {
+    color: #ebc9eb;
+    text-align: center;
+}
+
 
 /* #getImg {
 background-image: url("blog1.png");

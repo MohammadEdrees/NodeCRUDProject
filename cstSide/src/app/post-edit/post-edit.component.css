@@ -26,11 +26,11 @@
 /*//////////////////////////////////////////////////////////////////
   [ RESTYLE TAG ]*/
 
-/* * {
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-} */
+}
 
 body,
 html {
@@ -41,7 +41,7 @@ html {
 
 /*---------------------------------------------*/
 
-/* a {
+a {
     font-family: Montserrat-Regular;
     font-size: 14px;
     line-height: 1.7;
@@ -51,16 +51,16 @@ html {
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
-} */
+}
 
-/* a:focus {
+a:focus {
     outline: none !important;
 }
 
 a:hover {
     text-decoration: none;
     color: #57b846;
-} */
+}
 
 
 /*---------------------------------------------*/
