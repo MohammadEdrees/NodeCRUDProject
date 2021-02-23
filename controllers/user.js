@@ -34,11 +34,6 @@ const getById = (id) => User.findById(id).exec();
 const getAllUsers = () => User.find({});
 //edit------------------------------------------
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
-<<<<<<< HEAD
-//-----------------------------------------------
-const deletee = (id) => User.findByIdAndRemove(id).exec();
-=======
->>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 //token ----------------------------------------------
 const { promisify } = require('util');
 const asyncSign = promisify(jwt.sign);
@@ -60,26 +55,15 @@ const login = async ({ mail, password }) => {
     
     let token = await asyncSign({
         mail: user.mail,
-<<<<<<< HEAD
-        password: user.password
-        //id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
-    
-    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoieHl6QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDA4JGVuazFkTU8vSTNBSmtZWDhSQnJRU2VtYkFjYTkucUt5dUlvWlVCTm12UG5nWXhqbnUzVU1lIiwiaWF0IjoxNjE0MDgwNTMyLCJleHAiOjQyMDYwODA1MzJ9.fsR3amGhxWL2mkV87a5rQKmNTbHYjBxOoJ_CtZrlvM8";
-    return { ...user.toJSON(), token };
-
-
-=======
         password: user.password,
         id: user.id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '99999999999999999999999999999999999' });
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
 
     const refreshToken = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user.id,
     }, 'REFRESH', { expiresIn: '999999999999999999999999999999999999' });
->>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 
     // const refreshToken = await asyncSign({
     //     mail: user.mail,
@@ -88,17 +72,9 @@ const login = async ({ mail, password }) => {
     // }, 'REFRESH', { expiresIn: '1y' });
 
 
-<<<<<<< HEAD
-    //res.json(user);
-    //return user;
-    // return { ...user.toJSON(), token };
-    // return { user, token };
-
-=======
     //res.json('6');
     res.json(user);
     //return { ...user.toJSON(), token, refreshToken };
->>>>>>> parent of a11f4b8 (22)
 
 
 }
@@ -114,12 +90,6 @@ module.exports = {
     follow,
     unfollow,
     getfollowers,
-<<<<<<< HEAD
-    getfollowing,
-    deletee
-
-=======
     getfollowing
     
->>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 };
