@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const multer = require('multer');
 const routes = require('./routes');
-//const cors = require('cors');
+
 const app = express();
+
 //--Mongoose Connection
 const { MONGODB_URI } = process.env;
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true });
@@ -22,12 +23,6 @@ const upload = multer({
 
 
 app.use(express.json());
-// app.use(cors({
-//     origin:"*",
-//     methods:['GET','POST','PATCH','DELETE','PUT'],
-//     preflightContinue:true
-
-// }));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -46,9 +41,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/', routes);
-
-//Get /users
-//Get /posts 
 
 
 app.use('*', (req, res, next) => {
