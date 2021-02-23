@@ -42,24 +42,30 @@ const asyncSign = promisify(jwt.sign);
 //login
 const login = async ({ mail, password }) => {
     let token;
-    token=null;
     let user = await User.findOne({ 'mail' : mail }).exec();
     //user._id; correct
-    if (user==null) {
-        throw Error('UN_AUTHENTICATED');
-    }
-    const isValidePass = user.validatePassword(password); 
-
-    if ( isValidePass == false) {
-         throw Error('UN_AUTHENTICATED');
-    } 
+    if(user.token !=null){
+        //move 
+        if (user==null) {
+            throw Error('User Null');
+        }
+        const isValidePass = user.validatePassword(password); 
     
+        if ( isValidePass == false) {
+             throw Error('Password not valid');
+        }     
+
+    }else{
+        //generate
+         
     token = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user._id,
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
 
+    }
+ 
     return { ...user.toJSON(), token };
 
 
