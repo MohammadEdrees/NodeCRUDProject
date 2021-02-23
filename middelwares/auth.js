@@ -4,9 +4,10 @@ const User = require('../models/User.js');
 const asyncVerify = promisify(jwt.verify); //transform to promise
 
 const auth = async(req, res, next) => {
-    const { headers: { authorization } } = req;
-    if (authorization==null) {
+    const { headers: { Authorization } } = req;
+    if (!Authorization) {
         next((new Error('UN_AUTHENTICATED')));
+
     }
     try {
         const { id } = await asyncVerify(authorization, 'SECRET_MUST_BE_COMPLEX');
