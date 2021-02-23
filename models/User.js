@@ -42,13 +42,6 @@ const userSchema = new Schema({
     following:[{ type:Schema.Types.ObjectId,ref:'User' }],
     followers:[{ type:Schema.Types.ObjectId,ref:'User' }]
     
-
-    // toJSON:{
-    //     transform:(doc,ret,options)=>{
-    //         delete ret.password;
-    //         return ret;
-    //     }
-    //}
     
       
 });
