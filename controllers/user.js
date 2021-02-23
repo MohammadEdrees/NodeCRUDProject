@@ -36,6 +36,7 @@ const getAllUsers = () => User.find({});
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
+const { exception } = require('console');
 const asyncSign = promisify(jwt.sign);
 //------------------------------------------------------------------
 
@@ -45,24 +46,25 @@ const login = async ({ mail, password }) => {
     let user = await User.findOne({ 'mail' : mail }).exec();
     //user._id; correct
    
-        if (user==null) {
-            throw Error('User Null');
+        if (user.mail!= mail) {
+            throw Error('check your mail again');
         }
         const isValidePass = user.validatePassword(password); 
-    
         if ( isValidePass == false) {
              throw Error('Password not valid');
-        }     
+        } 
+        else if(user.mail===mail&&isValidePass){
+            token = await asyncSign({
+                mail: user.mail,
+                password: user.password,
+                id: user._id,
+            }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
+        return { ...user.toJSON(), token };
+            
+        }else{
+            throw Error("Try Again Plz")
+        }
 
-         
-    token = await asyncSign({
-        mail: user.mail,
-        password: user.password,
-        id: user._id,
-    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
-
-    
-    return { ...user.toJSON(), token };
 
 
 }
