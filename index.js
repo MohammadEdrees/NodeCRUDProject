@@ -73,7 +73,11 @@ app.use((err, req, res, next) => {
         res.status(400).json({ type: err.type });
     }
  
+<<<<<<< HEAD
     res.json({ err : err.message });
+=======
+    res.json(err);
+>>>>>>> parent of a11f4b8 (22)
 });
 
 //PORT

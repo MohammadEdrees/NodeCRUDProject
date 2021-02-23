@@ -88,11 +88,17 @@ const login = async ({ mail, password }) => {
     // }, 'REFRESH', { expiresIn: '1y' });
 
 
+<<<<<<< HEAD
     //res.json(user);
     //return user;
     // return { ...user.toJSON(), token };
     // return { user, token };
 
+=======
+    //res.json('6');
+    res.json(user);
+    //return { ...user.toJSON(), token, refreshToken };
+>>>>>>> parent of a11f4b8 (22)
 
 
 }
