@@ -1,5 +1,5 @@
 const express = require('express');
-const { create, getAllUsers, login, editOne, getById ,deletee } = require('../controllers/user');
+const { create, getAllUsers, login, editOne, getById ,UsePosts } = require('../controllers/user');
 const authMiddleware = require('../middelwares/auth');
 const User = require('../models/User');
 
