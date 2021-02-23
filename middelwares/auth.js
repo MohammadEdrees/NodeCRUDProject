@@ -12,7 +12,7 @@ const auth = async(req, res, next) => {
     }
     try {
         const { id } = await asyncVerify(authorization, 'SECRET_MUST_BE_COMPLEX_2');
-        res.json(id);
+       // res.json(id);
         const user = await User.findById(id).exec();
         req.user = user;
         next();
