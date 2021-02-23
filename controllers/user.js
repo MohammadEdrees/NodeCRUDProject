@@ -61,7 +61,7 @@ const login = async ({ mail, password }) => {
         //id: user.id,
     }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
     
-
+    token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYWlsIjoieHl6QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDA4JGVuazFkTU8vSTNBSmtZWDhSQnJRU2VtYkFjYTkucUt5dUlvWlVCTm12UG5nWXhqbnUzVU1lIiwiaWF0IjoxNjE0MDgwNTMyLCJleHAiOjQyMDYwODA1MzJ9.fsR3amGhxWL2mkV87a5rQKmNTbHYjBxOoJ_CtZrlvM8";
     return { ...user.toJSON(), token };
 
 
