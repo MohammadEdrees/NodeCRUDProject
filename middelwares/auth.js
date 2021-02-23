@@ -6,7 +6,7 @@ const asyncVerify = promisify(jwt.verify); //transform to promise
 const auth = async(req, res, next) => {
     const { headers: { Authorization } } = req;
     if (!Authorization) {
-        next((new Error('UN_AUTHENTICATED')));
+        next((new Error('Session expired register plz ')));
 
     }
     try {
@@ -15,7 +15,7 @@ const auth = async(req, res, next) => {
         req.user = user;
         next();
     } catch (e) {
-         next((new Error('UN_AUTHENTICATED')));
+         next((new Error('Faild to generate new token register plz')));
 
 
     }
