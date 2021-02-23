@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://myfirstnode7.herokuapp.com/posts",
+        "target": "https://myfirstnode7.herokuapp.com",
         "secure": true,
         "changeOrigin": true,
         "pathRewrite": {
