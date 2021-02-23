@@ -58,7 +58,7 @@ const userSchema = new Schema({
 // });
 
 userSchema.methods.validatePassword = function(password){
-return bcrypt.compareSync(password,this.password);
+return password === this.password ;//bcrypt.compareSync(password,this.password);
 
 }
 
