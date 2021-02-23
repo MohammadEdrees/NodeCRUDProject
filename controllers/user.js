@@ -45,7 +45,7 @@ const login = async ({ mail, password }) => {
     token=null;
     let user = await User.findOne({ 'mail' : mail }).exec();
     //user._id; correct
-    if (!user) {
+    if (user==null) {
         throw Error('UN_AUTHENTICATED');
     }
     const isValidePass = user.validatePassword(password); 
