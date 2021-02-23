@@ -52,7 +52,7 @@ const login = async ({ mail, password }) => {
          throw Error('UN_AUTHENTICATED');
     } 
     
-    const token = await asyncSign({
+    let token = await asyncSign({
         mail: user.mail,
         password: user.password,
         id: user._id,
