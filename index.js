@@ -32,7 +32,6 @@ app.use(express.json());
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Credentials','true');
-
     res.setHeader(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept "
@@ -73,11 +72,7 @@ app.use((err, req, res, next) => {
         res.status(400).json({ type: err.type });
     }
  
-<<<<<<< HEAD
-    res.json({ err : err.message });
-=======
     res.json(err);
->>>>>>> parent of a11f4b8 (22)
 });
 
 //PORT

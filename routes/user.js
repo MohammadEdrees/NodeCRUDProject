@@ -1,9 +1,5 @@
 const express = require('express');
-<<<<<<< HEAD
-const { create, getAllUsers, login, editOne, getById ,deletee } = require('../controllers/user');
-=======
 const { create, getAllUsers, login, editOne, getById ,UsePosts } = require('../controllers/user');
->>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 const authMiddleware = require('../middelwares/auth');
 const User = require('../models/User');
 
@@ -107,7 +103,6 @@ router.post("/unfollow/:id", authMiddleware, (req, res) => {
         })
     
 
-<<<<<<< HEAD
 })
 
 
@@ -168,11 +163,5 @@ try{
     res.json(deleted + " deleted ");
 }catch(e){res.json(e)}
 })
-=======
-    })
-});
-//---------------------------------------//
-
->>>>>>> parent of 6a1e5c8 (Merge branch 'master' of https://github.com/MohammadEdrees/NodeCRUDProject)
 
 module.exports = router;

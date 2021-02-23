@@ -28,17 +28,8 @@ export class PostEditComponent implements OnInit {
   }
   save(){
     console.log(this.blog);
-<<<<<<< HEAD
-     console.log(this.blog.title);
-    this.fd.append('title',this.blog.title);
-    console.log(this.blog.body);
-    this.fd.append('body',this.blog.body);
-
-    this.BlogsServis.editBlog(this.blog._id,this.fd).subscribe(d=>console.log(d)
-=======
     
     this.BlogsServis.editBlog(this.blog._id,this.blog).subscribe(d=>console.log(d)
->>>>>>> parent of 212aad9 (z)
     )
   }
 
