@@ -39,6 +39,8 @@ export class PostEditComponent implements OnInit {
     this.fd.append('title',this.blog.title);
     console.log(this.blog.body);
     this.fd.append('body',this.blog.body);
+    console.log(this.blog.img);
+    
     
     this.BlogsServis.editBlog(this.blog._id,this.fd).subscribe(d=>console.log(d)
     )

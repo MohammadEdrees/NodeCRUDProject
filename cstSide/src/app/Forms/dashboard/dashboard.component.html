@@ -94,18 +94,47 @@
 
                 </div>
                 <div class=" row col-12 ">
-                    <div class="col-6 ">
+                    <div class="col-2 ">
                         <div class="xp-social-profile-following pt-3 ">
 
-                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "> <i class="fa fa-thumbs-up " aria-hidden="true " style="font-size: 1em; color: Dodgerblue; "></i> Like</p>
+                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "> <i class="fa fa-thumbs-up " aria-hidden="true " style="font-size: 1em; color: Dodgerblue; "></i>
+                                <a class="btn">
+                                    Like
+                                </a>
+                            </p>
                         </div>
                     </div>
-                    <div class="col-6 ">
+                    <div class="col-3 ">
                         <div class="xp-social-profile-following pt-3 ">
 
-                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "> <i class="fa fa-comment " aria-hidden="true " style="font-size: 1em; color: Dodgerblue; "></i> Comment</p>
+                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "><i class="fa fa-comment " aria-hidden="true " style="font-size: 1em; color: Dodgerblue; "></i>
+                                <a class="btn">
+                                    Comment
+                                </a>
+                            </p>
                         </div>
                     </div>
+                    <div class="col-3 ">
+                        <div class="xp-social-profile-following pt-3 ">
+
+                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "><i class="fa fa-comment " aria-hidden="true " style="font-size: 1em; color: Dodgerblue;"></i>
+                                <a class="btn" (click)="userid=blog.userId;followuser()">
+                                    Follow Author
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-4 ">
+                        <div class="xp-social-profile-following pt-3 ">
+
+                            <p class="mb-0 text-muted " style="font-size: 1em; color: Dodgerblue; "><i class="fa fa-comment " aria-hidden="true " style="font-size: 1em; color: Dodgerblue;"></i>
+                                <a class="btn" (click)="userid=blog.userId;unfollowuser()">
+                                    UnFollow Author
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

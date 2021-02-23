@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient,HttpRequest} from '@angular/common/http'
 import { observable, Observable } from "rxjs";
 import { User } from '../_models/user';
 import * as moment from 'moment';
@@ -56,6 +56,13 @@ getuserId(){
 getUser(id:string){
  return this._http.get<User>("https://myfirstnode7.herokuapp.com/users/"+id) 
    }
-
+followuser(id:any,body:any)
+{
+return this._http.post<User>("https://myfirstnode7.herokuapp.com/users/follow/"+id,'')
+}
+unfollowuser(id:any,body:any)
+{
+return this._http.post<User>("https://myfirstnode7.herokuapp.com/users/unfollow/"+id,'')
+}
 
 }

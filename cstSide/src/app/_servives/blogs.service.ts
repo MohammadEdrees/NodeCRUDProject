@@ -26,7 +26,8 @@ export class BlogsService {
     return this.http.post<Blogs[]>("https://myfirstnode7.herokuapp.com/posts/post",uid);
   }
   editBlog(id:any,fd:FormData){
-   return this.http.patch("https://myfirstnode7.herokuapp.com/posts/"+id,fd)
+   return this.http.put("https://myfirstnode7.herokuapp.com/posts/"+id,fd)
+   
   }
   deleteBlog(bid:any){
    return this.http.delete("https://myfirstnode7.herokuapp.com/posts/"+bid);
