@@ -52,10 +52,10 @@ const userSchema = new Schema({
     
       
 });
-userSchema.pre('save',function preSave(next){
-    this.password=bycrypt.hashSync(this.password,8);
-    next();
-});
+// userSchema.pre('save',function preSave(next){
+//     this.password=bycrypt.hashSync(this.password,8);
+//     next();
+// });
 
 userSchema.pre('findOneAndUpdate',function preSave(next){
     if(!this._update.password){return;}
@@ -64,7 +64,8 @@ userSchema.pre('findOneAndUpdate',function preSave(next){
 });
 
 userSchema.methods.validatePassword = function(password){
-return bycrypt.compareSync(password,this.password);
+//return bycrypt.compareSync(password,this.password);
+return password===password;
 }
 
 const userModel = mongoose.model('User',userSchema);
