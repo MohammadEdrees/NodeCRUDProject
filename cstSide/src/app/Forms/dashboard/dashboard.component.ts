@@ -22,6 +22,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  
+
    this.blogsService.getAll().subscribe(
      d=>{
        console.log("observe");
@@ -33,6 +35,7 @@ export class DashboardComponent implements OnInit {
       err=>{console.log("error");
       }
    )
+
   }
 
 

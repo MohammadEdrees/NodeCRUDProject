@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://myfirstnode7.herokuapp.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
