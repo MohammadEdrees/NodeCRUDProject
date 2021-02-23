@@ -43,27 +43,23 @@ const asyncSign = promisify(jwt.sign);
 //login
 const login = async ({ mail, password }) => {
     let token;
-    let user = await User.findOne({ 'mail' : mail }).exec();
+    let user = await User.findOne({ 'mail': mail }).exec();
     //user._id; correct
-   
-        if (user.mail!= mail) {
-            throw Error('check your mail again');
-        }
-        const isValidePass = user.validatePassword(password); 
-        if ( isValidePass == false) {
-             throw Error('Password not valid');
-        } 
-        else if(user.mail===mail&&isValidePass){
-            token = await asyncSign({
-                mail: user.mail,
-                password: user.password,
-                id: user._id,
-            }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
-        return { ...user.toJSON(), token };
-            
-        }else{
-            throw Error("Try Again Plz")
-        }
+
+    if (user.mail != mail) {
+        throw Error('check your mail again');
+    }
+    const isValidePass = user.validatePassword(password);
+    if (isValidePass == false) {
+        throw Error('Password not valid');
+    }
+
+    token = await asyncSign({
+        mail: user.mail,
+        password: user.password,
+        id: user._id,
+    }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
+    return { ...user.toJSON(), token };
 
 
 
@@ -81,5 +77,5 @@ module.exports = {
     unfollow,
     getfollowers,
     getfollowing
-    
+
 };
