@@ -22,7 +22,11 @@ const upload = multer({
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin:"*",
+    methods:['GET','POST','PATCH','DELETE','PUT']
+
+}));
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
