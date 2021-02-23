@@ -59,7 +59,7 @@ const login = async ({ mail, password }) => {
     let token = await asyncSign({
         mail: user.mail,
         password: user.password
-        //  id: user.id,
+        //id: user.id,
     }, 'SECRET_MUST_BE_COMPLEX_2', { expiresIn: 1000 * 60 * 60 * 24 * 30 });
     
 
