@@ -42,7 +42,7 @@ massage='';
         const expiresAt = moment().add(data.expiresIn,'second');
         this._myservice.getlogged().subscribe(a=>{console.log(a)});
         this._myservice.setuserId(data._id);
-        localStorage.setItem('token',data.token.toString());
+        localStorage.setItem('token',data.token);
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
         
         this._router.navigateByUrl('/home', {skipLocationChange: true});
