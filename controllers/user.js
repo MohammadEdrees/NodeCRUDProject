@@ -44,8 +44,7 @@ const login = async ({ mail, password }) => {
     let token;
     let user = await User.findOne({ 'mail' : mail }).exec();
     //user._id; correct
-    if(user.token !=null){
-        //move 
+   
         if (user==null) {
             throw Error('User Null');
         }
@@ -55,8 +54,6 @@ const login = async ({ mail, password }) => {
              throw Error('Password not valid');
         }     
 
-    }else{
-        //generate
          
     token = await asyncSign({
         mail: user.mail,
@@ -64,8 +61,7 @@ const login = async ({ mail, password }) => {
         id: user._id,
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
 
-    }
- 
+    
     return { ...user.toJSON(), token };
 
 
