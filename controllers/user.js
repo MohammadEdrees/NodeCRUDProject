@@ -44,12 +44,12 @@ const login = async ({ mail, password }) => {
     let user = await User.findOne({ 'mail' : mail }).exec();
     //user._id; correct
     if (!user) {
-        //throw Error('UN_AUTHENTICATED');
-        return user; 
+        throw Error('UN_AUTHENTICATED');
     }
-        return user;
-    const isValidePass = user.validatePassword(password); //always false
+    const isValidePass = user.validatePassword(user.password); //always false
     // return user ;
+    return isValidePass;  
+
     if ( !isValidePass) {
         //  throw Error('UN_AUTHENTICATED');
     } 
