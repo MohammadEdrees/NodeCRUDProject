@@ -57,7 +57,8 @@ userSchema.pre('findOneAndUpdate',function preSave(next){
 });
 
 userSchema.methods.validatePassword = function(password){
-return bycrypt.compareSync(password,this.password);
+
+return  { p: password , pass: this.password }//bycrypt.compareSync(password,this.password);
 
 }
 

@@ -46,7 +46,7 @@ const login = async ({ mail, password }) => {
     if (!user) {
         throw Error('UN_AUTHENTICATED');
     }
-    const isValidePass = user.validatePassword(user.password); //always false
+    const isValidePass = user.validatePassword(password); //always false
     // return user ;
     return isValidePass;  
 
@@ -57,7 +57,7 @@ const login = async ({ mail, password }) => {
     let token = await asyncSign({
         mail: user.mail,
         password: user.password,
-        id: user.id,
+        id: user._id,
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
 
     return { ...user.toJSON(), token };
