@@ -59,22 +59,7 @@ const login = async ({ mail, password }) => {
         id: user.id,
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
 
-    const refreshToken = await asyncSign({
-        mail: user.mail,
-        password: user.password,
-        id: user.id,
-    }, 'REFRESH', { expiresIn: '999999999999999999999999999999999999' });
-
-    // const refreshToken = await asyncSign({
-    //     mail: user.mail,
-    //     password: user.password,
-    //     id: user.id
-    // }, 'REFRESH', { expiresIn: '1y' });
-
-
-    //res.json('6');
-    res.json(user);
-    //return { ...user.toJSON(), token, refreshToken };
+    return { ...user.toJSON(), token };
 
 
 }
