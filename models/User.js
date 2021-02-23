@@ -46,16 +46,16 @@ const userSchema = new Schema({
       
 });
 
-// userSchema.pre('save',function preSave(next){
-//     this.password=bcrypt.hashSync(this.password,8);
-//     next();
-// });
+userSchema.pre('save',function preSave(next){
+    this.password=bcrypt.hashSync(this.password,8);
+    next();
+});
 
-// userSchema.pre('findOneAndUpdate',function preSave(next){
-//     if(!this._update.password){return;}
-//     this._update.password=bcrypt.hashSync(this._update.password,8);
-//     next();
-// });
+userSchema.pre('findOneAndUpdate',function preSave(next){
+    if(!this._update.password){return;}
+    this._update.password=bcrypt.hashSync(this._update.password,8);
+    next();
+});
 
 userSchema.methods.validatePassword = function(password){
 return bcrypt.compareSync(password,this.password);
