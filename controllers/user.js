@@ -16,7 +16,7 @@ const follow = (userid, followid) => {
 const unfollow = (userid, followid) => {
     User.findByIdAndUpdate(userid, { $pull: { following: followid } }, { new: true }).exec()
     User.findByIdAndUpdate(followid, { $pull: { follower: userid } }, { new: true }).exec()
-    return ("status:unfollowe");
+    return ("status:unfollowed");
 }
 //All Followers ----------------------------------------------------
 const getfollowers = async (id) => {
@@ -57,8 +57,8 @@ const login = async ({ mail, password }) => {
         password: user.password,
         id: user._id,
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
-    return user;
-    //return { ...user.toJSON(), token };
+
+    return { ...user.toJSON(), token };
 
 
 }
