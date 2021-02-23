@@ -2,19 +2,19 @@
 
 <legend>Edit Blog</legend>
 
-<div class="wrap-input1 validate-input" data-validate="title is required">
-                <input class="input1" [(ngModel)]="blog.title" type="text" name="title" placeholder="Title" [ngModelOptions]="{standalone:true}">
-                <span class="shadow-input1"></span>
-            </div>
- <div class="wrap-input1 validate-input" data-validate="Message is required">
-                <textarea class="input1" [(ngModel)]="blog.body" name="Body" placeholder="Body" [ngModelOptions]="{standalone:true}"></textarea>
-                <span class="shadow-input1"></span>
-            </div>
+<div class="form-group">
+    <label for="">Title</label>
+    <input type="text" class="form-control" id="" placeholder="Title" [(ngModel)]="blog.title">
+</div>
+<div class="form-group">
+    <label for="">Body</label>
+    <input type="text" class="form-control" id="" placeholder="Body" [(ngModel)]="blog.body">
+</div>
 
 <div class="custom-file mb-4 rounded">
-                <input type="file" (change)="onfileselected($event)" class="custom-file-input" id="customFile" name="blogImg">
-                <label class="custom-file-label" name="blogImg" for="customFile">Blog Image</label>
-            </div>
+    <input type="file" class="custom-file-input" id="customFile" name="blogImg">
+    <label class="custom-file-label" [(ngModel)]="blog.img" name="blogImg" for="customFile">Blog Image</label>
+</div>
 
 
 
