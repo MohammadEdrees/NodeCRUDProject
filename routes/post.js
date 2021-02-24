@@ -6,6 +6,7 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const mongoose = require('mongoose');
+const Comment = require('../models/Comment');
 
 //--------------------------------------
 
@@ -128,9 +129,11 @@ router.post('/post', authMiddleware , async(req, res, next) => {
 //comment
 router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
     const { user:{id, firstname, lastname} ,params: { idd }} = req;
+    commentbody=req.body;
     try{
-      const comment=await postComment(idd,req.body);
-      res.json(comment);
+      const comment =()=> {return Comment.create(commentbody)};
+      const effectedBlog=await postComment(idd,comment._id);
+      res.json(effectedBlog);
       }catch(e){
       next(e);
       }
