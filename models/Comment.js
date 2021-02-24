@@ -4,11 +4,15 @@ const {Schema} = mongoose;
 const commentSchema = new Schema({
 authorName:{
     type: String,
-    maxlength:100
+    maxlength:100,
+    default:null
+
 },
 body:{
     type: String,
-    maxlength:200
+    maxlength:200,
+    default:null
+
 },
 createTime:{type:Date , default:Date.now },
 userId:{

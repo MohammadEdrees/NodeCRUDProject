@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+
 const mongoose = require('mongoose');
 
 //Create blog--------------------------------------//
@@ -14,7 +15,7 @@ const deletP =(id)=>Post.findByIdAndDelete(id).exec();
 //PostsOfOneUser
 const getAlll = (query) => Post.find(query).exec();
 //comments
-const postComment =(blogid, comment) => Post.findByIdAndUpdate(blogid, { $addToSet: { comments: comment } }, { new: true }).exec();
+const postComment =(blogid, comment) => Post.findByIdAndUpdate(blogid, { $push: { comments: comment.id } }, { new: true }).exec();
 module.exports={
     create,getAll,getById,edit,deletP,getAlll,postComment
 }
