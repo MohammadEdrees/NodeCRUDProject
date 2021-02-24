@@ -241,3 +241,12 @@
             i {
                 padding-right: 2em;
             }
+            #heart:hover{
+                color: red;
+            }
+            #comment:hover{
+                color: #114c7d;
+
+            }
+           
+
