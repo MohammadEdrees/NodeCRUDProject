@@ -10,12 +10,12 @@
     <label for="">Body</label>
     <input type="text" class="form-control" id="" placeholder="Body" [(ngModel)]="blog.body">
 </div>
-
+<!--
 <div class="custom-file mb-4 rounded">
     <input type="file" class="custom-file-input" id="customFile" name="blogImg">
     <label class="custom-file-label" [(ngModel)]="blog.img" name="blogImg" for="customFile">Blog Image</label>
 </div>
+-->
 
 
-
-<button class="btn btn-primary">Submit</button>
+<button class="btn btn-primary" (click)="save();">Submit</button>
