@@ -1,11 +1,12 @@
 const express = require('express');
-const { create, getAll, getById, edit, deletP,getAlll } = require('../controllers/post');
+const { create, getAll, getById, edit, deletP, getAlll, postComment } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const mongoose = require('mongoose');
+
 
 //--------------------------------------
 
@@ -51,17 +52,17 @@ router.post('/', authMiddleware, parser.single('img'), async (req, res, next) =>
         var { body, user } = req;
 
         // request Content
-        const post = await create({ ...body, img: req.file.path });
+        const post = await create({ ...body, userId: user._id, img: req.file.path });
         // save in mongoose
-       // const postId = post.id;
-       // user.posts.push(postId);
-       // user.save();
+        const postId = post.id;
+        user.posts.push(postId);
+        user.save();
         // set post id => user 
         res.json({ posts: post });
 
 
     } catch (e) {
-        
+
         next(e);
     }
 
@@ -83,11 +84,11 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //--modify Blog with id 
-router.put('/:id', authMiddleware,parser.single('img'), async (req, res, next) => {
-    const { params: { id }, body , file } = req;
+router.put('/:id', authMiddleware, parser.single('img'), async (req, res, next) => {
+    const { params: { id }, body, file } = req;
     //img = { file };
     try {
-        const specificPost = await edit( id , body);
+        const specificPost = await edit(id, body);
         res.json("seccess");
 
     } catch (err) {
@@ -111,10 +112,10 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 });
 
 // get current user blogs 
-router.post('/post', authMiddleware , async(req, res, next) => {
-     const { user: { id } } = req;   
+router.post('/post', authMiddleware, async (req, res, next) => {
+    const { user: { id } } = req;
     try {
-       const blogs = await getAlll( { userId: id} );
+        const blogs = await getAlll({ userId: id });
         res.json(blogs);
     } catch (e) {
         next(e);
@@ -126,13 +127,15 @@ router.post('/post', authMiddleware , async(req, res, next) => {
 
 // });
 //comment
-// router.post('/comments/:blogid',auth, async (req, res, next) => {
-//     const { user:{id, firstName, lastName} ,params: {blogid}, body } = req;
-//     try{
-//       const comment=await postComment(blogid,{ ...body, author: id , authorName: firstName+""+lastName});
-//       res.json(comment);
-//       }catch(e){
-//       next(e);
-//       }
-//   });
+
+router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
+    const { user: { id, firstname, lastname }, params: { idd } } = req;
+    let b = req.body;
+    try {
+        const comment = await postComment(idd, b);
+        res.json(comment);
+    } catch (e) {
+        next(e);
+    }
+});
 module.exports = router 

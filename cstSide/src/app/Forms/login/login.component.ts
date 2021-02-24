@@ -36,7 +36,7 @@ massage='';
       this._myservice.login(this.loginForm.value)
       .subscribe(
         data => {
-        console.log(data);
+        console.log(data.token);
         let user=data;
         this._myservice.setloggedwhenlogin(true);
         const expiresAt = moment().add(data.expiresIn,'second');

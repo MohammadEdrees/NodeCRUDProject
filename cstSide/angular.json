@@ -31,6 +31,7 @@
                             "src/styles.css"
                         ],
                         "scripts": ["node_modules/jquery/dist/jquery.min.js"] 
+                        
                     },
                     "configurations": {
                         "production": {
@@ -62,7 +63,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "cstSide:build"
+                        "browserTarget": "cstSide:build",
+                        "proxyConfig": "src/proxy.conf.json"
                     },
                     "configurations": {
                         "production": {

@@ -16,7 +16,7 @@ const follow = (userid, followid) => {
 const unfollow = (userid, followid) => {
     User.findByIdAndUpdate(userid, { $pull: { following: followid } }, { new: true }).exec()
     User.findByIdAndUpdate(followid, { $pull: { follower: userid } }, { new: true }).exec()
-    return ("status:unfollowe");
+    return ("status:unfollowed");
 }
 //All Followers ----------------------------------------------------
 const getfollowers = async (id) => {
@@ -36,45 +36,31 @@ const getAllUsers = () => User.find({});
 const editOne = (id, data) => User.findByIdAndUpdate(id, data, { new: true }).exec();
 //token ----------------------------------------------
 const { promisify } = require('util');
+const { exception } = require('console');
 const asyncSign = promisify(jwt.sign);
 //------------------------------------------------------------------
 
 //login
 const login = async ({ mail, password }) => {
-    let user = await User.findOne({ 'mail' : mail }).exec();
+   
+    let user = await User.findOne({ 'mail': mail }).exec();
+    //user._id; correct
 
     if (!user) {
-        throw Error('UN_AUTHENTICATED'); 
+        throw Error('!user');
+    }
+    const isValidePass = user.validatePassword(password);
+    if (isValidePass== false) {
+        throw Error(`password ${isValidePass}`);
     }
 
-    const isValidePass = user.validatePassword(password); //always false
-    // return user ;
-    if ( !isValidePass) {
-        //  throw Error('UN_AUTHENTICATED');
-    } 
-    
-    let token = await asyncSign({
+   const token = await asyncSign({
         mail: user.mail,
         password: user.password,
-        id: user.id,
+        id: user._id,
     }, 'SECRET_MUST_BE_COMPLEX', { expiresIn: '2 days' });
+    return { ...user.toJSON(), token };
 
-    const refreshToken = await asyncSign({
-        mail: user.mail,
-        password: user.password,
-        id: user.id,
-    }, 'REFRESH', { expiresIn: '999999999999999999999999999999999999' });
-
-    // const refreshToken = await asyncSign({
-    //     mail: user.mail,
-    //     password: user.password,
-    //     id: user.id
-    // }, 'REFRESH', { expiresIn: '1y' });
-
-
-    //res.json('6');
-    res.json(user);
-    //return { ...user.toJSON(), token, refreshToken };
 
 
 }
@@ -91,5 +77,5 @@ module.exports = {
     unfollow,
     getfollowers,
     getfollowing
-    
+
 };
