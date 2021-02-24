@@ -1,12 +1,12 @@
 const Post = require('../models/Post');
-const Comment = require('../models/Comment');
+
 
 
 const mongoose = require('mongoose');
 
 //Create blog--------------------------------------//
 const create=(post)=>{return Post.create(post);}
-const createComment=(comment)=>{return Comment.create(comment);}
+//const createComment=(comment)=>{return Comment.create(comment);}
 
 //get All blogs--------------------------//
 const getAll=()=>Post.find({}).exec();
@@ -21,5 +21,5 @@ const getAlll = (query) => Post.find(query).exec();
 //comments
 const postComment =(blogid, comment) => Post.findByIdAndUpdate(blogid, { $addToSet: { comments: comment} }, { new: true }).exec();
 module.exports={
-    create,getAll,getById,edit,deletP,getAlll,postComment,createComment
+    create,getAll,getById,edit,deletP,getAlll,postComment
 }

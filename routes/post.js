@@ -1,12 +1,12 @@
 const express = require('express');
-const { create, getAll, getById, edit, deletP, getAlll, postComment, createComment } = require('../controllers/post');
+const { create, getAll, getById, edit, deletP, getAlll, postComment } = require('../controllers/post');
 const authMiddleware = require('../middelwares/auth');
 const router = express.Router();
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const mongoose = require('mongoose');
-//const Comment = require('../models/Comment');
+
 
 //--------------------------------------
 
@@ -127,15 +127,7 @@ router.post('/post', authMiddleware, async (req, res, next) => {
 
 // });
 //comment
-router.post('/comment', authMiddleware, async (req, res, next) => {
-    var { body, user } = req;
-    try {
-        const comment = await createComment(body);
-        res.json(comment);
-    } catch (e) {
-        next(e);
-    }
-});
+
 router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
     const { user: { id, firstname, lastname }, params: { idd } } = req;
     let b = req.body;
