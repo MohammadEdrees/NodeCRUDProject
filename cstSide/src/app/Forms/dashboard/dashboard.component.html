@@ -81,7 +81,7 @@
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="row mb-3" *ngFor="let blog of blogs">
                 <div class="row ">
                     <div class="col-6">
@@ -93,7 +93,7 @@
                                 <h4>{{blog.title}}</h4>
                             </a>
                             <p class="lead text-break text-justify ">{{blog.body}}</p>
-                          
+
                         </div>
                     </div>
 
@@ -151,8 +151,8 @@
             <section class="blog-area section">
                 <div class="container">
                     <div class="row ">
-                        <div class="col-lg-4 col-md-6 mt-4" *ngFor="let blog of blogs">
-                            <div class="card h-100">
+                        <div class="col-lg-4 col-md-6 mt-4 " *ngFor="let blog of blogs">
+                            <div class="card h-100 ">
                                 <div class="single-post post-style-1">
 
                                     <div class="blog-image">
@@ -168,23 +168,22 @@
                                         </h4>
                                         <p>{{blog.body}}</p>
                                         <ul class="post-footer col-12 bg-white">
-                                          <!--  <li class="col-12">
-                                                {{blog.createTime|date:'MM/dd/yy'}}
-                                            </li> -->
-                                            <li class="col-1">
-                                                <a id='heart'><i class=" fa fa-heart  "></i></a>
+                                            <li class="col-12">
+                                                <p> {{blog.createTime|date:'dd.MMM.yy'}}</p>
                                             </li>
                                             <li class="col-1">
-                                                <a id='comment'><i class=" fa fa-comment"></i></a>
+                                                <a id='heart' *ngIf="dashlogged"><i class=" fa fa-heart  "></i></a>
+                                            </li>
+                                            <li class="col-1">
+                                                <a id='comment' *ngIf="dashlogged"><i class=" fa fa-comment"></i></a>
                                             </li>
                                             <li class="col-2 ">
-                                                <a class="btn fa fa-user bg-success text-white" (click)="userid=blog.userId;followuser()">
-                        
+                                                <a class="btn fa fa-user bg-success text-white" *ngIf="dashlogged" (click)="userid=blog.userId;followuser()">
+
                                                 </a>
                                             </li>
                                             <li class="col-2">
-                                                <a class="btn fa fa-user bg-danger text-white" (click)="userid=blog.userId;unfollowuser()">
-                                                  
+                                                <a class="btn fa fa-user bg-danger text-white" *ngIf="dashlogged" (click)="userid=blog.userId;unfollowuser()">
                                                 </a>
                                             </li>
 
