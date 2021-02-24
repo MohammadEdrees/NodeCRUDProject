@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Blogs } from '../_models/blogs';
 import { BlogsService } from '../_servives/blogs.service';
 
@@ -12,7 +12,7 @@ export class PostEditComponent implements OnInit {
 
   blog:Blogs=new Blogs("","","",new Date(),0,0,false,"","");
   id:any=0;
-  constructor(private BlogsServis:BlogsService,private active:ActivatedRoute) { }
+  constructor(private BlogsServis:BlogsService,private active:ActivatedRoute,private _router:Router) { }
 
   ngOnInit(): void {
 
@@ -37,6 +37,9 @@ export class PostEditComponent implements OnInit {
     this.BlogsServis.editBlog(this.blog._id,this.blog).subscribe(d=>console.log(d)
     
     )
+    this._router.navigate(['/profile']);
+
+    
     
   }
 

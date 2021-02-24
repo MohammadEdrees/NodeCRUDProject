@@ -13,12 +13,13 @@ userId:string="";
 
 user:User=new User("","","","","",new Date(),new Date(),[],[],[],"","","")
   constructor(private registerService:RegisterService) {
-    this.registerService.getuserId().subscribe(a=>{this.userId=a;console.log(a)})
-    this.registerService.getUser(this.userId).subscribe(a=>{this.user=a})
+   // this.registerService.getuserId().subscribe(a=>{this.userId=a;console.log(a)})
+   // this.registerService.getUser(this.userId).subscribe(a=>{this.user=a})
   }
 
   ngOnInit(): void {
-
+    this.registerService.getuserId().subscribe(a=>{this.userId=a;console.log(a)})
+    this.registerService.getUser(this.userId).subscribe(a=>{this.user=a})
   }
 
 }
