@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const commentSchema = new Schema({
+authorName:{
+    type: String,
+    maxlength:100
+},
 body:{
     type: String,
     maxlength:200
