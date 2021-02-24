@@ -98,10 +98,11 @@ router.patch('/:id', authMiddleware, async (req, res, next) => {
 
 // delete Blog with id 
 router.delete('/:id', authMiddleware, async (req, res, next) => {
-    const { params: { id },userId } = req;
+    const { params: { id }, user } = req;
     try {
-        const deleted = await deletP(id,userId);
-
+        const deleted = await deletP(id);
+        user.posts.shift(id);
+        user.save();
         res.send(deleted + " deleted ");
 
     } catch (err) {
