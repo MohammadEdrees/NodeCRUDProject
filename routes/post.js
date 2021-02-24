@@ -127,10 +127,10 @@ router.post('/post', authMiddleware, async (req, res, next) => {
 
 // });
 //comment
-router.post('/comment/', authMiddleware, async (req, res, next) => {
+router.post('/comment', authMiddleware, async (req, res, next) => {
     var { body, user } = req;
     try {
-        const comment = await createComment({ ...body, userId: user._id});
+        const comment = await createComment(body);
         res.json(comment);
     } catch (e) {
         next(e);
