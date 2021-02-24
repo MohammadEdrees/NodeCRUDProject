@@ -129,8 +129,8 @@ router.post('/post', authMiddleware , async(req, res, next) => {
 router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
     const { user:{id, firstname, lastname} ,params: { idd }, body } = req;
     try{
-      const comment=await postComment(idd,{ ...body, userId: id , postId: idd , authorName:`${$firstname}  ${lastname}`});
-      res.json(comment._id);
+      const comment=await postComment(idd,{comment:body });
+      res.json(comment);
       }catch(e){
       next(e);
       }
