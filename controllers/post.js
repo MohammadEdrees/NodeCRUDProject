@@ -1,7 +1,5 @@
 const Post = require('../models/Post');
-
-
-
+const User= require('../models/User');
 const mongoose = require('mongoose');
 
 //Create blog--------------------------------------//
@@ -15,7 +13,15 @@ const getById=(id)=>Post.findById(id).exec();
 //editOne--------------------------------------//
 const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{ new:true}).exec();
 //delete by id -----------------------------------------//
-const deletP =(id)=>Post.findByIdAndDelete(id,{ new:true}).exec();
+const deletP =(id,userid)=>{Post.findByIdAndDelete(id,{ new:true}).exec();
+// find user
+//get his posts 
+// delete from his array 
+let currentUser = User.findById(userid).exec();
+currentUser.posts.shift(id);
+currentUser.save();
+
+}
 //PostsOfOneUser
 const getAlll = (query) => Post.find(query).exec();
 //comments
