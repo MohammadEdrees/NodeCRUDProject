@@ -84,7 +84,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //--modify Blog with id 
-router.put('/:id', authMiddleware, async (req, res, next) => {
+router.post('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
