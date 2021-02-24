@@ -129,7 +129,7 @@ router.post('/post', authMiddleware , async(req, res, next) => {
 router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
     const { user:{id, firstname, lastname} ,params: { idd }, body} = req;
     try{
-      const comment=await postComment(idd,body);
+      const comment=await postComment(idd,body._id);
       res.json(comment);
       }catch(e){
       next(e);
