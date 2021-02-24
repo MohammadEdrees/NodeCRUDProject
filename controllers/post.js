@@ -13,9 +13,9 @@ const getAll=()=>Post.find({}).exec();
 //get one by id --------------------------//
 const getById=(id)=>Post.findById(id).exec();
 //editOne--------------------------------------//
-const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{new:true}).exec();
+const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{ new:true}).exec();
 //delete by id -----------------------------------------//
-const deletP =(id)=>Post.findByIdAndDelete(id).exec();
+const deletP =(id)=>Post.findByIdAndDelete(id,{ new:true}).exec();
 //PostsOfOneUser
 const getAlll = (query) => Post.find(query).exec();
 //comments
