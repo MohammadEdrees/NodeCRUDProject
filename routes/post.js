@@ -84,12 +84,11 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //--modify Blog with id 
-router.put('/:id', authMiddleware, parser.single('img'), async (req, res, next) => {
-    const { params: { id }, body, file } = req;
-    //img = { file };
+router.put('/:id', authMiddleware, async (req, res, next) => {
+    const { params: { id }, body } = req;
     try {
         const specificPost = await edit(id, body);
-        res.json("seccess");
+        res.json(specificPost);
 
     } catch (err) {
         console.log(err);
@@ -128,14 +127,14 @@ router.post('/post', authMiddleware, async (req, res, next) => {
 // });
 //comment
 
-router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
-    const { user: { id, firstname, lastname }, params: { idd } } = req;
-    let b = req.body;
-    try {
-        const comment = await postComment(idd, b);
-        res.json(comment);
-    } catch (e) {
-        next(e);
-    }
-});
+// router.post('/comment/:idd', authMiddleware, async (req, res, next) => {
+//     const { user: { id, firstname, lastname }, params: { idd } } = req;
+//     let b = req.body;
+//     try {
+//         const comment = await postComment(idd, b);
+//         res.json(comment);
+//     } catch (e) {
+//         next(e);
+//     }
+// });
 module.exports = router 
