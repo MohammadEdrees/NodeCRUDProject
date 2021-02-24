@@ -21,5 +21,5 @@ user:User=new User("","","","","",new Date(),new Date(),[],[],[],"","","")
     this.registerService.getuserId().subscribe(a=>{this.userId=a;console.log(a)})
     this.registerService.getUser(this.userId).subscribe(a=>{this.user=a})
   }
-
+//
 }

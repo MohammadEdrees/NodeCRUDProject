@@ -101,7 +101,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id }, user } = req;
     try {
         const deleted = await deletP(id);
-        user.posts.shift(id);
+        user.posts.shift({_id : id});
         user.save();
         res.send(deleted + " deleted ");
 
