@@ -6,6 +6,7 @@ const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const mongoose = require('mongoose');
+const User = require('../models/User');
 
 
 //--------------------------------------
@@ -101,8 +102,8 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
     const { params: { id }, user } = req;
     try {
         const deleted = await deletP(id);
-        user.posts.shift({_id : id});
-        user.save();
+        await user.posts.shift({_id : id});
+        await user.save();
         res.send(deleted + " deleted ");
 
     } catch (err) {
