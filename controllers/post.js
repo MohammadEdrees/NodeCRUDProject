@@ -13,7 +13,7 @@ const getById=(id)=>Post.findById(id).exec();
 //editOne--------------------------------------//
 const edit =(id,body)=>Post.findByIdAndUpdate(id,body,{ new:true}).exec();
 //delete by id -----------------------------------------//
-const deletP =(id)=>Post.findByIdAndDelete(id,{ new:true}).exec();
+const deletP =(id)=>Post.findByIdAndDelete(id).exec();
 
 //PostsOfOneUser
 const getAlll = (query) => Post.find(query).exec();
