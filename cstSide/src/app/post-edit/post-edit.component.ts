@@ -37,6 +37,7 @@ export class PostEditComponent implements OnInit {
     this.BlogsServis.editBlog(this.blog._id,this.blog).subscribe(d=>console.log(d)
     
     )
+    
   }
 
 }
