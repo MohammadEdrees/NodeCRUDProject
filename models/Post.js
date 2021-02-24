@@ -31,7 +31,7 @@ const postSchema = new Schema({
         type:String,
         default:"URL"
     },
-    comments:[{type: Schema.Types.ObjectId , ref:'Comment'}]
+    comments:[String]
 
 
 
