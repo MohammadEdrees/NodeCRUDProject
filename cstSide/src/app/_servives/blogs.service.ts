@@ -25,6 +25,10 @@ export class BlogsService {
   getUserBlogs(uid:any){
     return this.http.post<Blogs[]>("https://myfirstnode7.herokuapp.com/posts/post",uid);
   }
+  // editBlog(id:any,fd:FormData){
+  //  return this.http.put("https://myfirstnode7.herokuapp.com/posts/"+id,fd)
+  // }
+
   editBlog(id:any,body:any){
    return this.http.patch("https://myfirstnode7.herokuapp.com/posts/"+id,body)
   }
